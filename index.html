@@ -3,634 +3,716 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Độc quyền trong Kinh tế Chính trị Mác - Lênin</title>
-  <meta name="description" content="Website UX/UI một trang về cạnh tranh, độc quyền và độc quyền nhà nước trong kinh tế chính trị Mác - Lênin." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Đế chế Apple dưới góc nhìn Kinh tế chính trị Mác - Lênin</title>
+  <meta name="description" content="Website trình bày lý thuyết độc quyền và phân tích trường hợp Apple theo kinh tế chính trị Mác - Lênin." />
   <style>
-    :root {
-      --bg: #050816;
-      --bg-soft: #0a1024;
-      --card: rgba(255, 255, 255, 0.08);
-      --card-strong: rgba(255, 255, 255, 0.13);
-      --line: rgba(255, 255, 255, 0.16);
-      --text: #eef3ff;
-      --muted: #aab6d3;
-      --blue: #62d6ff;
-      --violet: #9f7bff;
-      --pink: #ff70c8;
-      --orange: #ffb35c;
-      --green: #73f6b4;
-      --danger: #ff6f91;
-      --shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
-      --radius: 28px;
+    @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
+    :root{
+      --bg:#060914;
+      --bg2:#0b1020;
+      --card:rgba(255,255,255,.075);
+      --card2:rgba(255,255,255,.105);
+      --line:rgba(255,255,255,.15);
+      --text:#f5f7fb;
+      --muted:#aeb8cf;
+      --gold:#ffd166;
+      --blue:#68d8ff;
+      --purple:#a78bfa;
+      --green:#7dd3a8;
+      --red:#ff7b8a;
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+      --radius:26px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      color: var(--text);
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+    body{
+      margin:0;
+      font-family:"Be Vietnam Pro", Arial, "Segoe UI", Tahoma, sans-serif;
+      color:var(--text);
       background:
-        radial-gradient(circle at 12% 10%, rgba(98, 214, 255, 0.22), transparent 34%),
-        radial-gradient(circle at 88% 2%, rgba(255, 112, 200, 0.18), transparent 32%),
-        radial-gradient(circle at 50% 60%, rgba(159, 123, 255, 0.15), transparent 42%),
-        var(--bg);
-      overflow-x: hidden;
+        radial-gradient(circle at 15% 10%, rgba(104,216,255,.20), transparent 30%),
+        radial-gradient(circle at 80% 0%, rgba(167,139,250,.20), transparent 28%),
+        radial-gradient(circle at 50% 90%, rgba(255,209,102,.12), transparent 34%),
+        linear-gradient(135deg, #050713 0%, #0b1020 48%, #050713 100%);
+      min-height:100vh;
+      overflow-x:hidden;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
       background-image:
-        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, black, transparent 88%);
-      z-index: -2;
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size:64px 64px;
+      mask-image:linear-gradient(to bottom, black, transparent 85%);
+      opacity:.45;
+      z-index:-1;
     }
 
-    .orb {
-      position: fixed;
-      width: 420px;
-      height: 420px;
-      border-radius: 999px;
-      filter: blur(60px);
-      opacity: 0.18;
-      pointer-events: none;
-      z-index: -1;
-      animation: float 12s ease-in-out infinite alternate;
-    }
-    .orb.one { background: var(--blue); top: 12%; left: -180px; }
-    .orb.two { background: var(--pink); bottom: 8%; right: -160px; animation-delay: 2s; }
-    @keyframes float { from { transform: translateY(-20px); } to { transform: translateY(40px); } }
+    a{color:inherit}
+    .wrap{width:min(1180px, calc(100% - 36px)); margin:0 auto}
 
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(1160px, calc(100% - 36px)); margin: 0 auto; }
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(18px);
+      background:rgba(6,9,20,.70);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      letter-spacing:0;
+      white-space:nowrap;
+    }
+    .brand-mark{
+      width:36px;height:36px;border-radius:14px;
+      background:linear-gradient(135deg,var(--gold),var(--blue));
+      display:grid;place-items:center;
+      color:#070a14;
+      box-shadow:0 10px 32px rgba(104,216,255,.22);
+    }
+    .pill{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      padding:8px 12px;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:13px;
+    }
 
-    .nav {
-      position: sticky;
-      top: 14px;
-      z-index: 50;
-      margin-top: 14px;
+    .hero{padding:64px 0 32px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:24px;
+      align-items:stretch;
     }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 12px 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(5, 8, 22, 0.72);
-      backdrop-filter: blur(18px);
-      box-shadow: var(--shadow);
+    .hero-card{
+      border:1px solid var(--line);
+      background:linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.045));
+      box-shadow:var(--shadow);
+      border-radius:calc(var(--radius) + 8px);
+      padding:34px;
+      position:relative;
+      overflow:hidden;
+      min-height:450px;
     }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -0.03em; }
-    .brand-mark {
-      width: 36px; height: 36px; border-radius: 12px;
-      display: grid; place-items: center;
-      background: linear-gradient(135deg, var(--blue), var(--violet), var(--pink));
-      color: #050816;
-      box-shadow: 0 12px 36px rgba(98, 214, 255, .25);
+    .hero-card:after{
+      content:"";
+      position:absolute;
+      width:360px;height:360px;border-radius:999px;
+      right:-120px;top:-120px;
+      background:radial-gradient(circle, rgba(255,209,102,.35), transparent 62%);
+      filter:blur(6px);
     }
-    .nav-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
-    .nav-links a {
-      padding: 9px 12px;
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
+    .kicker{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      color:var(--gold);
+      border:1px solid rgba(255,209,102,.35);
+      background:rgba(255,209,102,.08);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:18px;
     }
-    .nav-links a:hover { background: rgba(255,255,255,0.08); color: var(--text); }
+    h1{
+      margin:0;
+      font-size:clamp(34px, 5vw, 66px);
+      line-height:1.02;
+      letter-spacing:-0.8px;
+      max-width:900px;
+    }
+    .grad{
+      background:linear-gradient(90deg, #fff, var(--blue), var(--gold));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .lead{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:17px;
+      max-width:720px;
+      margin:20px 0 0;
+    }
+    .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:28px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:13px 16px;
+      border-radius:15px;
+      border:1px solid var(--line);
+      text-decoration:none;
+      font-weight:800;
+      cursor:pointer;
+    }
+    .btn.primary{background:linear-gradient(135deg,var(--blue),var(--purple)); color:#050713; border:none}
+    .btn.ghost{background:rgba(255,255,255,.06); color:var(--text)}
 
-    .hero { padding: 96px 0 70px; }
-    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 30px; align-items: center; }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 8px 12px;
-      border: 1px solid rgba(98,214,255,.28);
-      background: rgba(98,214,255,.08);
-      border-radius: 999px;
-      color: #c6f3ff;
-      font-weight: 800;
-      font-size: 13px;
-      margin-bottom: 22px;
+    .visual-card{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.07);
+      border-radius:calc(var(--radius) + 8px);
+      overflow:hidden;
+      min-height:450px;
+      box-shadow:var(--shadow);
+      position:relative;
     }
-    .pulse { width: 8px; height: 8px; border-radius: 99px; background: var(--green); box-shadow: 0 0 0 8px rgba(115,246,180,.12); }
-    h1 {
-      margin: 0;
-      font-size: clamp(42px, 7vw, 84px);
-      line-height: .96;
-      letter-spacing: -0.075em;
-      font-weight: 900;
+    .visual-card img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(1.08) contrast(1.03)}
+    .visual-card .caption{
+      position:absolute;
+      left:18px;right:18px;bottom:18px;
+      padding:14px 16px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(5,7,19,.72);
+      backdrop-filter:blur(14px);
+      border-radius:18px;
+      color:#dce8ff;
+      font-size:14px;
+      line-height:1.55;
     }
-    .gradient-text { background: linear-gradient(90deg, #fff, #9fe9ff 35%, #d0b8ff 70%, #ffb0dd); -webkit-background-clip: text; color: transparent; }
-    .lead { margin: 24px 0 0; color: var(--muted); font-size: clamp(16px, 2vw, 20px); line-height: 1.75; max-width: 760px; }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      padding: 14px 18px;
-      border-radius: 16px;
-      font-weight: 850;
-      border: 1px solid var(--line);
-      transition: transform .2s, background .2s;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn.primary { background: linear-gradient(135deg, var(--blue), var(--violet)); color: #06101d; border: 0; }
-    .btn.ghost { background: rgba(255,255,255,.07); color: var(--text); }
 
-    .hero-card {
-      position: relative;
-      min-height: 470px;
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(160deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
-      box-shadow: var(--shadow);
-      overflow: hidden;
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin:26px 0 0;
     }
-    .hero-card::before {
-      content: ""; position: absolute; inset: -80px -80px auto auto; width: 280px; height: 280px; border-radius: 999px;
-      background: radial-gradient(circle, rgba(98,214,255,.34), transparent 70%);
+    .stat{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      border-radius:20px;
+      padding:18px;
     }
-    .diagram {
-      position: relative;
-      display: grid; gap: 16px;
-      height: 100%;
+    .stat b{display:block; font-size:24px; color:#fff; margin-bottom:5px}
+    .stat span{font-size:13px;color:var(--muted);line-height:1.45}
+
+    .tabs-shell{
+      margin:32px auto 60px;
+      border:1px solid var(--line);
+      border-radius:calc(var(--radius) + 10px);
+      background:rgba(255,255,255,.055);
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
-    .diagram-node {
-      padding: 18px;
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      background: rgba(5,8,22,.56);
-      backdrop-filter: blur(12px);
+    .tabs{
+      display:flex;
+      gap:10px;
+      overflow-x:auto;
+      padding:14px;
+      border-bottom:1px solid var(--line);
+      background:rgba(255,255,255,.045);
     }
-    .diagram-node strong { display: block; font-size: 18px; margin-bottom: 8px; }
-    .diagram-node p { margin: 0; color: var(--muted); line-height: 1.55; }
-    .arrow { text-align: center; color: var(--blue); font-size: 24px; line-height: 1; }
-    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
-    .stat { padding: 16px; border-radius: 20px; background: rgba(255,255,255,.08); border: 1px solid var(--line); }
-    .stat b { font-size: 24px; display: block; }
-    .stat span { color: var(--muted); font-size: 12px; font-weight: 700; }
-
-    section { padding: 72px 0; }
-    .section-head { margin-bottom: 28px; display: flex; justify-content: space-between; gap: 24px; align-items: end; }
-    .kicker { color: var(--blue); font-weight: 900; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 10px; }
-    h2 { margin: 0; font-size: clamp(30px, 4vw, 52px); letter-spacing: -0.055em; line-height: 1.05; }
-    .section-desc { color: var(--muted); max-width: 520px; line-height: 1.65; margin: 0; }
-
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-    .card {
-      border: 1px solid var(--line);
-      background: linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.045));
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 20px 55px rgba(0,0,0,.22);
-      position: relative;
-      overflow: hidden;
+    .tab-btn{
+      flex:0 0 auto;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      color:var(--muted);
+      border-radius:16px;
+      padding:12px 16px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.2s ease;
     }
-    .card::after {
-      content: ""; position: absolute; inset: auto -40px -60px auto; width: 160px; height: 160px; border-radius: 999px; background: rgba(98,214,255,.09); filter: blur(20px);
+    .tab-btn:hover{transform:translateY(-1px); color:#fff; background:rgba(255,255,255,.10)}
+    .tab-btn.active{
+      color:#07101f;
+      border-color:transparent;
+      background:linear-gradient(135deg,var(--gold),var(--blue));
+      box-shadow:0 12px 35px rgba(255,209,102,.18);
     }
-    .icon {
-      width: 48px; height: 48px; border-radius: 16px; display: grid; place-items: center; margin-bottom: 16px;
-      background: rgba(98,214,255,.13); border: 1px solid rgba(98,214,255,.25); font-size: 23px;
+    .tab-panel{display:none; padding:28px}
+    .tab-panel.active{display:block; animation:fade .28s ease both}
+    @keyframes fade{from{opacity:0; transform:translateY(8px)}to{opacity:1; transform:translateY(0)}}
+
+    .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:22px}
+    .section-head h2{margin:0; font-size:clamp(26px, 3vw, 42px); letter-spacing:-1px}
+    .section-head p{margin:0; color:var(--muted); max-width:500px; line-height:1.65}
+
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .card{
+      border:1px solid var(--line);
+      background:linear-gradient(145deg, rgba(255,255,255,.095), rgba(255,255,255,.045));
+      border-radius:var(--radius);
+      padding:22px;
+      min-height:100%;
+      position:relative;
+      overflow:hidden;
     }
-    .card h3 { margin: 0 0 12px; font-size: 22px; letter-spacing: -.03em; }
-    .card p, .card li { color: var(--muted); line-height: 1.65; }
-    .card p { margin: 0; }
-    .card ul { margin: 0; padding-left: 18px; }
-    .card li + li { margin-top: 10px; }
-
-    .timeline { position: relative; display: grid; gap: 16px; }
-    .timeline::before { content:""; position:absolute; left:24px; top:18px; bottom:18px; width:2px; background: linear-gradient(var(--blue), var(--violet), var(--pink)); opacity:.6; }
-    .timeline-item { position: relative; padding-left: 68px; }
-    .dot { position:absolute; left:9px; top:12px; width:32px; height:32px; border-radius:999px; background:#06101d; border: 2px solid var(--blue); display:grid; place-items:center; font-weight:900; color: var(--blue); }
-    .timeline-box { padding: 20px; border-radius: 22px; background: rgba(255,255,255,.075); border:1px solid var(--line); }
-    .timeline-box h3 { margin:0 0 8px; }
-    .timeline-box p { margin:0; color:var(--muted); line-height:1.65; }
-
-    .split-panel { display: grid; grid-template-columns: .9fr 1.1fr; gap: 18px; align-items: stretch; }
-    .big-number { font-size: 74px; line-height: .9; font-weight: 900; letter-spacing: -.08em; background: linear-gradient(135deg, var(--blue), var(--pink)); -webkit-background-clip:text; color:transparent; }
-
-    .compare { overflow: hidden; padding: 0; }
-    .compare table { width: 100%; border-collapse: collapse; }
-    .compare th, .compare td { padding: 18px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
-    .compare th { color: #dff8ff; background: rgba(98,214,255,.1); font-size: 14px; text-transform: uppercase; letter-spacing: .08em; }
-    .compare td { color: var(--muted); line-height: 1.55; }
-    .compare tr:last-child td { border-bottom: 0; }
-
-    .infographic {
-      display: grid; grid-template-columns: 1fr 260px 1fr; gap: 18px; align-items: center;
+    .card h3{margin:0 0 12px; font-size:21px; letter-spacing:-.3px}
+    .card p{margin:0 0 12px;color:var(--muted); line-height:1.7}
+    .card ul{margin:12px 0 0; padding-left:18px; color:var(--muted); line-height:1.75}
+    .card li{margin:6px 0}
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      color:#06101d;
+      background:var(--gold);
+      margin-bottom:12px;
     }
-    .info-side { min-height: 230px; display: grid; place-items: center; text-align: center; }
-    .info-side.left { border-color: rgba(255,179,92,.35); }
-    .info-side.right { border-color: rgba(255,111,145,.35); }
-    .center-orb {
-      height: 260px; border-radius: 50%; display: grid; place-items: center; text-align:center; padding:20px;
-      background: radial-gradient(circle at 35% 25%, rgba(255,255,255,.26), rgba(98,214,255,.16) 30%, rgba(159,123,255,.2) 70%);
-      border: 1px solid var(--line);
-      box-shadow: inset 0 0 40px rgba(255,255,255,.08), 0 24px 80px rgba(98,214,255,.14);
+    .tag.blue{background:var(--blue)}
+    .tag.purple{background:var(--purple); color:#fff}
+    .tag.green{background:var(--green)}
+    .tag.red{background:var(--red); color:#17070a}
+
+    .image-feature{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:#0a1020;
+      min-height:100%;
     }
-    .center-orb b { display: block; font-size: 24px; letter-spacing: -.04em; }
-    .center-orb span { color: var(--muted); font-size: 13px; line-height: 1.5; display: block; margin-top: 8px; }
+    .image-feature img{width:100%; display:block; object-fit:cover; aspect-ratio:16/10}
+    .image-feature .img-info{padding:16px 18px}
+    .image-feature h3{margin:0 0 6px; font-size:18px}
+    .image-feature p{margin:0;color:var(--muted);line-height:1.6;font-size:14px}
 
-    .pill-row { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
-    .pill { padding: 9px 12px; border-radius: 999px; background:rgba(255,255,255,.08); border:1px solid var(--line); color:#dce8ff; font-size:13px; font-weight:800; }
+    .flow{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .flow-item{
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:18px;
+      background:rgba(255,255,255,.06);
+    }
+    .flow-item strong{display:block; margin-bottom:8px; color:#fff}
+    .flow-item small{color:var(--muted); line-height:1.55; display:block}
+    .flow-item:not(:last-child):after{
+      content:"→";
+      position:absolute;
+      right:-13px; top:50%; transform:translateY(-50%);
+      color:var(--gold);
+      font-weight:900;
+      z-index:2;
+    }
 
-    .footer { padding: 44px 0 70px; color: var(--muted); text-align: center; }
-    .footer .card { padding: 28px; }
+    .quote{
+      border-left:4px solid var(--gold);
+      padding:16px 18px;
+      background:rgba(255,209,102,.08);
+      border-radius:0 18px 18px 0;
+      color:#f9e6b2;
+      line-height:1.7;
+      margin:18px 0;
+    }
 
-    .reveal { opacity: 0; transform: translateY(24px); transition: .7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .table-wrap{overflow:auto; border:1px solid var(--line); border-radius:var(--radius); background:rgba(255,255,255,.045)}
+    table{width:100%; border-collapse:collapse; min-width:700px}
+    th,td{padding:16px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.55}
+    th{color:#07101f; background:linear-gradient(135deg,var(--gold),var(--blue)); font-size:14px}
+    td{color:var(--muted)}
+    tr:last-child td{border-bottom:0}
+    td b{color:#fff}
 
-    @media (max-width: 900px) {
-      .hero-grid, .grid-3, .grid-2, .split-panel, .infographic { grid-template-columns: 1fr; }
-      .section-head { display:block; }
-      .section-desc { margin-top: 14px; }
-      .nav-inner { border-radius: 24px; align-items:flex-start; }
-      .nav-links { display:none; }
-      .stats { grid-template-columns: 1fr; }
-      .hero { padding-top: 64px; }
-      .hero-card { min-height: auto; }
-      .center-orb { width: 260px; margin: 0 auto; }
+    .split-highlight{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .big-number{
+      font-size:54px;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-0.6px;
+      background:linear-gradient(90deg,var(--gold),#fff,var(--blue));
+      color:transparent;
+      -webkit-background-clip:text;
+      background-clip:text;
+      margin-bottom:12px;
+    }
+
+    .footer{padding:36px 0 60px; color:var(--muted); text-align:center; line-height:1.7}
+
+    @media (max-width: 900px){
+      .hero-grid,.grid-2,.grid-3,.split-highlight{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr 1fr}
+      .flow{grid-template-columns:1fr}
+      .flow-item:after{display:none}
+      .hero-card,.visual-card{min-height:auto}
+      .visual-card img{aspect-ratio:16/10; height:auto}
+      .section-head{display:block}
+      .section-head p{margin-top:10px}
+    }
+    @media (max-width:520px){
+      .wrap{width:min(100% - 24px, 1180px)}
+      .hero-card,.tab-panel{padding:20px}
+      .stats{grid-template-columns:1fr}
+      h1{letter-spacing:-1px}
+      .nav-inner{align-items:flex-start; flex-direction:column}
     }
   </style>
 </head>
 <body>
-  <div class="orb one"></div>
-  <div class="orb two"></div>
-
-  <nav class="nav container">
-    <div class="nav-inner">
-      <a class="brand" href="#top" aria-label="Trang chủ">
-        <span class="brand-mark">ML</span>
-        <span>Monopoly Lens</span>
-      </a>
-      <div class="nav-links">
-        <a href="#docquyen">Độc quyền</a>
-        <a href="#nhanuoc">Độc quyền nhà nước</a>
-        <a href="#tacdong">Tác động</a>
-        <a href="#lenin">Lênin</a>
-        <a href="#tongket">Tổng kết</a>
-      </div>
-    </div>
-  </nav>
-
-  <header id="top" class="hero container">
-    <div class="hero-grid">
-      <div>
-        <div class="eyebrow"><span class="pulse"></span> Kinh tế chính trị Mác - Lênin</div>
-        <h1><span class="gradient-text">Cạnh tranh ở cấp độ độc quyền</span> trong nền kinh tế thị trường</h1>
-        <p class="lead">Một landing page học thuật trực quan, giải thích quá trình cạnh tranh, tích tụ tư bản, hình thành độc quyền và vai trò của độc quyền nhà nước dưới góc nhìn lý luận của V.I. Lênin.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#docquyen">Bắt đầu xem nội dung</a>
-          <a class="btn ghost" href="#lenin">Xem lý luận Lênin</a>
-        </div>
-      </div>
-      <div class="hero-card reveal">
-        <div class="diagram">
-          <div class="diagram-node">
-            <strong>Cạnh tranh tự do</strong>
-            <p>Doanh nghiệp ganh đua về giá, công nghệ, vốn và thị trường.</p>
-          </div>
-          <div class="arrow">↓</div>
-          <div class="diagram-node">
-            <strong>Tích tụ & tập trung tư bản</strong>
-            <p>Vốn, sản xuất và quyền lực kinh tế dồn vào các chủ thể lớn.</p>
-          </div>
-          <div class="arrow">↓</div>
-          <div class="diagram-node">
-            <strong>Độc quyền</strong>
-            <p>Các tổ chức lớn kiểm soát sản xuất, tiêu thụ và định giá để thu lợi nhuận độc quyền.</p>
-          </div>
-          <div class="stats">
-            <div class="stat"><b>01</b><span>Giá cả độc quyền</span></div>
-            <div class="stat"><b>02</b><span>Lợi nhuận độc quyền</span></div>
-            <div class="stat"><b>03</b><span>Điều tiết nhà nước</span></div>
-          </div>
-        </div>
-      </div>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand"><span class="brand-mark">◆</span> MLN x Apple Monopoly</div>
+      <div class="pill">Web static 1 file HTML + Images</div>
     </div>
   </header>
 
   <main>
-    <section id="docquyen" class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker">I.1 / Nền tảng</div>
-          <h2>Độc quyền và nguyên nhân hình thành</h2>
+    <section class="hero wrap">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <span class="kicker">Kinh tế chính trị Mác - Lênin • Case Study Apple</span>
+          <h1>Đế chế Apple dưới góc nhìn <span class="grad">giá cả & lợi nhuận độc quyền</span></h1>
+          <p class="lead">
+            Website này trình bày lý thuyết độc quyền, độc quyền nhà nước và phân tích trường hợp Apple như một minh họa hiện đại cho cơ chế tập trung thị trường, áp đặt giá cả độc quyền và thu lợi nhuận độc quyền.
+          </p>
+          <div class="hero-actions">
+            <button class="btn primary" onclick="openTab('theory')">Bắt đầu với lý thuyết</button>
+            <button class="btn ghost" onclick="openTab('case')">Xem phân tích Apple</button>
+          </div>
+          <div class="stats">
+            <div class="stat"><b>01</b><span>Cạnh tranh dẫn tới tập trung sản xuất</span></div>
+            <div class="stat"><b>02</b><span>Độc quyền biểu hiện qua giá cả độc quyền</span></div>
+            <div class="stat"><b>03</b><span>Lợi nhuận độc quyền cao hơn lợi nhuận bình quân</span></div>
+            <div class="stat"><b>04</b><span>Apple được soi chiếu qua hệ sinh thái khép kín</span></div>
+          </div>
         </div>
-        <p class="section-desc">Độc quyền không xuất hiện ngẫu nhiên. Nó là kết quả của sự vận động nội tại của cạnh tranh, lực lượng sản xuất, tín dụng và khủng hoảng kinh tế.</p>
-      </div>
-
-      <div class="grid-3">
-        <article class="card reveal">
-          <div class="icon">🏛️</div>
-          <h3>Khái niệm độc quyền</h3>
-          <p>Độc quyền là liên minh các doanh nghiệp lớn nhằm kiểm soát sản xuất, tiêu thụ và định giá độc quyền để thu lợi nhuận độc quyền.</p>
-        </article>
-        <article class="card reveal">
-          <div class="icon">📈</div>
-          <h3>Nguyên nhân hình thành</h3>
-          <ul>
-            <li>Lực lượng sản xuất phát triển làm tăng nhu cầu vốn lớn.</li>
-            <li>Cạnh tranh loại bỏ doanh nghiệp nhỏ.</li>
-            <li>Khủng hoảng kinh tế thúc đẩy tập trung tư bản.</li>
-            <li>Tín dụng hỗ trợ tích tụ và tập trung vốn.</li>
-          </ul>
-        </article>
-        <article class="card reveal">
-          <div class="icon">💎</div>
-          <h3>Biểu hiện kinh tế</h3>
-          <ul>
-            <li>Quy luật giá trị biểu hiện thành giá cả độc quyền.</li>
-            <li>Quy luật giá trị thặng dư biểu hiện thành lợi nhuận độc quyền.</li>
-          </ul>
-        </article>
+        <div class="visual-card">
+          <img src="Images/Ảnh 1.png" alt="Ảnh 1 - Quá trình tập trung sản xuất và độc quyền" />
+          <div class="caption"><b>Ảnh 1:</b> Quá trình tập trung sản xuất và độc quyền — thị trường cạnh tranh bị hút vào trung tâm quyền lực độc quyền.</div>
+        </div>
       </div>
     </section>
 
-    <section id="nhanuoc" class="container">
-      <div class="split-panel">
-        <div class="card reveal">
-          <div class="kicker">I.2 / Nhà nước</div>
-          <h2>Độc quyền nhà nước</h2>
-          <p style="margin-top:16px">Nhà nước nắm giữ các lĩnh vực then chốt của nền kinh tế, kết hợp với các tổ chức độc quyền để điều tiết nền kinh tế.</p>
-          <div class="pill-row">
-            <span class="pill">Hạ tầng</span>
-            <span class="pill">Năng lượng</span>
-            <span class="pill">Tài chính</span>
-            <span class="pill">Quốc phòng</span>
+    <section class="wrap tabs-shell" id="content">
+      <nav class="tabs" aria-label="Các phần nội dung">
+        <button class="tab-btn active" data-tab="theory" onclick="openTab('theory')">I. Lý thuyết</button>
+        <button class="tab-btn" data-tab="lenin" onclick="openTab('lenin')">II. Lênin về độc quyền</button>
+        <button class="tab-btn" data-tab="case" onclick="openTab('case')">III. Phân tích Apple</button>
+        <button class="tab-btn" data-tab="debate" onclick="openTab('debate')">IV. Tranh biện</button>
+        <button class="tab-btn" data-tab="gallery" onclick="openTab('gallery')">V. Infographic</button>
+      </nav>
+
+      <article class="tab-panel active" id="theory">
+        <div class="section-head">
+          <h2>I. Cạnh tranh ở cấp độ độc quyền trong nền kinh tế thị trường</h2>
+          <p>Từ cạnh tranh tự do, quá trình tích tụ và tập trung sản xuất phát triển, làm xuất hiện các tổ chức độc quyền có khả năng chi phối thị trường.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <span class="tag">1. Độc quyền</span>
+            <h3>Khái niệm độc quyền</h3>
+            <p>Độc quyền là liên minh các doanh nghiệp lớn nhằm kiểm soát sản xuất, tiêu thụ và định giá độc quyền để thu lợi nhuận độc quyền.</p>
+            <h3>Nguyên nhân hình thành</h3>
+            <ul>
+              <li>Phát triển của lực lượng sản xuất làm xuất hiện nhu cầu vốn lớn.</li>
+              <li>Cạnh tranh làm doanh nghiệp nhỏ bị loại bỏ hoặc bị thâu tóm.</li>
+              <li>Khủng hoảng kinh tế thúc đẩy tập trung tư bản.</li>
+              <li>Hệ thống tín dụng phát triển hỗ trợ tích tụ và tập trung vốn.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="tag blue">Biểu hiện kinh tế</span>
+            <h3>Giá cả và lợi nhuận độc quyền</h3>
+            <ul>
+              <li>Quy luật giá trị biểu hiện thành <b style="color:white">giá cả độc quyền</b>.</li>
+              <li>Quy luật giá trị thặng dư biểu hiện thành <b style="color:white">lợi nhuận độc quyền</b>.</li>
+              <li>Doanh nghiệp độc quyền có thể bán cao hơn giá trị và mua hoặc thanh toán thấp hơn giá trị thực tế.</li>
+            </ul>
+            <div class="quote">Cạnh tranh không biến mất khi độc quyền xuất hiện. Nó chuyển thành cạnh tranh gay gắt hơn, có tổ chức hơn và diễn ra ở quy mô lớn hơn.</div>
           </div>
         </div>
-        <div class="timeline reveal">
-          <div class="timeline-item">
-            <div class="dot">1</div>
-            <div class="timeline-box">
-              <h3>Nền kinh tế quy mô lớn</h3>
-              <p>Khi sản xuất phát triển, nền kinh tế cần sự điều tiết tập trung để duy trì ổn định.</p>
+
+        <div class="flow">
+          <div class="flow-item"><strong>Cạnh tranh tự do</strong><small>Nhiều doanh nghiệp cùng tham gia thị trường, cạnh tranh về giá, công nghệ và quy mô.</small></div>
+          <div class="flow-item"><strong>Tích tụ tư bản</strong><small>Doanh nghiệp mở rộng sản xuất bằng cách tư bản hóa giá trị thặng dư.</small></div>
+          <div class="flow-item"><strong>Tập trung tư bản</strong><small>Nhiều tư bản nhỏ bị sáp nhập hoặc bị thâu tóm thành tư bản lớn.</small></div>
+          <div class="flow-item"><strong>Độc quyền</strong><small>Một số tổ chức lớn chi phối sản xuất, tiêu thụ và giá cả thị trường.</small></div>
+        </div>
+
+        <div class="grid-2" style="margin-top:18px">
+          <div class="card">
+            <span class="tag green">2. Độc quyền nhà nước</span>
+            <h3>Khái niệm</h3>
+            <p>Độc quyền nhà nước là việc nhà nước nắm giữ các lĩnh vực then chốt của nền kinh tế, kết hợp với các tổ chức độc quyền để điều tiết nền kinh tế.</p>
+            <h3>Nguyên nhân hình thành</h3>
+            <ul>
+              <li>Quy mô nền kinh tế lớn cần điều tiết tập trung.</li>
+              <li>Nhà nước đầu tư vào các ngành tư nhân không muốn hoặc không thể đầu tư như hạ tầng, năng lượng.</li>
+              <li>Giảm mâu thuẫn xã hội do độc quyền tư nhân.</li>
+              <li>Xu hướng quốc tế hóa nền kinh tế.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="tag red">3. Tác động</span>
+            <h3>Tích cực</h3>
+            <ul>
+              <li>Thúc đẩy nghiên cứu khoa học và đổi mới công nghệ.</li>
+              <li>Nâng cao năng suất lao động và năng lực cạnh tranh.</li>
+              <li>Góp phần phát triển nền sản xuất quy mô lớn, hiện đại.</li>
+            </ul>
+            <h3>Tiêu cực</h3>
+            <ul>
+              <li>Hạn chế cạnh tranh, gây thiệt hại cho người tiêu dùng.</li>
+              <li>Có thể kìm hãm tiến bộ kỹ thuật và phát triển kinh tế.</li>
+              <li>Gia tăng khoảng cách giàu nghèo.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="tab-panel" id="lenin">
+        <div class="section-head">
+          <h2>II. Lý luận của V.I. Lênin về đặc điểm kinh tế của độc quyền</h2>
+          <p>Các đặc điểm của chủ nghĩa tư bản độc quyền cho thấy sự chuyển biến từ cạnh tranh tự do sang sự thống trị của tư bản độc quyền và tư bản tài chính.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card">
+            <span class="tag">a</span>
+            <h3>Tích tụ và tập trung tư bản</h3>
+            <p>Tích tụ và tập trung sản xuất quy mô lớn làm xuất hiện các tổ chức độc quyền.</p>
+            <ul>
+              <li>Cartel</li>
+              <li>Syndicate</li>
+              <li>Trust</li>
+              <li>Consortium</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="tag blue">b</span>
+            <h3>Tư bản tài chính và tài phiệt</h3>
+            <p>Tư bản tài chính là sự kết hợp giữa tư bản ngân hàng và tư bản công nghiệp, từ đó hình thành đầu sỏ tài chính chi phối kinh tế và chính trị.</p>
+          </div>
+          <div class="card">
+            <span class="tag purple">c</span>
+            <h3>Xuất khẩu tư bản</h3>
+            <p>Là việc đưa vốn ra nước ngoài để thu lợi nhuận, gồm đầu tư trực tiếp và đầu tư gián tiếp.</p>
+            <p>Bản chất là mở rộng đầu tư và khai thác lợi nhuận ở nước ngoài.</p>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top:18px">
+          <div class="card">
+            <span class="tag green">d</span>
+            <h3>Cạnh tranh phân chia thị trường thế giới</h3>
+            <ul>
+              <li>Các tập đoàn độc quyền mở rộng hoạt động ra toàn cầu.</li>
+              <li>Sử dụng nhiều biện pháp cạnh tranh, kể cả bán phá giá, để chiếm thị trường.</li>
+              <li>Thị trường thế giới bị phân chia thành các khu vực ảnh hưởng của các tập đoàn độc quyền.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="tag red">e</span>
+            <h3>Phân chia lãnh thổ để bảo vệ lợi ích độc quyền</h3>
+            <ul>
+              <li>Các nước tư bản cạnh tranh giành thuộc địa, nguồn nguyên liệu và phạm vi ảnh hưởng.</li>
+              <li>Mâu thuẫn giữa các cường quốc ngày càng gay gắt.</li>
+              <li>Mục tiêu cuối cùng là bảo vệ và mở rộng lợi ích của các tập đoàn độc quyền.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <span class="tag blue">4.2.2</span>
+          <h3>Đặc điểm kinh tế của độc quyền nhà nước trong chủ nghĩa tư bản</h3>
+          <div class="grid-3">
+            <div>
+              <h3>1. Kết hợp nhân sự</h3>
+              <p>Nhân sự giữa tổ chức độc quyền và nhà nước thâm nhập lẫn nhau. Ví dụ điển hình: “Hôm nay là bộ trưởng, ngày mai là chủ ngân hàng – và ngược lại.”</p>
+            </div>
+            <div>
+              <h3>2. Sở hữu nhà nước phát triển</h3>
+              <p>Bao gồm tài sản công, doanh nghiệp nhà nước trong công nghiệp, hạ tầng, giao thông, y tế, giáo dục, bảo hiểm.</p>
+            </div>
+            <div>
+              <h3>3. Nhà nước điều tiết kinh tế</h3>
+              <p>Thông qua ngân sách, thuế, tiền tệ, tín dụng, kế hoạch hóa, ưu đãi và trừng phạt.</p>
             </div>
           </div>
-          <div class="timeline-item">
-            <div class="dot">2</div>
-            <div class="timeline-box">
-              <h3>Đầu tư vào ngành then chốt</h3>
-              <p>Nhà nước tham gia các lĩnh vực tư nhân không muốn hoặc không đủ khả năng đầu tư như hạ tầng, năng lượng, y tế, giáo dục.</p>
+          <div class="quote">Cơ chế tổng hợp: Thị trường + Độc quyền tư nhân + Điều tiết nhà nước → phát huy mặt tích cực, hạn chế mặt tiêu cực → phục vụ lợi ích của chủ nghĩa tư bản độc quyền.</div>
+        </div>
+      </article>
+
+      <article class="tab-panel" id="case">
+        <div class="section-head">
+          <h2>III. Phân tích trường hợp Apple qua lý luận giá cả và lợi nhuận độc quyền</h2>
+          <p>Trường hợp Apple được trình bày như một ví dụ về cách doanh nghiệp có vị thế thị trường mạnh có thể thu lợi nhuận độc quyền thông qua giá bán cao, chi trả thấp và hệ sinh thái khép kín.</p>
+        </div>
+
+        <div class="split-highlight">
+          <div class="image-feature">
+            <img src="Images/Ảnh 2.png" alt="Ảnh 2 - Lưỡi kéo giá cả độc quyền" />
+            <div class="img-info">
+              <h3>Ảnh 2: “Lưỡi kéo” giá cả độc quyền</h3>
+              <p>Một bên là giá bán cao với người tiêu dùng, một bên là chi trả thấp hoặc phí hoa hồng cao với đối tác, tạo dòng chảy lợi nhuận độc quyền.</p>
             </div>
           </div>
-          <div class="timeline-item">
-            <div class="dot">3</div>
-            <div class="timeline-box">
-              <h3>Giảm mâu thuẫn xã hội</h3>
-              <p>Độc quyền nhà nước được dùng để điều tiết các xung đột do độc quyền tư nhân tạo ra.</p>
+          <div class="card">
+            <div class="big-number">Apple Case</div>
+            <h3>Giá cả độc quyền cao khi bán iPhone</h3>
+            <p>Các tổ chức độc quyền thường áp đặt mức giá bán hàng hóa cao hơn giá trị và giá cả sản xuất để thu lợi nhuận. Apple duy trì mức giá iPhone rất cao so với chi phí linh kiện thô, dựa trên sức mạnh thương hiệu và hệ sinh thái khép kín như iOS, iCloud.</p>
+            <p>Điều này có thể được soi chiếu như biểu hiện của giá cả độc quyền cao: người dùng trả thêm không chỉ cho phần cứng mà còn cho thương hiệu, trải nghiệm và sự phụ thuộc vào hệ sinh thái.</p>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top:18px">
+          <div class="card">
+            <span class="tag blue">Giá cả độc quyền thấp</span>
+            <h3>Mua linh kiện và thanh toán cho lập trình viên</h3>
+            <p><b style="color:white">Với linh kiện:</b> Nhờ quy mô cực lớn, Apple có vị thế áp đảo để đàm phán mua linh kiện với giá rẻ hơn so với các đối thủ nhỏ.</p>
+            <p><b style="color:white">Với lập trình viên:</b> Việc Apple thu phí hoa hồng 30% trên App Store có thể được xem như một dạng áp đặt điều kiện thanh toán bất lợi đối với dịch vụ của bên thứ ba.</p>
+            <p>Apple tận dụng vị thế kiểm soát cửa hàng ứng dụng trên iOS để buộc các lập trình viên, ví dụ như Spotify hoặc Epic Games, phải nhượng lại một phần giá trị thặng dư mà họ tạo ra.</p>
+          </div>
+          <div class="image-feature">
+            <img src="Images/Ảnh 3.png" alt="Ảnh 3 - Hệ sinh thái khép kín" />
+            <div class="img-info">
+              <h3>Ảnh 3: Hệ sinh thái khép kín</h3>
+              <p>Không gian bên trong đẹp, tiện lợi và an toàn; nhưng lớp kính cũng biểu thị rào cản thị trường đối với các doanh nghiệp bên ngoài.</p>
             </div>
           </div>
-          <div class="timeline-item">
-            <div class="dot">4</div>
-            <div class="timeline-box">
-              <h3>Quốc tế hóa kinh tế</h3>
-              <p>Trong bối cảnh toàn cầu hóa, nhà nước hỗ trợ tư bản độc quyền mở rộng ảnh hưởng ra bên ngoài.</p>
+        </div>
+
+        <div class="grid-2" style="margin-top:18px">
+          <div class="image-feature">
+            <img src="Images/Ảnh 4.png" alt="Ảnh 4 - Bản chất lợi nhuận độc quyền" />
+            <div class="img-info">
+              <h3>Ảnh 4: Bản chất lợi nhuận độc quyền</h3>
+              <p>Lợi nhuận độc quyền được minh họa như dòng chảy giá trị từ công nhân, người tiêu dùng và lập trình viên hội tụ về trung tâm tư bản độc quyền.</p>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker">Bản chất</div>
-          <h2>Kết hợp sức mạnh Nhà nước và tư bản độc quyền</h2>
-        </div>
-        <p class="section-desc">Dưới góc nhìn Mác - Lênin, độc quyền nhà nước không tách rời lợi ích của tư bản độc quyền mà trở thành công cụ duy trì và phát triển chủ nghĩa tư bản.</p>
-      </div>
-      <div class="grid-2">
-        <article class="card reveal">
-          <div class="big-number">01</div>
-          <h3>Phục vụ lợi ích của tập đoàn độc quyền</h3>
-          <p>Các chính sách, hợp đồng, ngân sách và công cụ điều tiết có thể trở thành điểm tựa để tư bản độc quyền duy trì lợi nhuận.</p>
-        </article>
-        <article class="card reveal">
-          <div class="big-number">02</div>
-          <h3>Duy trì trật tự kinh tế tư bản</h3>
-          <p>Sự kết hợp giữa quyền lực nhà nước và quyền lực kinh tế giúp ổn định hệ thống, đồng thời bảo vệ vị thế của các nhóm tư bản lớn.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="tacdong" class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker">I.3 / Hai mặt</div>
-          <h2>Tác động của độc quyền</h2>
-        </div>
-        <p class="section-desc">Độc quyền vừa có thể thúc đẩy sản xuất hiện đại, vừa có thể tạo ra những giới hạn lớn cho cạnh tranh, người tiêu dùng và phân phối xã hội.</p>
-      </div>
-
-      <div class="grid-2">
-        <article class="card reveal">
-          <div class="icon">🚀</div>
-          <h3>Tác động tích cực</h3>
-          <ul>
-            <li>Thúc đẩy nghiên cứu khoa học và đổi mới công nghệ.</li>
-            <li>Nâng cao năng suất lao động và năng lực cạnh tranh.</li>
-            <li>Góp phần phát triển nền sản xuất quy mô lớn, hiện đại.</li>
-          </ul>
-        </article>
-        <article class="card reveal">
-          <div class="icon">⚠️</div>
-          <h3>Tác động tiêu cực</h3>
-          <ul>
-            <li>Hạn chế cạnh tranh, gây thiệt hại cho người tiêu dùng.</li>
-            <li>Có thể kìm hãm tiến bộ kỹ thuật và phát triển kinh tế.</li>
-            <li>Gia tăng khoảng cách giàu nghèo.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker">I.4 / Quan hệ cạnh tranh</div>
-          <h2>Độc quyền không xóa bỏ cạnh tranh</h2>
-        </div>
-        <p class="section-desc">Độc quyền ra đời từ cạnh tranh tự do, nhưng khi đã hình thành, nó làm cạnh tranh trở nên gay gắt, phức tạp và đa dạng hơn.</p>
-      </div>
-      <div class="infographic">
-        <div class="card info-side left reveal">
-          <div>
-            <div class="icon" style="margin:0 auto 16px">🏢</div>
-            <h3>Tổ chức độc quyền</h3>
-            <p>Cạnh tranh với doanh nghiệp ngoài độc quyền và với các tổ chức độc quyền khác.</p>
+          <div class="card">
+            <span class="tag">Lợi nhuận độc quyền</span>
+            <h3>Tổng hợp từ nhiều nguồn giá trị</h3>
+            <p>Tổng hợp hai yếu tố trên giúp Apple thu được lợi nhuận độc quyền. Khoản lợi nhuận này cao hơn mức lợi nhuận bình quân.</p>
+            <ul>
+              <li>Bao gồm lợi nhuận thặng dư của công nhân Apple và chuỗi cung ứng tạo ra.</li>
+              <li>Bao gồm một phần giá trị thặng dư của các doanh nghiệp nhỏ, đặc biệt là lập trình viên và nhà phát triển ứng dụng.</li>
+              <li>Bao gồm một phần thu nhập của người lao động trên toàn thế giới thông qua việc mua iPhone, dịch vụ và sản phẩm trong hệ sinh thái Apple.</li>
+            </ul>
           </div>
         </div>
-        <div class="center-orb reveal">
-          <div>
-            <b>Cạnh tranh gay gắt hơn</b>
-            <span>Độc quyền làm thay đổi hình thức cạnh tranh, không làm cạnh tranh biến mất.</span>
+
+        <div class="table-wrap" style="margin-top:18px">
+          <table>
+            <thead>
+              <tr>
+                <th>Cơ chế</th>
+                <th>Trong lý luận độc quyền</th>
+                <th>Biểu hiện trong case Apple</th>
+                <th>Kết quả</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Giá bán cao</b></td>
+                <td>Doanh nghiệp độc quyền bán hàng hóa cao hơn giá trị và giá cả sản xuất.</td>
+                <td>iPhone được định giá cao nhờ thương hiệu, iOS, iCloud và hệ sinh thái khép kín.</td>
+                <td>Chiếm đoạt một phần thu nhập của người tiêu dùng.</td>
+              </tr>
+              <tr>
+                <td><b>Chi trả thấp / điều kiện bất lợi</b></td>
+                <td>Doanh nghiệp độc quyền mua vào hoặc thanh toán cho đối tác ở mức bất lợi.</td>
+                <td>Đàm phán linh kiện nhờ quy mô lớn; thu phí hoa hồng App Store với lập trình viên.</td>
+                <td>Dịch chuyển một phần giá trị từ đối tác nhỏ về trung tâm độc quyền.</td>
+              </tr>
+              <tr>
+                <td><b>Lợi nhuận độc quyền</b></td>
+                <td>Lợi nhuận cao hơn lợi nhuận bình quân, gồm phần giá trị thặng dư siêu ngạch.</td>
+                <td>Apple kết hợp giá bán cao, kiểm soát nền tảng và sức mạnh hệ sinh thái.</td>
+                <td>Tích lũy lợi nhuận lớn và củng cố vị thế thị trường.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="tab-panel" id="debate">
+        <div class="section-head">
+          <h2>IV. Tranh biện: Apple là môi trường an toàn hay kẻ chèn ép?</h2>
+          <p>Cùng một hệ sinh thái khép kín có thể được nhìn nhận từ hai phía: hiệu quả, an toàn và đổi mới; hoặc hạn chế cạnh tranh, khóa người dùng và gây bất lợi cho đối tác.</p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <span class="tag green">Góc nhìn tích cực</span>
+            <h3>Môi trường an toàn và hiệu quả</h3>
+            <ul>
+              <li>Hệ sinh thái khép kín giúp kiểm soát chất lượng ứng dụng và trải nghiệm người dùng.</li>
+              <li>Quy mô lớn tạo nguồn lực tài chính cho nghiên cứu, phát triển và đổi mới công nghệ.</li>
+              <li>Chuỗi cung ứng toàn cầu được tối ưu hóa, từ đó nâng cao năng suất và năng lực cạnh tranh.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <span class="tag red">Góc nhìn phê phán</span>
+            <h3>Sức mạnh thị trường và sự chèn ép</h3>
+            <ul>
+              <li>Hệ sinh thái khép kín có thể khóa người dùng vào một nền tảng duy nhất.</li>
+              <li>Các doanh nghiệp nhỏ và lập trình viên phụ thuộc vào điều kiện của nền tảng.</li>
+              <li>Vị thế độc quyền có thể làm cạnh tranh không hoàn hảo và làm sâu sắc thêm phân hóa lợi ích.</li>
+            </ul>
           </div>
         </div>
-        <div class="card info-side right reveal">
-          <div>
-            <div class="icon" style="margin:0 auto 16px">⚙️</div>
-            <h3>Nội bộ độc quyền</h3>
-            <p>Cạnh tranh vẫn tồn tại bên trong các tổ chức độc quyền về lợi ích, quyền lực và phân chia lợi nhuận.</p>
+        <div class="image-feature" style="margin-top:18px">
+          <img src="Images/Ảnh 3.png" alt="Ảnh 3 - Hệ sinh thái khép kín" />
+          <div class="img-info">
+            <h3>Thông điệp thị giác</h3>
+            <p>Bên trong mái vòm là sự tiện lợi và an toàn; bên ngoài là sự loại trừ và bất bình của các doanh nghiệp nhỏ. Đây là mâu thuẫn trung tâm khi phân tích Apple dưới góc nhìn độc quyền.</p>
           </div>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <section id="lenin" class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker">II.1 / Lý luận V.I. Lênin</div>
-          <h2>Đặc điểm kinh tế của độc quyền</h2>
+      <article class="tab-panel" id="gallery">
+        <div class="section-head">
+          <h2>V. Bộ infographic sử dụng trong website</h2>
+          <p>Bốn hình ảnh đặt trong thư mục <b>Images</b>, được gọi trực tiếp trong file HTML để deploy dễ dàng trên Vercel hoặc GitHub Pages.</p>
         </div>
-        <p class="section-desc">Lênin chỉ ra các đặc điểm kinh tế cơ bản của chủ nghĩa tư bản độc quyền: tập trung tư bản, tư bản tài chính, xuất khẩu tư bản, phân chia thị trường và lãnh thổ.</p>
-      </div>
-      <div class="grid-3">
-        <article class="card reveal">
-          <div class="icon">🧱</div>
-          <h3>a. Tích tụ và tập trung tư bản</h3>
-          <p>Sản xuất quy mô lớn làm xuất hiện các tổ chức độc quyền.</p>
-          <div class="pill-row">
-            <span class="pill">Cartel</span><span class="pill">Syndicate</span><span class="pill">Trust</span><span class="pill">Consortium</span>
-          </div>
-        </article>
-        <article class="card reveal">
-          <div class="icon">🏦</div>
-          <h3>b. Tư bản tài chính và tài phiệt</h3>
-          <p>Tư bản tài chính là sự kết hợp giữa tư bản ngân hàng và tư bản công nghiệp, hình thành đầu sỏ tài chính chi phối kinh tế và chính trị.</p>
-        </article>
-        <article class="card reveal">
-          <div class="icon">🌍</div>
-          <h3>c. Xuất khẩu tư bản</h3>
-          <p>Đưa vốn ra nước ngoài để thu lợi nhuận, thông qua đầu tư trực tiếp FDI hoặc đầu tư gián tiếp.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="grid-2">
-        <article class="card reveal">
-          <div class="kicker">II.2.d</div>
-          <h2>Cạnh tranh phân chia thị trường thế giới</h2>
-          <ul style="margin-top:18px">
-            <li>Các tập đoàn độc quyền mở rộng hoạt động ra toàn cầu.</li>
-            <li>Sử dụng nhiều biện pháp cạnh tranh như bán phá giá để chiếm thị trường.</li>
-            <li>Thị trường thế giới bị phân chia thành các khu vực ảnh hưởng.</li>
-          </ul>
-        </article>
-        <article class="card reveal">
-          <div class="kicker">II.2.e</div>
-          <h2>Phân chia lãnh thổ để bảo vệ lợi ích</h2>
-          <ul style="margin-top:18px">
-            <li>Các nước tư bản cạnh tranh giành thuộc địa, nguồn nguyên liệu và phạm vi ảnh hưởng.</li>
-            <li>Mâu thuẫn giữa các cường quốc ngày càng gay gắt, góp phần dẫn đến chiến tranh.</li>
-            <li>Mục tiêu cuối cùng là bảo vệ và mở rộng lợi ích của tập đoàn độc quyền.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker">4.2.2 / Độc quyền nhà nước</div>
-          <h2>Đặc điểm kinh tế của độc quyền nhà nước</h2>
+        <div class="grid-2">
+          <div class="image-feature"><img src="Images/Ảnh 1.png" alt="Ảnh 1" /><div class="img-info"><h3>Ảnh 1: Quá trình tập trung sản xuất và độc quyền</h3><p>Minh họa cạnh tranh tự do dẫn đến tích tụ, tập trung sản xuất và hình thành độc quyền.</p></div></div>
+          <div class="image-feature"><img src="Images/Ảnh 2.png" alt="Ảnh 2" /><div class="img-info"><h3>Ảnh 2: “Lưỡi kéo” giá cả độc quyền</h3><p>Minh họa giá bán cao và chi trả thấp tạo ra lợi nhuận độc quyền.</p></div></div>
+          <div class="image-feature"><img src="Images/Ảnh 3.png" alt="Ảnh 3" /><div class="img-info"><h3>Ảnh 3: Hệ sinh thái khép kín</h3><p>Mái vòm công nghệ biểu thị sự tiện lợi bên trong và rào cản thị trường bên ngoài.</p></div></div>
+          <div class="image-feature"><img src="Images/Ảnh 4.png" alt="Ảnh 4" /><div class="img-info"><h3>Ảnh 4: Chiếm đoạt giá trị thặng dư</h3><p>Ba dòng chảy giá trị từ công nhân, người dùng và lập trình viên hội tụ thành lợi nhuận độc quyền.</p></div></div>
         </div>
-        <p class="section-desc">Độc quyền tư nhân phát triển thúc đẩy kinh tế nhưng cũng gây bất ổn, từ đó đòi hỏi hình thức độc quyền cao hơn: độc quyền nhà nước.</p>
-      </div>
-
-      <div class="card compare reveal">
-        <table>
-          <thead>
-            <tr>
-              <th>Đặc trưng</th>
-              <th>Nội dung chính</th>
-              <th>Ý nghĩa kinh tế</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Kết hợp nhân sự</strong></td>
-              <td>Nhân sự thâm nhập lẫn nhau giữa tổ chức độc quyền và bộ máy nhà nước từ trung ương đến địa phương.</td>
-              <td>Tạo liên minh cá nhân giữa quyền lực kinh tế và quyền lực chính trị.</td>
-            </tr>
-            <tr>
-              <td><strong>Sở hữu nhà nước phát triển</strong></td>
-              <td>Bao gồm tài sản công và doanh nghiệp nhà nước trong công nghiệp, giao thông, y tế, giáo dục, bảo hiểm.</td>
-              <td>Làm chỗ dựa cho điều tiết kinh tế và tạo thị trường nhà nước cho tư bản độc quyền.</td>
-            </tr>
-            <tr>
-              <td><strong>Điều tiết kinh tế</strong></td>
-              <td>Nhà nước dùng ngân sách, thuế, tiền tệ, tín dụng, kế hoạch hóa, ưu đãi và trừng phạt.</td>
-              <td>Kết hợp thị trường, độc quyền tư nhân và điều tiết nhà nước để phục vụ lợi ích tư bản độc quyền.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="grid-3">
-        <article class="card reveal">
-          <div class="icon">🔁</div>
-          <h3>Liên minh cá nhân</h3>
-          <p>“Hôm nay là bộ trưởng, ngày mai là chủ ngân hàng – và ngược lại.” Các đảng phái và hội chủ xí nghiệp có thể chi phối tài chính, nhân sự và đường lối chính trị.</p>
-        </article>
-        <article class="card reveal">
-          <div class="icon">🏗️</div>
-          <h3>Sở hữu tập thể của giai cấp tư sản</h3>
-          <p>Sở hữu nhà nước được hình thành qua xây mới bằng ngân sách, quốc hữu hóa, mua cổ phần hoặc mở rộng từ tích lũy tư nhân.</p>
-        </article>
-        <article class="card reveal">
-          <div class="icon">🎛️</div>
-          <h3>Công cụ điều tiết kinh tế</h3>
-          <p>Hệ thống điều tiết gồm bộ máy quản lý, chính sách, công cụ kinh tế, hành chính - pháp lý, ưu đãi và trừng phạt.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="tongket" class="container">
-      <div class="card reveal" style="text-align:center; padding:42px">
-        <div class="kicker">Tổng kết</div>
-        <h2>Cơ chế tổng hợp</h2>
-        <p class="lead" style="margin-left:auto; margin-right:auto">Thị trường + Độc quyền tư nhân + Điều tiết nhà nước tạo thành cơ chế vận động của chủ nghĩa tư bản độc quyền nhà nước: phát huy một số mặt tích cực, hạn chế một số mặt tiêu cực, nhưng về bản chất vẫn phục vụ lợi ích của chủ nghĩa tư bản độc quyền.</p>
-        <div class="pill-row" style="justify-content:center">
-          <span class="pill">Thị trường</span>
-          <span class="pill">+</span>
-          <span class="pill">Độc quyền tư nhân</span>
-          <span class="pill">+</span>
-          <span class="pill">Điều tiết nhà nước</span>
+        <div class="card" style="margin-top:18px">
+          <h3>Kết luận</h3>
+          <p>Apple có thể được xem là một minh chứng hiện đại để phân tích lý luận độc quyền: từ cạnh tranh thị trường, tích tụ tư bản, hệ sinh thái khép kín, giá cả độc quyền đến lợi nhuận độc quyền. Dù đem lại trải nghiệm công nghệ cao, mô hình này cũng đặt ra vấn đề về quyền lực thị trường, sự phụ thuộc của người dùng và điều kiện bất lợi cho các doanh nghiệp nhỏ.</p>
         </div>
-      </div>
+      </article>
     </section>
   </main>
 
-  <footer class="footer container">
-    <div class="card">
-      <strong>Website học tập môn Kinh tế chính trị Mác - Lênin</strong>
-      <p style="margin:10px 0 0">Thiết kế dạng one-page UX/UI, chỉ dùng HTML + CSS + JavaScript, có thể đưa thẳng lên GitHub và deploy bằng Vercel.</p>
-    </div>
+  <footer class="footer wrap">
+    <p>Website phục vụ trình bày học thuật • Kinh tế chính trị Mác - Lênin • Case Study Apple</p>
   </footer>
 
   <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => io.observe(el));
+    function openTab(id){
+      document.querySelectorAll('.tab-btn').forEach(btn=>btn.classList.toggle('active', btn.dataset.tab === id));
+      document.querySelectorAll('.tab-panel').forEach(panel=>panel.classList.toggle('active', panel.id === id));
+      const shell = document.getElementById('content');
+      if(shell){ shell.scrollIntoView({behavior:'smooth', block:'start'}); }
+    }
   </script>
 </body>
 </html>
