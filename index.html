@@ -3,565 +3,458 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Đế chế Apple dưới góc nhìn Kinh tế chính trị Mác - Lênin</title>
+  <title>Đế chế Apple dưới góc nhìn kinh tế chính trị Mác - Lênin</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
 
     :root{
-      --bg:#070d1a;
-      --card:rgba(15,23,42,.78);
-      --card2:rgba(15,23,42,.92);
-      --text:#f8fafc;
-      --muted:#b6c2d6;
-      --soft:#94a3b8;
-      --line:rgba(148,163,184,.18);
-      --cyan:#38bdf8;
-      --cyan2:#7dd3fc;
-      --blue:#818cf8;
-      --green:#34d399;
-      --red:#fb7185;
-      --gold:#f8d47a;
-      --radius:32px;
-      --shadow:0 28px 90px rgba(0,0,0,.38);
+      --bg:#06111f;
+      --panel:#0b1628;
+      --panel-2:#101d33;
+      --card:#111f36;
+      --card-soft:rgba(17,31,54,.72);
+      --text:#edf6ff;
+      --muted:#a9b8cc;
+      --line:rgba(160,190,255,.18);
+      --blue:#46a6ff;
+      --cyan:#39e5ff;
+      --violet:#8d7cff;
+      --gold:#ffd166;
+      --red:#ff6b6b;
+      --green:#5ee0a0;
+      --shadow:0 28px 90px rgba(0,0,0,.45);
+      --radius:28px;
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:"Be Vietnam Pro", Arial, "Segoe UI", Tahoma, sans-serif;
+      font-family:"Be Vietnam Pro",system-ui,-apple-system,Segoe UI,Arial,sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at 12% 7%, rgba(56,189,248,.22), transparent 27%),
-        radial-gradient(circle at 86% 11%, rgba(129,140,248,.20), transparent 25%),
-        radial-gradient(circle at 80% 82%, rgba(14,165,233,.16), transparent 31%),
-        linear-gradient(135deg,#07111f 0%,#0f172a 52%,#111827 100%);
-      min-height:100vh;
+        radial-gradient(circle at 18% 16%,rgba(70,166,255,.22),transparent 28%),
+        radial-gradient(circle at 80% 6%,rgba(141,124,255,.20),transparent 30%),
+        radial-gradient(circle at 76% 72%,rgba(57,229,255,.12),transparent 28%),
+        linear-gradient(180deg,#050b14 0%,#071326 46%,#09182d 100%);
       overflow-x:hidden;
     }
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:-2;
-      pointer-events:none;
-      opacity:.42;
-      background-repeat:no-repeat;
-      background-size:900px auto, 720px auto;
-      background-position:right -140px top 110px, left -160px bottom -80px;
-      filter:saturate(1.15);
-      transition:background-image .35s ease, opacity .35s ease;
+
+    .bg-layer{position:fixed;inset:0;z-index:-5;overflow:hidden;pointer-events:none}
+    .bg-layer:before{
+      content:"";position:absolute;inset:0;opacity:.28;
+      background-image:
+        linear-gradient(rgba(80,150,255,.11) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(80,150,255,.11) 1px,transparent 1px);
+      background-size:70px 70px;
+      mask-image:linear-gradient(to bottom,transparent,#000 14%,#000 78%,transparent);
     }
-    body::after{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:-1;
+    .planet{
+      position:absolute;border-radius:50%;filter:blur(2px);opacity:.55;
+      background:radial-gradient(circle at 34% 32%,rgba(255,255,255,.55),rgba(70,166,255,.16) 28%,rgba(70,166,255,.03) 65%,transparent 72%);
+    }
+    .planet.one{width:440px;height:440px;right:-160px;top:120px}
+    .planet.two{width:360px;height:360px;left:-140px;bottom:40px;background:radial-gradient(circle at 42% 40%,rgba(57,229,255,.33),rgba(141,124,255,.08) 52%,transparent 72%)}
+    .wire{
+      position:absolute;inset:auto 0 0 0;height:360px;opacity:.38;
       background:
-        radial-gradient(circle at 20% 22%, rgba(56,189,248,.12), transparent 30%),
-        radial-gradient(circle at 78% 30%, rgba(129,140,248,.11), transparent 32%),
-        radial-gradient(circle at 55% 78%, rgba(248,212,122,.06), transparent 36%),
-        linear-gradient(180deg, rgba(2,6,23,.1), rgba(2,6,23,.45));
-    }
-    body.theme-theory::before{
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 620'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%2338bdf8'/%3E%3Cstop offset='1' stop-color='%23818cf8'/%3E%3C/linearGradient%3E%3Cfilter id='s'%3E%3CfeDropShadow dx='0' dy='26' stdDeviation='18' flood-color='%23000000' flood-opacity='.42'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='900' height='620' fill='none'/%3E%3Cg filter='url(%23s)' opacity='.95'%3E%3Cpath d='M190 455 C275 340 348 280 485 235 C603 196 682 143 739 80' fill='none' stroke='url(%23a)' stroke-width='22' stroke-linecap='round' opacity='.35'/%3E%3Ccircle cx='240' cy='430' r='50' fill='%230f172a' stroke='%2338bdf8' stroke-width='5'/%3E%3Ccircle cx='420' cy='270' r='62' fill='%23172554' stroke='%237dd3fc' stroke-width='5'/%3E%3Ccircle cx='650' cy='150' r='78' fill='%231e1b4b' stroke='%23818cf8' stroke-width='5'/%3E%3Cpath d='M220 430 L420 270 L650 150' fill='none' stroke='%23e0f2fe' stroke-width='4' opacity='.45'/%3E%3C/g%3E%3Cg opacity='.25' fill='%237dd3fc'%3E%3Crect x='105' y='110' width='145' height='92' rx='24' transform='rotate(-12 105 110)'/%3E%3Crect x='575' y='388' width='170' height='105' rx='28' transform='rotate(10 575 388)'/%3E%3C/g%3E%3C/svg%3E"),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 720 520'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%2338bdf8'/%3E%3Cstop offset='1' stop-color='%23f8d47a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg opacity='.65'%3E%3Cpath d='M120 350 C230 170 445 155 585 275' fill='none' stroke='url(%23g)' stroke-width='20' stroke-linecap='round'/%3E%3Ccircle cx='160' cy='335' r='48' fill='%230f172a' stroke='%2338bdf8' stroke-width='4'/%3E%3Ccircle cx='360' cy='200' r='60' fill='%23172554' stroke='%23f8d47a' stroke-width='4'/%3E%3Ccircle cx='555' cy='270' r='45' fill='%230f172a' stroke='%23818cf8' stroke-width='4'/%3E%3C/g%3E%3C/svg%3E");
-    }
-    body.theme-apple::before{
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 920 650'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%2338bdf8'/%3E%3Cstop offset='.55' stop-color='%23818cf8'/%3E%3Cstop offset='1' stop-color='%23f8d47a'/%3E%3C/linearGradient%3E%3Cfilter id='s'%3E%3CfeDropShadow dx='0' dy='30' stdDeviation='20' flood-color='%23000000' flood-opacity='.48'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23s)' opacity='.88'%3E%3Cpath d='M300 470 C200 320 260 150 410 185 C510 90 690 165 675 340 C658 505 520 570 430 460 C390 510 335 510 300 470Z' fill='%230f172a' stroke='url(%23g)' stroke-width='8'/%3E%3Cpath d='M450 170 C460 98 510 60 590 52 C570 130 520 168 450 170Z' fill='%23172554' stroke='%237dd3fc' stroke-width='7'/%3E%3Cellipse cx='462' cy='362' rx='210' ry='125' fill='none' stroke='%237dd3fc' stroke-width='5' opacity='.44'/%3E%3C/g%3E%3Cg opacity='.42'%3E%3Ccircle cx='330' cy='350' r='18' fill='%23f8d47a'/%3E%3Ccircle cx='410' cy='310' r='14' fill='%2338bdf8'/%3E%3Ccircle cx='510' cy='375' r='20' fill='%23818cf8'/%3E%3Crect x='560' y='295' width='90' height='55' rx='16' fill='%2338bdf8'/%3E%3Crect x='250' y='285' width='75' height='75' rx='18' fill='%23818cf8'/%3E%3C/g%3E%3C/svg%3E"),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 720 520'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%23f8d47a'/%3E%3Cstop offset='1' stop-color='%2338bdf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='none' stroke='url(%23g)' stroke-width='10' opacity='.48'%3E%3Cpath d='M115 390 C220 280 272 220 385 210 C500 200 560 150 610 85'/%3E%3Cpath d='M120 430 C240 365 360 365 560 435' opacity='.5'/%3E%3C/g%3E%3Cg fill='%23f8d47a' opacity='.34'%3E%3Ccircle cx='190' cy='335' r='20'/%3E%3Ccircle cx='280' cy='275' r='15'/%3E%3Ccircle cx='390' cy='225' r='18'/%3E%3Ccircle cx='505' cy='175' r='14'/%3E%3C/g%3E%3C/svg%3E");
-    }
-    body.theme-debate::before{
-      background-image:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 640'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%2334d399'/%3E%3Cstop offset='.5' stop-color='%2338bdf8'/%3E%3Cstop offset='1' stop-color='%23fb7185'/%3E%3C/linearGradient%3E%3Cfilter id='s'%3E%3CfeDropShadow dx='0' dy='28' stdDeviation='20' flood-color='%23000000' flood-opacity='.46'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23s)' opacity='.86'%3E%3Cpath d='M265 510 C220 360 245 190 430 125 C610 62 760 175 785 330 C815 515 655 585 505 500 C430 560 300 555 265 510Z' fill='%230f172a' stroke='url(%23g)' stroke-width='8'/%3E%3Cpath d='M466 124 C480 70 520 40 590 34 C570 94 525 122 466 124Z' fill='%23172554' stroke='%237dd3fc' stroke-width='7'/%3E%3Cpath d='M270 510 L795 510' stroke='%23fb7185' stroke-width='7' opacity='.6'/%3E%3C/g%3E%3Cg opacity='.42'%3E%3Crect x='310' y='310' width='70' height='140' rx='14' fill='%2338bdf8'/%3E%3Crect x='410' y='240' width='92' height='210' rx='18' fill='%23818cf8'/%3E%3Crect x='535' y='330' width='75' height='120' rx='14' fill='%2334d399'/%3E%3Crect x='145' y='365' width='130' height='65' rx='16' fill='%23fb7185' opacity='.75'/%3E%3Crect x='705' y='330' width='125' height='65' rx='16' fill='%23fb7185' opacity='.65'/%3E%3C/g%3E%3C/svg%3E"),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 720 520'%3E%3Cg fill='none' stroke='%2338bdf8' stroke-width='12' opacity='.42'%3E%3Cpath d='M120 370 C250 220 450 210 610 330'/%3E%3Cpath d='M145 420 C295 365 440 365 585 430' opacity='.55'/%3E%3C/g%3E%3Cg fill='%23fb7185' opacity='.34'%3E%3Crect x='120' y='275' width='115' height='65' rx='18'/%3E%3Crect x='470' y='238' width='130' height='70' rx='20'/%3E%3C/g%3E%3C/svg%3E");
+        radial-gradient(circle at 20% 50%,rgba(57,229,255,.32),transparent 2px),
+        radial-gradient(circle at 38% 38%,rgba(70,166,255,.32),transparent 2px),
+        radial-gradient(circle at 62% 54%,rgba(141,124,255,.32),transparent 2px),
+        radial-gradient(circle at 78% 42%,rgba(57,229,255,.28),transparent 2px);
     }
 
-    button{font:inherit}
-    .wrap{width:min(1180px, calc(100% - 40px)); margin:0 auto}
-
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:60;
-      backdrop-filter:blur(18px);
-      background:rgba(7,13,26,.78);
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(6,17,31,.72);
       border-bottom:1px solid var(--line);
+      backdrop-filter:blur(18px);
     }
-    .topbar-inner{display:flex; justify-content:space-between; align-items:center; gap:16px; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:10px; font-weight:900; color:#e0f2fe; white-space:nowrap}
-    .brand-mark{width:38px; height:38px; border-radius:15px; display:grid; place-items:center; background:linear-gradient(135deg,#172554,#0f172a); border:1px solid rgba(56,189,248,.28); box-shadow:0 12px 32px rgba(56,189,248,.18)}
-    .nav-tabs{display:flex; gap:10px; overflow:auto; scrollbar-width:none; padding:4px}
+    .nav{width:min(1180px,calc(100% - 32px));height:74px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:245px}
+    .logo{width:42px;height:42px;border-radius:15px;background:linear-gradient(135deg,var(--blue),var(--violet));display:grid;place-items:center;box-shadow:0 14px 40px rgba(70,166,255,.26);font-weight:900}
+    .brand-title{font-weight:900;letter-spacing:.2px;font-size:15px}
+    .brand-sub{font-size:11px;color:var(--muted);margin-top:2px}
+    .nav-tabs{display:flex;align-items:center;gap:8px;overflow:auto;padding:8px 0}
     .nav-tabs::-webkit-scrollbar{display:none}
-    .tab-btn,.sub-tab{
-      border:0;
-      cursor:pointer;
-      border-radius:999px;
-      white-space:nowrap;
-      font-weight:900;
-      transition:.2s ease;
+    .tab-btn{
+      border:1px solid rgba(160,190,255,.16);
+      background:rgba(255,255,255,.06);
+      color:#dbeafe;
+      padding:10px 14px;border-radius:999px;
+      font-family:inherit;font-weight:800;font-size:13px;white-space:nowrap;cursor:pointer;
+      transition:.22s ease;
     }
-    .tab-btn{padding:11px 16px; color:#dbeafe; background:rgba(15,23,42,.72); box-shadow:inset 0 0 0 1px rgba(148,163,184,.16)}
-    .tab-btn:hover,.sub-tab:hover{transform:translateY(-1px)}
-    .tab-btn.active,.sub-tab.active{color:white; background:linear-gradient(135deg,var(--cyan),var(--blue)); box-shadow:0 14px 32px rgba(56,189,248,.25)}
+    .tab-btn:hover{transform:translateY(-1px);border-color:rgba(57,229,255,.42);color:#fff}
+    .tab-btn.active{background:linear-gradient(135deg,var(--blue),var(--violet));border-color:transparent;box-shadow:0 14px 40px rgba(70,166,255,.28);color:#fff}
+
+    main{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:42px 0 80px}
+    .tab-panel{display:none;animation:fade .32s ease both}
+    .tab-panel.active{display:block}
+    @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
     .hero{
-      margin:28px 0 26px;
-      min-height:330px;
-      border-radius:42px;
-      padding:52px;
-      position:relative;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 82% 16%, rgba(56,189,248,.24), transparent 24%),
-        radial-gradient(circle at 88% 86%, rgba(129,140,248,.18), transparent 34%),
-        linear-gradient(135deg, rgba(15,23,42,.96), rgba(30,41,59,.74));
-      border:1px solid rgba(148,163,184,.18);
-      box-shadow:var(--shadow);
+      min-height:590px;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:30px;
+      align-items:center;
+      padding:42px 0 32px;
     }
-    .hero::before{
-      content:"";
-      position:absolute;
-      right:-170px;
-      top:-140px;
-      width:560px;
-      height:560px;
-      border-radius:50%;
-      background:
-        conic-gradient(from 180deg, transparent, rgba(56,189,248,.26), transparent, rgba(129,140,248,.22), transparent);
-      filter:blur(2px);
-      opacity:.62;
-      animation:spin 16s linear infinite;
-    }
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:auto -140px -220px auto;
-      width:520px;
-      height:520px;
-      border-radius:50%;
-      background:rgba(56,189,248,.10);
-    }
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:9px 13px;border-radius:999px;border:1px solid rgba(57,229,255,.24);background:rgba(57,229,255,.08);color:#b8f7ff;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.8px}
+    .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 18px var(--cyan)}
+    h1{font-size:clamp(42px,6vw,82px);line-height:1.02;margin:22px 0 18px;letter-spacing:-2px;font-weight:900}
+    .gradient-text{background:linear-gradient(90deg,#fff,#9eeaff 38%,#b4a8ff 75%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{color:var(--muted);font-size:clamp(16px,2vw,20px);line-height:1.8;max-width:740px;margin:0 0 28px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+    .primary,.secondary{border:0;border-radius:18px;padding:14px 18px;font-family:inherit;font-weight:900;cursor:pointer;transition:.22s ease}
+    .primary{background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;box-shadow:0 18px 50px rgba(70,166,255,.25)}
+    .secondary{background:rgba(255,255,255,.06);border:1px solid var(--line);color:#dbeafe}
+    .primary:hover,.secondary:hover{transform:translateY(-2px)}
+
+    .hero-visual{position:relative;min-height:520px;display:grid;place-items:center}
+    .apple-orbit{width:min(470px,88vw);aspect-ratio:1;border-radius:50%;position:relative;background:radial-gradient(circle at 50% 50%,rgba(57,229,255,.16),rgba(70,166,255,.07) 44%,transparent 64%);border:1px solid rgba(160,190,255,.2);box-shadow:inset 0 0 70px rgba(57,229,255,.12),0 0 100px rgba(70,166,255,.18)}
+    .apple-orbit:before,.apple-orbit:after{content:"";position:absolute;inset:34px;border-radius:50%;border:1px dashed rgba(57,229,255,.34);animation:spin 20s linear infinite}
+    .apple-orbit:after{inset:78px;border-color:rgba(141,124,255,.26);animation-duration:28s;animation-direction:reverse}
     @keyframes spin{to{transform:rotate(360deg)}}
-    .hero-grid{display:grid; grid-template-columns:112px 1fr; gap:28px; align-items:center; position:relative; z-index:1}
-    .hero-icon{width:94px; height:94px; border-radius:28px; display:grid; place-items:center; font-size:44px; background:linear-gradient(145deg,#172554,#0f172a); border:1px solid rgba(56,189,248,.24); box-shadow:0 24px 58px rgba(56,189,248,.16)}
-    .eyebrow{display:inline-flex; padding:11px 17px; border-radius:999px; color:var(--cyan2); background:rgba(15,23,42,.74); border:1px solid rgba(56,189,248,.26); font-weight:900; text-transform:uppercase; margin-bottom:20px}
-    h1{margin:0; font-size:clamp(40px,7vw,82px); line-height:1.03; letter-spacing:-.045em; color:#f8fafc}
-    .hero p{max-width:880px; margin:22px 0 0; color:#cbd5e1; font-size:clamp(18px,2.3vw,27px); line-height:1.65; font-weight:500}
+    .core{position:absolute;inset:125px;border-radius:42px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.16);display:grid;place-items:center;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.35);z-index:2}
+    .core-icon{font-size:70px;filter:drop-shadow(0 0 20px rgba(255,255,255,.36))}
+    .core b{display:block;margin-top:10px;font-size:18px}
+    .chip{position:absolute;width:134px;border:1px solid rgba(160,190,255,.18);background:rgba(9,24,45,.78);backdrop-filter:blur(10px);border-radius:20px;padding:14px;text-align:center;font-weight:900;color:#eaf6ff;box-shadow:0 24px 70px rgba(0,0,0,.32);z-index:3}
+    .chip small{display:block;color:var(--muted);font-weight:700;margin-top:6px}
+    .chip.c1{left:8px;top:90px}.chip.c2{right:-6px;top:120px}.chip.c3{left:44px;bottom:64px}.chip.c4{right:52px;bottom:42px}
 
-    .panel{display:none; animation:fadeUp .28s ease both; margin-bottom:54px; position:relative}
-    .panel.active{display:block}
-    @keyframes fadeUp{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)}}
+    .section-head{margin:0 0 24px}
+    .kicker{color:var(--cyan);font-size:13px;text-transform:uppercase;letter-spacing:1.2px;font-weight:900;margin-bottom:8px}
+    h2{font-size:clamp(34px,4.2vw,58px);line-height:1.08;letter-spacing:-1.4px;margin:0 0 10px;font-weight:900}
+    .section-desc{color:var(--muted);line-height:1.75;max-width:850px;margin:0}
 
-    .section-bg{
-      position:relative;
-      overflow:hidden;
-      border-radius:38px;
-      padding:34px;
-      border:1px solid rgba(148,163,184,.16);
-      background:rgba(15,23,42,.44);
-      box-shadow:var(--shadow);
-    }
-    .section-bg::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      opacity:.28;
-      pointer-events:none;
-      background-size:cover;
-      background-position:center;
-      filter:saturate(1.2);
-    }
-    .section-bg::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:linear-gradient(90deg, rgba(7,13,26,.96) 0%, rgba(7,13,26,.82) 54%, rgba(7,13,26,.62) 100%);
-    }
-    .section-bg > *{position:relative; z-index:1}
-    .bg-theory::before{
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 560'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%2338bdf8'/%3E%3Cstop offset='1' stop-color='%23818cf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1000' height='560' fill='%23071326'/%3E%3Cg fill='none' stroke='url(%23g)' stroke-width='3' opacity='.8'%3E%3Cpath d='M80 420 C210 300 290 300 420 210 S690 80 900 180'/%3E%3Cpath d='M110 470 C250 350 360 335 500 255 S720 165 930 80' opacity='.45'/%3E%3Cpath d='M90 360 L220 360 L220 280 L360 280 L360 205 L510 205 L510 130 L690 130' opacity='.52'/%3E%3C/g%3E%3Cg fill='url(%23g)' opacity='.9'%3E%3Ccircle cx='220' cy='360' r='18'/%3E%3Ccircle cx='360' cy='280' r='20'/%3E%3Ccircle cx='510' cy='205' r='23'/%3E%3Ccircle cx='690' cy='130' r='27'/%3E%3C/g%3E%3C/svg%3E");
-    }
-    .bg-apple::before{
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 560'%3E%3Crect width='1000' height='560' fill='%23071326'/%3E%3Cg fill='none' stroke='%2338bdf8' stroke-width='4' opacity='.55'%3E%3Cellipse cx='640' cy='286' rx='240' ry='158'/%3E%3Cpath d='M480 300 C430 190 520 110 610 160 C690 88 800 152 790 265 C778 410 660 470 580 390 C540 450 450 410 420 330'/%3E%3Cpath d='M620 135 C630 86 665 55 725 47 C710 104 675 133 620 135Z'/%3E%3C/g%3E%3Cg fill='%23818cf8' opacity='.35'%3E%3Crect x='180' y='360' width='130' height='80' rx='20'/%3E%3Crect x='330' y='245' width='110' height='110' rx='24'/%3E%3Crect x='145' y='170' width='180' height='78' rx='24'/%3E%3C/g%3E%3Cg fill='%23f8d47a' opacity='.45'%3E%3Ccircle cx='500' cy='360' r='12'/%3E%3Ccircle cx='545' cy='330' r='10'/%3E%3Ccircle cx='590' cy='380' r='14'/%3E%3Ccircle cx='635' cy='340' r='9'/%3E%3C/g%3E%3C/svg%3E");
-    }
-    .bg-debate::before{
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 560'%3E%3Crect width='1000' height='560' fill='%23071326'/%3E%3Cg opacity='.55'%3E%3Cpath d='M210 470 C180 320 230 140 390 95 C530 55 670 120 745 230 C825 350 775 470 640 505 C500 540 270 535 210 470Z' fill='none' stroke='%2338bdf8' stroke-width='5'/%3E%3Cpath d='M515 100 L555 42 L592 98' fill='none' stroke='%237dd3fc' stroke-width='5'/%3E%3Cpath d='M210 470 L795 470' stroke='%23818cf8' stroke-width='4'/%3E%3C/g%3E%3Cg fill='%2338bdf8' opacity='.25'%3E%3Crect x='335' y='225' width='90' height='170' rx='14'/%3E%3Crect x='450' y='170' width='110' height='225' rx='18'/%3E%3Crect x='590' y='250' width='80' height='145' rx='14'/%3E%3C/g%3E%3Cg fill='%23fb7185' opacity='.38'%3E%3Crect x='95' y='310' width='120' height='60' rx='16'/%3E%3Crect x='795' y='260' width='130' height='60' rx='16'/%3E%3C/g%3E%3C/svg%3E");
-    }
+    .surface{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:30px;position:relative;overflow:hidden}
+    .surface:before{content:"";position:absolute;right:-140px;top:-140px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(70,166,255,.22),transparent 65%);pointer-events:none}
+    .surface > *{position:relative;z-index:1}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    .card{background:rgba(13,28,51,.72);border:1px solid rgba(160,190,255,.16);border-radius:24px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.22)}
+    .card h3{margin:0 0 10px;font-size:20px;line-height:1.35}.card p{margin:0;color:var(--muted);line-height:1.75}.card ul{margin:12px 0 0;padding-left:20px;color:var(--muted);line-height:1.75}.num{width:34px;height:34px;border-radius:12px;background:rgba(70,166,255,.16);display:grid;place-items:center;color:#9eeaff;font-weight:900;margin-bottom:12px}
 
-    .section-head{display:grid; grid-template-columns:1fr auto; gap:20px; align-items:end; margin-bottom:24px}
-    .section-kicker{color:var(--cyan2); font-weight:900; text-transform:uppercase; margin-bottom:10px}
-    h2{margin:0; font-size:clamp(32px,5vw,58px); line-height:1.06; letter-spacing:-.035em}
-    .section-head p{margin:12px 0 0; color:var(--muted); font-size:18px; line-height:1.7; max-width:840px}
+    .sub-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 22px}
+    .sub-btn{border:1px solid rgba(160,190,255,.16);background:rgba(255,255,255,.06);color:#dbeafe;border-radius:999px;padding:11px 15px;font-family:inherit;font-weight:900;cursor:pointer}
+    .sub-btn.active{background:linear-gradient(135deg,var(--blue),var(--violet));border-color:transparent;color:#fff}
+    .sub-panel{display:none}.sub-panel.active{display:block;animation:fade .25s ease both}
 
-    .sub-tabs{display:flex; gap:12px; flex-wrap:wrap; margin:22px 0 28px}
-    .sub-tab{padding:13px 20px; color:#dbeafe; background:rgba(15,23,42,.78); box-shadow:inset 0 0 0 1px rgba(148,163,184,.16)}
-    .sub-panel{display:none}
-    .sub-panel.active{display:block}
+    .accordion{display:grid;gap:12px;margin-top:18px}
+    .acc{border:1px solid rgba(160,190,255,.16);border-radius:22px;background:rgba(10,23,42,.62);overflow:hidden}
+    .acc button{width:100%;padding:18px 20px;background:transparent;border:0;color:var(--text);font-family:inherit;font-weight:900;font-size:17px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left}
+    .acc .plus{color:var(--cyan);font-size:24px}.acc-body{display:none;padding:0 20px 20px;color:var(--muted);line-height:1.75}.acc.open .acc-body{display:block}.acc.open .plus{transform:rotate(45deg)}
 
-    .accordion{display:grid; gap:14px}
-    details{background:rgba(15,23,42,.82); border:1px solid rgba(148,163,184,.18); border-radius:28px; overflow:hidden; box-shadow:0 18px 50px rgba(0,0,0,.24)}
-    summary{list-style:none; cursor:pointer; padding:25px 28px; display:flex; justify-content:space-between; align-items:center; gap:16px; font-size:22px; line-height:1.3; color:#f8fafc; font-weight:900}
-    summary::-webkit-details-marker{display:none}
-    summary::after{content:"+"; color:var(--cyan); font-size:34px; font-weight:400; transition:.2s ease}
-    details[open] summary::after{transform:rotate(45deg)}
-    .detail-body{padding:0 28px 26px; color:#cbd5e1; font-size:17px; line-height:1.78}
-    .detail-body p{margin:0 0 14px}.detail-body ul{margin:10px 0 0; padding-left:20px}.detail-body li{margin:9px 0}.detail-body b{color:#fff}
+    .highlight{display:inline;font-weight:900;color:#fff;padding:2px 7px;border-radius:10px;background:linear-gradient(135deg,rgba(70,166,255,.38),rgba(141,124,255,.34));border:1px solid rgba(57,229,255,.28);cursor:pointer;box-shadow:0 0 0 1px rgba(255,255,255,.03) inset;transition:.2s ease}
+    .highlight:hover{box-shadow:0 0 28px rgba(57,229,255,.3);color:#dffcff}
+    .inline-image{display:none;margin:18px 0 6px;border-radius:24px;overflow:hidden;border:1px solid rgba(160,190,255,.2);background:rgba(255,255,255,.05);box-shadow:0 26px 80px rgba(0,0,0,.35)}
+    .inline-image.show{display:block;animation:fade .28s ease both}
+    .inline-image img{width:100%;display:block;max-height:620px;object-fit:contain;background:#030712}
+    .image-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;color:#dbeafe;background:rgba(3,7,18,.55);font-weight:800;font-size:13px}.close-img{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:8px 12px;cursor:pointer;font-family:inherit;font-weight:800}
 
-    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px}
-    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-    .mini-card{background:rgba(15,23,42,.82); border:1px solid rgba(148,163,184,.18); border-radius:26px; padding:24px; box-shadow:0 18px 50px rgba(0,0,0,.24)}
-    .mini-card h3{margin:0 0 10px; font-size:22px; letter-spacing:-.02em}.mini-card p,.mini-card li{color:#b6c2d6; line-height:1.72}.mini-card ul{padding-left:20px; margin:10px 0 0}
-    .num{width:42px;height:42px;border-radius:16px;display:grid;place-items:center;background:#172554;color:var(--cyan2);font-weight:900;margin-bottom:14px}
-    .tag{display:inline-flex; padding:7px 12px; border-radius:999px; font-size:13px; font-weight:900; margin-bottom:12px; background:#172554; color:var(--cyan2)}
-    .tag.blue{background:#172554; color:#93c5fd}.tag.red{background:#3f1d1d; color:#fda4af}.tag.green{background:#0f2f25; color:#86efac}.tag.gold{background:#35270c; color:#fde68a}
-    .comparison{display:grid; grid-template-columns:1fr auto 1fr; gap:18px; align-items:stretch}.vs{display:grid;place-items:center;width:58px;height:58px;align-self:center;border-radius:20px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#fff;font-weight:900;box-shadow:0 14px 28px rgba(56,189,248,.23)}
-    .quote{border-left:5px solid var(--cyan); background:rgba(15,23,42,.92); padding:18px 20px; border-radius:18px; color:#cbd5e1; line-height:1.75; margin-top:16px}
-    .timeline{display:grid; gap:16px; counter-reset:step}.timeline-item{counter-increment:step;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:start;padding:22px;border-radius:26px;background:rgba(15,23,42,.82);border:1px solid rgba(148,163,184,.18)}.timeline-item::before{content:counter(step);width:48px;height:48px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#fff;font-weight:900}.timeline-item h3{margin:0 0 8px;font-size:22px}.timeline-item p{margin:0;color:#b6c2d6;line-height:1.72}
+    .timeline{display:grid;gap:16px;margin-top:20px}.step{display:grid;grid-template-columns:74px 1fr;gap:18px;align-items:start}.step-icon{width:60px;height:60px;border-radius:20px;background:linear-gradient(135deg,rgba(70,166,255,.24),rgba(141,124,255,.18));border:1px solid rgba(57,229,255,.26);display:grid;place-items:center;font-size:24px;box-shadow:0 18px 40px rgba(70,166,255,.15)}
+    .step-content{padding:18px 20px;border-radius:22px;background:rgba(13,28,51,.72);border:1px solid rgba(160,190,255,.16)}.step-content h3{margin:0 0 8px}.step-content p{margin:0;color:var(--muted);line-height:1.7}
 
-    .image-link{
-      border:0;
-      display:inline;
-      padding:1px 5px 2px;
-      margin:0 2px;
-      cursor:pointer;
-      color:#e0f2fe;
-      background:
-        linear-gradient(transparent 54%, rgba(56,189,248,.28) 0),
-        rgba(56,189,248,.08);
-      border-radius:8px;
-      font-weight:900;
-      text-decoration:none;
-      box-shadow:inset 0 0 0 1px rgba(125,211,252,.18);
-      transition:.18s ease;
-    }
-    .image-link::after{content:" ↗"; font-size:.8em; color:var(--gold)}
-    .image-link:hover{color:white; background:linear-gradient(transparent 48%, rgba(56,189,248,.46) 0), rgba(56,189,248,.16); box-shadow:0 0 0 3px rgba(56,189,248,.14), inset 0 0 0 1px rgba(125,211,252,.4)}
+    .quote{border-left:4px solid var(--cyan);padding:18px 20px;background:rgba(57,229,255,.07);border-radius:0 18px 18px 0;color:#dcecff;line-height:1.75;margin:18px 0}
 
-    .modal{position:fixed; inset:0; z-index:100; display:none; place-items:center; padding:24px; background:rgba(2,6,23,.78); backdrop-filter:blur(14px)}
-    .modal.show{display:grid}
-    .modal-card{width:min(1100px,96vw); max-height:92vh; overflow:hidden; border-radius:30px; background:rgba(15,23,42,.96); border:1px solid rgba(148,163,184,.24); box-shadow:0 30px 100px rgba(0,0,0,.56)}
-    .modal-head{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 18px; border-bottom:1px solid rgba(148,163,184,.16)}
-    .modal-title{font-weight:900; color:#e0f2fe}.modal-close{border:0; cursor:pointer; width:40px; height:40px; border-radius:14px; color:white; background:rgba(30,41,59,.9); font-size:24px; line-height:1}
-    .modal img{display:block; width:100%; max-height:78vh; object-fit:contain; background:#020617}
+    .price-model{display:grid;grid-template-columns:1fr 180px 1fr;gap:18px;align-items:center;margin-top:20px}.price-box{border-radius:24px;padding:22px;border:1px solid rgba(160,190,255,.18);background:rgba(13,28,51,.75)}.price-box h3{margin:0 0 8px}.arrow-mid{text-align:center;font-weight:900;color:var(--gold);font-size:18px}.profit-core{border-radius:24px;padding:22px;background:linear-gradient(135deg,rgba(255,209,102,.14),rgba(70,166,255,.08));border:1px solid rgba(255,209,102,.3);text-align:center;font-weight:900;color:#ffe7a2}
 
-    @media (max-width:900px){
-      .topbar-inner{align-items:flex-start; flex-direction:column}.hero{padding:32px 22px; border-radius:32px}.hero-grid{grid-template-columns:1fr}.hero-icon{width:82px;height:82px}.section-bg{padding:22px;border-radius:30px}.section-head{grid-template-columns:1fr}.grid-2,.grid-3,.comparison{grid-template-columns:1fr}.vs{margin:auto}summary{font-size:20px;padding:22px}.detail-body{padding:0 22px 24px}.brand span:last-child{white-space:normal}
-    }
+    .quiz-box{display:grid;gap:16px}.question{background:rgba(13,28,51,.78);border:1px solid rgba(160,190,255,.16);border-radius:24px;padding:22px}.question h3{margin:0 0 14px}.answers{display:grid;gap:10px}.answer{padding:13px 14px;border-radius:16px;border:1px solid rgba(160,190,255,.16);background:rgba(255,255,255,.05);color:#dbeafe;font-family:inherit;text-align:left;cursor:pointer;font-weight:700}.answer.correct{border-color:rgba(94,224,160,.7);background:rgba(94,224,160,.16)}.answer.wrong{border-color:rgba(255,107,107,.65);background:rgba(255,107,107,.14)}.feedback{min-height:24px;margin-top:12px;color:var(--muted);font-weight:700}
+
+    .pill-list{display:flex;flex-wrap:wrap;gap:10px}.pill{padding:10px 13px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(160,190,255,.16);color:#dbeafe;font-weight:800;font-size:13px}
+    .footer-note{text-align:center;color:var(--muted);margin-top:34px;font-size:13px}
+
+    @media (max-width:960px){.hero,.grid-2,.grid-3{grid-template-columns:1fr}.grid-5{grid-template-columns:repeat(2,1fr)}.hero{min-height:auto}.hero-visual{min-height:420px}.chip{position:relative;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important}.apple-orbit{display:none}.hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:12px}.price-model{grid-template-columns:1fr}.arrow-mid{display:none}.brand{min-width:auto}.brand-sub{display:none}}
+    @media (max-width:640px){main{width:min(100% - 22px,1180px);padding-top:24px}.nav{width:min(100% - 18px,1180px);height:auto;min-height:72px;align-items:flex-start;flex-direction:column;padding:12px 0}.nav-tabs{width:100%}h1{letter-spacing:-1px}.surface{padding:20px;border-radius:22px}.grid-5{grid-template-columns:1fr}.step{grid-template-columns:1fr}.hero-visual{display:none}.tab-btn{font-size:12px}}
   </style>
 </head>
-<body class="theme-theory">
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <div class="brand"><span class="brand-mark">MLN</span><span>Kinh tế chính trị Mác - Lênin</span></div>
+<body>
+  <div class="bg-layer"><div class="planet one"></div><div class="planet two"></div><div class="wire"></div></div>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">ML</div>
+        <div>
+          <div class="brand-title">Đế chế Apple</div>
+          <div class="brand-sub">Góc nhìn kinh tế chính trị Mác - Lênin</div>
+        </div>
+      </div>
       <nav class="nav-tabs" aria-label="Điều hướng nội dung">
-        <button class="tab-btn active" data-tab="theory">Lý thuyết</button>
-        <button class="tab-btn" data-tab="apple">Phân tích Apple</button>
-        <button class="tab-btn" data-tab="debate">Tranh biện</button>
+        <button class="tab-btn active" data-tab="home">Trang chủ</button>
+        <button class="tab-btn" data-tab="case">Tình huống</button>
+        <button class="tab-btn" data-tab="theory">Lý thuyết</button>
+        <button class="tab-btn" data-tab="analysis">Phân tích</button>
+        <button class="tab-btn" data-tab="game">Game ôn tập</button>
       </nav>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div class="hero-grid">
-        <div class="hero-icon">📘</div>
+  <main>
+    <section id="home" class="tab-panel active">
+      <div class="hero">
         <div>
-          <div class="eyebrow">Kinh tế chính trị Mác - Lênin</div>
-          <h1>Đế chế Apple dưới góc nhìn độc quyền</h1>
-          <p>Từ lý thuyết cạnh tranh, độc quyền và độc quyền nhà nước đến tình huống hệ sinh thái Apple trong nền kinh tế số.</p>
+          <div class="eyebrow"><span class="dot"></span> Kinh tế chính trị Mác - Lênin</div>
+          <h1><span class="gradient-text">Đế chế Apple</span><br/>dưới góc nhìn độc quyền</h1>
+          <p class="lead">Trang web phân tích cách một thị trường ban đầu có nhiều doanh nghiệp cạnh tranh có thể chuyển dần sang tích tụ, tập trung sản xuất và hình thành vị thế độc quyền. Apple được dùng như một tình huống hiện đại để soi chiếu các khái niệm: giá cả độc quyền, lợi nhuận độc quyền và hệ sinh thái khép kín.</p>
+          <div class="hero-actions">
+            <button class="primary" data-go="case">Bắt đầu từ tình huống Apple</button>
+            <button class="secondary" data-go="theory">Xem lý thuyết nền tảng</button>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="apple-orbit">
+            <div class="core"><div><div class="core-icon"></div><b>Hệ sinh thái khép kín</b></div></div>
+            <div class="chip c1">iPhone<small>Thiết bị</small></div>
+            <div class="chip c2">App Store<small>Nền tảng</small></div>
+            <div class="chip c3">iCloud<small>Dữ liệu</small></div>
+            <div class="chip c4">Apple Pay<small>Thanh toán</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="surface">
+        <div class="grid-3">
+          <div class="card"><div class="num">01</div><h3>Câu hỏi trung tâm</h3><p>Vì sao cạnh tranh thắng lợi lại có thể dẫn tới độc quyền thay vì duy trì cạnh tranh tự do mãi mãi?</p></div>
+          <div class="card"><div class="num">02</div><h3>Trường hợp phân tích</h3><p>Apple dùng thương hiệu, thiết bị, hệ điều hành và cửa hàng ứng dụng để xây dựng quyền lực nền tảng.</p></div>
+          <div class="card"><div class="num">03</div><h3>Trục lý luận</h3><p>Giá cả độc quyền cao, giá cả độc quyền thấp và lợi nhuận độc quyền là trọng tâm của phần phân tích.</p></div>
         </div>
       </div>
     </section>
 
-    <section id="theory" class="panel active">
-      <div class="section-bg bg-theory">
-        <div class="section-head">
-          <div>
-            <div class="section-kicker">I · Kiến thức nền</div>
-            <h2>Cạnh tranh ở cấp độ độc quyền</h2>
-            <p>Nội dung lý thuyết được chia thành từng phần nhỏ, bấm vào từng mục để mở nội dung chi tiết.</p>
-          </div>
-        </div>
-
-        <div class="sub-tabs">
-          <button class="sub-tab active" data-sub="theory-1">Phần 1 · Độc quyền</button>
-          <button class="sub-tab" data-sub="theory-2">Phần 2 · Lênin</button>
-          <button class="sub-tab" data-sub="theory-3">Phần 3 · Độc quyền nhà nước</button>
-        </div>
-
-        <div class="sub-panel active" id="theory-1">
-          <div class="accordion">
-            <details open>
-              <summary>1. Độc quyền là gì?</summary>
-              <div class="detail-body">
-                <p><b>Độc quyền</b> là liên minh các doanh nghiệp lớn nhằm kiểm soát sản xuất, tiêu thụ và định giá độc quyền để thu lợi nhuận độc quyền. Quá trình này có thể hình dung qua cơ chế <button class="image-link" data-img="Images/Ảnh 1.png" data-title="Tập trung sản xuất và độc quyền">tập trung sản xuất và độc quyền</button>.</p>
-                <ul>
-                  <li>Độc quyền ra đời từ quá trình cạnh tranh tự do.</li>
-                  <li>Khi sản xuất tập trung vào một số doanh nghiệp lớn, các doanh nghiệp này có khả năng chi phối thị trường.</li>
-                  <li>Mục tiêu cuối cùng là thu lợi nhuận độc quyền cao hơn lợi nhuận bình quân.</li>
-                </ul>
-              </div>
-            </details>
-            <details>
-              <summary>2. Nguyên nhân hình thành độc quyền</summary>
-              <div class="detail-body">
-                <ul>
-                  <li><b>Phát triển của lực lượng sản xuất</b> làm cho sản xuất hiện đại cần vốn lớn.</li>
-                  <li><b>Cạnh tranh gay gắt</b> khiến doanh nghiệp nhỏ bị phá sản hoặc bị thâu tóm.</li>
-                  <li><b>Khủng hoảng kinh tế</b> thúc đẩy tập trung tư bản vào các doanh nghiệp mạnh hơn.</li>
-                  <li><b>Hệ thống tín dụng phát triển</b> hỗ trợ tích tụ và tập trung vốn.</li>
-                </ul>
-              </div>
-            </details>
-            <details>
-              <summary>3. Biểu hiện kinh tế của độc quyền</summary>
-              <div class="detail-body">
-                <ul>
-                  <li><b>Quy luật giá trị</b> biểu hiện thành <b>giá cả độc quyền</b>.</li>
-                  <li><b>Quy luật giá trị thặng dư</b> biểu hiện thành <b>lợi nhuận độc quyền</b>.</li>
-                  <li>Độc quyền không xóa bỏ cạnh tranh mà làm cạnh tranh chuyển sang cấp độ gay gắt và phức tạp hơn.</li>
-                </ul>
-              </div>
-            </details>
-            <details>
-              <summary>4. Tác động của độc quyền</summary>
-              <div class="detail-body grid-2">
-                <div class="mini-card">
-                  <span class="tag green">Tích cực</span>
-                  <ul>
-                    <li>Thúc đẩy nghiên cứu khoa học và đổi mới công nghệ.</li>
-                    <li>Nâng cao năng suất lao động và năng lực cạnh tranh.</li>
-                    <li>Góp phần phát triển nền sản xuất quy mô lớn, hiện đại.</li>
-                  </ul>
-                </div>
-                <div class="mini-card">
-                  <span class="tag red">Tiêu cực</span>
-                  <ul>
-                    <li>Hạn chế cạnh tranh, gây thiệt hại cho người tiêu dùng.</li>
-                    <li>Có thể kìm hãm tiến bộ kỹ thuật và phát triển kinh tế.</li>
-                    <li>Gia tăng khoảng cách giàu nghèo.</li>
-                  </ul>
-                </div>
-              </div>
-            </details>
-            <details>
-              <summary>5. Quan hệ cạnh tranh trong trạng thái độc quyền</summary>
-              <div class="detail-body">
-                <p>Độc quyền ra đời từ cạnh tranh tự do, nhưng không làm cạnh tranh biến mất. Ngược lại, cạnh tranh trở nên đa dạng hơn.</p>
-                <ul>
-                  <li>Cạnh tranh giữa tổ chức độc quyền và doanh nghiệp ngoài độc quyền.</li>
-                  <li>Cạnh tranh giữa các tổ chức độc quyền với nhau.</li>
-                  <li>Cạnh tranh trong nội bộ các tổ chức độc quyền.</li>
-                </ul>
-              </div>
-            </details>
-          </div>
-        </div>
-
-        <div class="sub-panel" id="theory-2">
-          <div class="mini-card" style="margin-bottom:18px">
-            <span class="tag gold">Sơ đồ tổng hợp</span>
-            <h3>Đặc điểm kinh tế của độc quyền theo V.I. Lênin</h3>
-            <p>Phần này có thể trình bày bằng một sơ đồ trung tâm để người xem dễ nhớ hơn: <button class="image-link" data-img="Images/Anh 7.png" data-title="Đặc điểm kinh tế của độc quyền theo V.I. Lênin">năm đặc điểm kinh tế của độc quyền</button>.</p>
-          </div>
-          <div class="grid-3">
-            <div class="mini-card"><div class="num">a</div><h3>Tích tụ và tập trung tư bản</h3><p>Tích tụ và tập trung sản xuất quy mô lớn làm xuất hiện các tổ chức độc quyền như Cartel, Syndicate, Trust và Consortium.</p></div>
-            <div class="mini-card"><div class="num">b</div><h3>Tư bản tài chính và tài phiệt</h3><p>Tư bản tài chính là sự kết hợp giữa tư bản ngân hàng và tư bản công nghiệp, hình thành đầu sỏ tài chính chi phối kinh tế và chính trị.</p></div>
-            <div class="mini-card"><div class="num">c</div><h3>Xuất khẩu tư bản</h3><p>Là việc đưa vốn ra nước ngoài để thu lợi nhuận, gồm đầu tư trực tiếp FDI và đầu tư gián tiếp.</p></div>
-          </div>
-          <div style="height:18px"></div>
-          <div class="grid-2">
-            <div class="mini-card"><span class="tag blue">d</span><h3>Phân chia thị trường thế giới</h3><p>Các tập đoàn độc quyền mở rộng hoạt động toàn cầu, cạnh tranh bằng nhiều biện pháp để chiếm thị trường và thiết lập khu vực ảnh hưởng.</p></div>
-            <div class="mini-card"><span class="tag red">e</span><h3>Phân chia lãnh thổ</h3><p>Các nước tư bản cạnh tranh giành thuộc địa, nguồn nguyên liệu và phạm vi ảnh hưởng nhằm bảo vệ lợi ích độc quyền.</p></div>
-          </div>
-        </div>
-
-        <div class="sub-panel" id="theory-3">
-          <div class="accordion">
-            <details open>
-              <summary>1. Độc quyền nhà nước là gì?</summary>
-              <div class="detail-body">
-                <p>Độc quyền nhà nước là việc nhà nước nắm giữ các lĩnh vực then chốt của nền kinh tế, kết hợp với các tổ chức độc quyền để điều tiết nền kinh tế.</p>
-                <ul>
-                  <li>Quy mô nền kinh tế lớn cần điều tiết tập trung.</li>
-                  <li>Nhà nước đầu tư vào các ngành tư nhân không muốn hoặc không thể đầu tư như hạ tầng, năng lượng.</li>
-                  <li>Nhằm giảm mâu thuẫn xã hội do độc quyền tư nhân và đáp ứng xu hướng quốc tế hóa nền kinh tế.</li>
-                </ul>
-              </div>
-            </details>
-            <details>
-              <summary>2. Ba đặc trưng kinh tế chủ yếu</summary>
-              <div class="detail-body">
-                <div class="timeline">
-                  <div class="timeline-item"><div><h3>Kết hợp nhân sự</h3><p>Có sự liên minh cá nhân giữa tổ chức độc quyền và bộ máy nhà nước.</p></div></div>
-                  <div class="timeline-item"><div><h3>Sở hữu nhà nước phát triển</h3><p>Nhà nước nắm tài sản công, doanh nghiệp nhà nước và các ngành then chốt.</p></div></div>
-                  <div class="timeline-item"><div><h3>Nhà nước điều tiết kinh tế</h3><p>Thông qua ngân sách, thuế, tiền tệ, tín dụng, kế hoạch hóa, ưu đãi và trừng phạt.</p></div></div>
-                </div>
-              </div>
-            </details>
-            <details>
-              <summary>3. Bản chất của độc quyền nhà nước</summary>
-              <div class="detail-body">
-                <p>Bản chất là sự kết hợp sức mạnh của nhà nước và tư bản độc quyền nhằm duy trì, điều tiết và phát triển chủ nghĩa tư bản độc quyền.</p>
-                <div class="quote">Cơ chế tổng hợp: <b>Thị trường + Độc quyền tư nhân + Điều tiết nhà nước</b> → phát huy mặt tích cực, hạn chế mặt tiêu cực, nhưng cuối cùng vẫn phục vụ lợi ích của chủ nghĩa tư bản độc quyền.</div>
-              </div>
-            </details>
-          </div>
-        </div>
+    <section id="case" class="tab-panel">
+      <div class="section-head">
+        <div class="kicker">Tình huống mở đầu</div>
+        <h2>Từ thị trường smartphone cạnh tranh đến hệ sinh thái Apple</h2>
+        <p class="section-desc">Phần này đặt vấn đề để dẫn vào lý thuyết và phân tích. Không đi sâu lý luận ở đây, chỉ nêu bối cảnh và câu hỏi cần giải quyết.</p>
       </div>
-    </section>
-
-    <section id="apple" class="panel">
-      <div class="section-bg bg-apple">
-        <div class="section-head">
-          <div>
-            <div class="section-kicker">II · Phân tích tình huống</div>
-            <h2>Apple qua lý luận giá cả và lợi nhuận độc quyền</h2>
-            <p>Dựa trên lý thuyết giá cả độc quyền và lợi nhuận độc quyền, trường hợp Apple được trình bày như một case study về quyền lực nền tảng.</p>
-          </div>
-        </div>
-
-        <div class="mini-card" style="margin-bottom:18px">
-          <span class="tag gold">Sơ đồ quan hệ</span>
-          <h3>Mô hình độc quyền nền tảng của Apple</h3>
-          <p>Để phần phân tích không bị toàn chữ, có thể mở sơ đồ <button class="image-link" data-img="Images/Anh 6.png" data-title="Sơ đồ mô hình độc quyền của Apple">mô hình độc quyền của Apple</button> nhằm thấy rõ ba nguồn tạo giá trị, hai hình thức áp đặt giá và kết quả là lợi nhuận độc quyền.</p>
-        </div>
-
-        <div class="comparison">
-          <div class="mini-card">
-            <span class="tag red">Bán ra</span>
-            <h3>Giá cả độc quyền cao</h3>
-            <p>Apple duy trì mức giá iPhone cao nhờ sức mạnh thương hiệu và hệ sinh thái khép kín như iOS, iCloud, Apple Music. Cơ chế này được minh họa bằng hình tượng <button class="image-link" data-img="Images/Ảnh 2.png" data-title="Lưỡi kéo giá cả độc quyền">hai lưỡi kéo giá cả độc quyền</button>.</p>
-          </div>
-          <div class="vs">↕</div>
-          <div class="mini-card">
-            <span class="tag blue">Mua vào / Thanh toán</span>
-            <h3>Giá cả độc quyền thấp</h3>
-            <p>Nhờ quy mô rất lớn, Apple có vị thế đàm phán mạnh với nhà cung ứng. Với lập trình viên, phí hoa hồng App Store 30% có thể được phân tích như một hình thức buộc bên thứ ba nhượng lại một phần giá trị tạo ra.</p>
-          </div>
-        </div>
-
-        <div style="height:18px"></div>
-        <div class="accordion">
-          <details open>
-            <summary>1. Giá cả độc quyền cao khi bán iPhone</summary>
-            <div class="detail-body">
-              <p>Các tổ chức độc quyền thường áp đặt mức giá bán hàng hóa cao hơn giá trị và giá cả sản xuất để thu lợi nhuận. Trong trường hợp Apple, giá iPhone không chỉ phản ánh linh kiện thô mà còn phản ánh sức mạnh thương hiệu, thiết kế, hệ điều hành, dữ liệu người dùng và khả năng “khóa” người dùng trong hệ sinh thái.</p>
-              <p>Vì vậy, việc duy trì mức giá bán cao có thể được xem là biểu hiện của <b>giá cả độc quyền cao</b>, qua đó Apple chiếm đoạt một phần thu nhập của người tiêu dùng toàn cầu.</p>
-            </div>
-          </details>
-          <details>
-            <summary>2. Giá cả độc quyền thấp khi mua linh kiện và thanh toán cho lập trình viên</summary>
-            <div class="detail-body">
-              <p><b>Với linh kiện:</b> quy mô cực lớn giúp Apple có vị thế áp đảo trong đàm phán với nhà cung ứng, từ đó mua được linh kiện hoặc dịch vụ sản xuất với điều kiện có lợi hơn so với các doanh nghiệp nhỏ.</p>
-              <p><b>Với lập trình viên:</b> việc Apple thu phí hoa hồng 30% trên App Store có thể được coi là dạng áp đặt giá cả độc quyền thấp khi thanh toán cho dịch vụ của bên thứ ba. Apple kiểm soát cửa hàng ứng dụng trên iOS, vì vậy các nhà phát triển như Spotify, Epic Games phải chấp nhận chia lại một phần giá trị mà họ tạo ra nếu muốn tiếp cận người dùng iOS.</p>
-            </div>
-          </details>
-          <details>
-            <summary>3. Lợi nhuận độc quyền của Apple</summary>
-            <div class="detail-body">
-              <p>Tổng hợp hai yếu tố trên giúp Apple thu được <b>lợi nhuận độc quyền</b>. Bản chất dòng chảy giá trị thặng dư có thể xem qua khái niệm <button class="image-link" data-img="Images/Ảnh 4.png" data-title="Bản chất lợi nhuận độc quyền">lợi nhuận độc quyền</button>.</p>
-              <ul>
-                <li>Giá trị thặng dư từ lao động trong chuỗi sản xuất Apple.</li>
-                <li>Một phần giá trị thặng dư của các doanh nghiệp nhỏ và lập trình viên bị chiếm đoạt qua phí hoa hồng.</li>
-                <li>Một phần thu nhập của người lao động trên toàn thế giới thông qua việc mua sản phẩm, dịch vụ với giá cao.</li>
-              </ul>
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section id="debate" class="panel">
-      <div class="section-bg bg-debate">
-        <div class="section-head">
-          <div>
-            <div class="section-kicker">III · Tranh biện</div>
-            <h2>Hệ sinh thái an toàn hay cơ chế chèn ép?</h2>
-            <p>Apple có thể được nhìn từ hai phía: một bên là trải nghiệm ổn định, bảo mật; bên còn lại là sự kiểm soát thị trường và hạn chế cạnh tranh.</p>
-          </div>
-        </div>
+      <div class="surface">
         <div class="grid-2">
-          <div class="mini-card">
-            <span class="tag green">Góc nhìn tích cực</span>
-            <h3>Môi trường an toàn, tiện lợi</h3>
-            <ul>
-              <li>Hệ sinh thái khép kín giúp kiểm soát chất lượng ứng dụng.</li>
-              <li>Trải nghiệm giữa iPhone, iCloud, App Store, Apple Pay, Apple Music liền mạch.</li>
-              <li>Quy mô lớn tạo nguồn lực cho nghiên cứu, phát triển và tối ưu chuỗi cung ứng.</li>
-            </ul>
+          <div class="card">
+            <h3>Bối cảnh thị trường</h3>
+            <p>Ban đầu, thị trường smartphone có rất nhiều hãng cạnh tranh như Nokia, BlackBerry, HTC, LG. Sau quá trình cạnh tranh khốc liệt, một số doanh nghiệp suy yếu, rút lui hoặc bị vượt qua. Trong quá trình đó, Apple vươn lên nhờ sản phẩm cao cấp, thương hiệu mạnh và khả năng kiểm soát trải nghiệm người dùng.</p>
+            <div class="quote">Sự chuyển dịch từ nhiều chủ thể cạnh tranh sang vài nền tảng lớn là điểm khởi đầu để phân tích <span class="highlight" data-img="img1">tập trung sản xuất và độc quyền</span>.</div>
+            <div class="inline-image" id="img1"><div class="image-bar"><span>Quá trình cạnh tranh dẫn tới tập trung và độc quyền</span><button class="close-img">Đóng</button></div><img src="Images/Ảnh 1.png" alt="Quá trình tập trung sản xuất và độc quyền" /></div>
           </div>
-          <div class="mini-card">
-            <span class="tag red">Góc nhìn phê phán</span>
-            <h3>Quyền lực nền tảng và chèn ép</h3>
-            <ul>
-              <li>Cửa hàng ứng dụng khép kín làm giảm lựa chọn của nhà phát triển.</li>
-              <li>Phí hoa hồng cao làm giảm phần thu nhập của bên thứ ba.</li>
-              <li>Khi đã thống trị, độc quyền có thể làm cạnh tranh kém bình đẳng hơn. Xem minh họa về <button class="image-link" data-img="Images/Ảnh 3.png" data-title="Hệ sinh thái khép kín">hệ sinh thái khép kín</button>.</li>
-            </ul>
+          <div class="card">
+            <h3>Cách Apple tạo quyền lực nền tảng</h3>
+            <p>Apple tạo ra một hệ sinh thái khép kín: muốn tải ứng dụng phải qua App Store, muốn đồng bộ dữ liệu dùng iCloud, muốn nghe nhạc có Apple Music, muốn thanh toán có Apple Pay. Người dùng càng dùng nhiều dịch vụ thì càng khó rời khỏi hệ sinh thái.</p>
+            <p style="margin-top:12px">Các đối thủ nhỏ như Spotify, Epic Games từng tố cáo Apple dùng vị thế kiểm soát nền tảng để thu phí hoa hồng 30% và gây bất lợi cho họ. Apple biện minh rằng họ tạo ra môi trường an toàn và trải nghiệm tốt nhất cho người dùng.</p>
+            <div class="quote">Đây là mâu thuẫn giữa lập luận “an toàn, tiện lợi” và nghi vấn <span class="highlight" data-img="img3">hệ sinh thái khép kín</span> tạo quyền lực độc quyền.</div>
+            <div class="inline-image" id="img3"><div class="image-bar"><span>Hệ sinh thái khép kín như một lồng kính công nghệ</span><button class="close-img">Đóng</button></div><img src="Images/Ảnh 3.png" alt="Hệ sinh thái khép kín Apple" /></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:22px">
+          <h3>Hai câu hỏi phân tích</h3>
+          <ul>
+            <li>Phân tích quá trình chuyển biến từ cạnh tranh tự do sang tích tụ, tập trung sản xuất và cuối cùng dẫn đến độc quyền. Vì sao cạnh tranh thắng lợi lại tất yếu dẫn đến độc quyền?</li>
+            <li>Apple có đang áp đặt giá cả độc quyền cao khi bán iPhone và giá cả độc quyền thấp khi mua linh kiện hoặc thanh toán cho lập trình viên để thu lợi nhuận độc quyền không?</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="theory" class="tab-panel">
+      <div class="section-head">
+        <div class="kicker">Nền tảng lý luận</div>
+        <h2>Lý thuyết về cạnh tranh, độc quyền và quan điểm của V.I. Lênin</h2>
+        <p class="section-desc">Tab này gom toàn bộ phần lý thuyết, bao gồm độc quyền, độc quyền nhà nước và các đặc điểm kinh tế của độc quyền theo V.I. Lênin.</p>
+      </div>
+      <div class="surface">
+        <div class="sub-tabs">
+          <button class="sub-btn active" data-sub="t1">Phần 1 · Độc quyền</button>
+          <button class="sub-btn" data-sub="t2">Phần 2 · Lênin</button>
+          <button class="sub-btn" data-sub="t3">Phần 3 · Độc quyền nhà nước</button>
+        </div>
+
+        <div id="t1" class="sub-panel active">
+          <div class="grid-3">
+            <div class="card"><div class="num">1</div><h3>Khái niệm độc quyền</h3><p>Độc quyền là liên minh các doanh nghiệp lớn nhằm kiểm soát sản xuất, tiêu thụ và định giá độc quyền để thu lợi nhuận độc quyền.</p></div>
+            <div class="card"><div class="num">2</div><h3>Nguyên nhân hình thành</h3><p>Lực lượng sản xuất phát triển đòi hỏi vốn lớn; cạnh tranh loại bỏ doanh nghiệp nhỏ; khủng hoảng kinh tế thúc đẩy tập trung tư bản; tín dụng hỗ trợ tích tụ vốn.</p></div>
+            <div class="card"><div class="num">3</div><h3>Biểu hiện kinh tế</h3><p>Quy luật giá trị biểu hiện thành giá cả độc quyền; quy luật giá trị thặng dư biểu hiện thành lợi nhuận độc quyền.</p></div>
+          </div>
+          <div class="timeline">
+            <div class="step"><div class="step-icon">⚔️</div><div class="step-content"><h3>Cạnh tranh tự do</h3><p>Nhiều doanh nghiệp cùng tham gia thị trường, cạnh tranh về giá, chất lượng, công nghệ và khả năng phân phối.</p></div></div>
+            <div class="step"><div class="step-icon">📈</div><div class="step-content"><h3>Tích tụ tư bản</h3><p>Doanh nghiệp thắng lợi mở rộng quy mô bằng cách tái đầu tư lợi nhuận, nâng công suất và tăng năng lực sản xuất.</p></div></div>
+            <div class="step"><div class="step-icon">🧲</div><div class="step-content"><h3>Tập trung tư bản</h3><p>Nhiều tư bản nhỏ bị sáp nhập, mua lại hoặc bị loại khỏi thị trường, làm quyền lực kinh tế tập trung vào số ít doanh nghiệp lớn.</p></div></div>
+            <div class="step"><div class="step-icon">👑</div><div class="step-content"><h3>Độc quyền</h3><p>Khi số ít doanh nghiệp lớn kiểm soát thị trường, họ có khả năng chi phối giá cả, điều kiện giao dịch và phân phối lợi nhuận.</p></div></div>
+          </div>
+        </div>
+
+        <div id="t2" class="sub-panel">
+          <div class="quote">Theo V.I. Lênin, tự do cạnh tranh dẫn tới tập trung sản xuất; sự tập trung đó phát triển đến một trình độ nhất định thì sinh ra độc quyền.</div>
+          <p class="section-desc">Năm đặc điểm kinh tế của độc quyền theo Lênin có thể nhìn như một sơ đồ quan hệ: tích tụ và tập trung tư bản, tư bản tài chính và tài phiệt, xuất khẩu tư bản, phân chia thị trường thế giới, phân chia lãnh thổ thế giới. Nhấn vào cụm <span class="highlight" data-img="img7">đặc điểm kinh tế của độc quyền theo V.I. Lênin</span> để xem sơ đồ.</p>
+          <div class="inline-image" id="img7"><div class="image-bar"><span>5 đặc điểm kinh tế của độc quyền theo V.I. Lênin</span><button class="close-img">Đóng</button></div><img src="Images/Anh 7.png" alt="Sơ đồ đặc điểm kinh tế của độc quyền theo V.I. Lênin" /></div>
+          <div class="grid-5" style="margin-top:22px">
+            <div class="card"><div class="num">a</div><h3>Tích tụ và tập trung tư bản</h3><p>Làm xuất hiện tổ chức độc quyền như Cartel, Syndicate, Trust, Consortium.</p></div>
+            <div class="card"><div class="num">b</div><h3>Tư bản tài chính</h3><p>Sự kết hợp giữa tư bản ngân hàng và tư bản công nghiệp, hình thành tài phiệt.</p></div>
+            <div class="card"><div class="num">c</div><h3>Xuất khẩu tư bản</h3><p>Đưa vốn ra nước ngoài để thu lợi nhuận qua FDI hoặc đầu tư gián tiếp.</p></div>
+            <div class="card"><div class="num">d</div><h3>Phân chia thị trường</h3><p>Các tập đoàn mở rộng toàn cầu, cạnh tranh để chiếm thị trường và khu vực ảnh hưởng.</p></div>
+            <div class="card"><div class="num">e</div><h3>Phân chia lãnh thổ</h3><p>Các cường quốc tranh giành thuộc địa, tài nguyên và phạm vi ảnh hưởng để bảo vệ lợi ích độc quyền.</p></div>
+          </div>
+        </div>
+
+        <div id="t3" class="sub-panel">
+          <div class="grid-2">
+            <div class="card"><h3>Khái niệm</h3><p>Độc quyền nhà nước là khi nhà nước nắm giữ các lĩnh vực then chốt, đồng thời kết hợp với các tổ chức độc quyền để điều tiết nền kinh tế.</p></div>
+            <div class="card"><h3>Bản chất</h3><p>Sự kết hợp sức mạnh của nhà nước và tư bản độc quyền nhằm duy trì, điều tiết và phát triển chủ nghĩa tư bản trong giai đoạn độc quyền.</p></div>
+          </div>
+          <div class="accordion">
+            <div class="acc"><button>Nguyên nhân hình thành <span class="plus">+</span></button><div class="acc-body">Quy mô nền kinh tế lớn cần điều tiết tập trung; nhà nước đầu tư vào hạ tầng, năng lượng và lĩnh vực tư nhân không muốn hoặc không thể đầu tư; đồng thời xử lý mâu thuẫn xã hội do độc quyền tư nhân.</div></div>
+            <div class="acc"><button>Liên minh cá nhân giữa độc quyền và nhà nước <span class="plus">+</span></button><div class="acc-body">Nhân sự giữa tổ chức độc quyền và bộ máy nhà nước có thể thâm nhập lẫn nhau thông qua đảng phái, hội chủ xí nghiệp, tài trợ chính trị và chi phối đường lối.</div></div>
+            <div class="acc"><button>Sở hữu nhà nước phát triển <span class="plus">+</span></button><div class="acc-body">Bao gồm tài sản công, doanh nghiệp nhà nước, hạ tầng, giao thông, y tế, giáo dục, bảo hiểm; có thể hình thành qua xây mới, quốc hữu hóa hoặc mua cổ phần.</div></div>
+            <div class="acc"><button>Công cụ điều tiết kinh tế <span class="plus">+</span></button><div class="acc-body">Nhà nước dùng ngân sách, thuế, tiền tệ, tín dụng, kế hoạch hóa, chính sách ưu đãi và trừng phạt để điều tiết thị trường, độc quyền tư nhân và lợi ích tư bản độc quyền.</div></div>
           </div>
         </div>
       </div>
     </section>
-  </main>
 
-  <div class="modal" id="imageModal" aria-hidden="true">
-    <div class="modal-card">
-      <div class="modal-head">
-        <div class="modal-title" id="modalTitle">Ảnh minh họa</div>
-        <button class="modal-close" id="modalClose" aria-label="Đóng ảnh">×</button>
+    <section id="analysis" class="tab-panel">
+      <div class="section-head">
+        <div class="kicker">Áp dụng vào Apple</div>
+        <h2>Giá cả độc quyền và lợi nhuận độc quyền trong hệ sinh thái Apple</h2>
+        <p class="section-desc">Phần này dùng lý thuyết đã nêu để phân tích cơ chế Apple tạo ra quyền lực thị trường và thu lợi nhuận độc quyền.</p>
       </div>
-      <img id="modalImg" src="" alt="Ảnh minh họa" />
-    </div>
-  </div>
+      <div class="surface">
+        <div class="grid-2">
+          <div class="card">
+            <h3>Giá cả độc quyền cao</h3>
+            <p>Các tổ chức độc quyền có thể bán hàng hóa với mức giá cao hơn giá trị và giá cả sản xuất. Apple duy trì giá iPhone ở mức cao nhờ thương hiệu, thiết kế, hệ điều hành iOS và mức độ gắn chặt của người dùng trong hệ sinh thái.</p>
+          </div>
+          <div class="card">
+            <h3>Giá cả độc quyền thấp</h3>
+            <p>Ở chiều mua vào, Apple có quy mô lớn để đàm phán linh kiện với giá có lợi. Với lập trình viên, khoản hoa hồng 30% trên App Store có thể được nhìn như cơ chế buộc bên thứ ba nhượng lại một phần giá trị họ tạo ra.</p>
+          </div>
+        </div>
+        <div class="price-model">
+          <div class="price-box"><h3>Người tiêu dùng</h3><p>Trả giá cao cho thiết bị và dịch vụ vì khó rời hệ sinh thái.</p></div>
+          <div class="profit-core">Hai lưỡi kéo<br/>giá cả độc quyền</div>
+          <div class="price-box"><h3>Đối tác & lập trình viên</h3><p>Phụ thuộc nền tảng và chịu phí hoa hồng hoặc điều kiện phân phối.</p></div>
+        </div>
+        <p class="section-desc" style="margin-top:18px">Có thể hình dung cơ chế này như <span class="highlight" data-img="img2">hai lưỡi kéo giá cả độc quyền</span>: một lưỡi hướng về người tiêu dùng qua giá bán cao, một lưỡi hướng về đối tác qua mức chi trả hoặc chia sẻ doanh thu bất lợi.</p>
+        <div class="inline-image" id="img2"><div class="image-bar"><span>Cơ chế giá cả độc quyền cao và thấp</span><button class="close-img">Đóng</button></div><img src="Images/Ảnh 2.png" alt="Lưỡi kéo giá cả độc quyền" /></div>
+
+        <div class="card" style="margin-top:22px">
+          <h3>Lợi nhuận độc quyền</h3>
+          <p>Lợi nhuận độc quyền của Apple không chỉ đến từ hoạt động sản xuất và bán sản phẩm, mà còn đến từ khả năng kiểm soát nền tảng, thu phí từ các nhà phát triển, khai thác sức mạnh thương hiệu và giữ chân người dùng trong hệ sinh thái. Nhấn vào cụm <span class="highlight" data-img="img4">lợi nhuận độc quyền</span> để xem mô hình dòng chảy giá trị.</p>
+          <div class="inline-image" id="img4"><div class="image-bar"><span>Dòng chảy giá trị thặng dư hội tụ thành lợi nhuận độc quyền</span><button class="close-img">Đóng</button></div><img src="Images/Ảnh 4.png" alt="Bản chất lợi nhuận độc quyền" /></div>
+        </div>
+        <div class="card" style="margin-top:22px">
+          <h3>Sơ đồ tổng hợp</h3>
+          <p>Toàn bộ cơ chế có thể tóm tắt bằng <span class="highlight" data-img="img6">mô hình độc quyền của Apple</span>: ba nguồn tạo giá trị, hệ sinh thái khép kín ở trung tâm, hai hình thức áp đặt giá và hệ quả là lợi nhuận độc quyền.</p>
+          <div class="inline-image" id="img6"><div class="image-bar"><span>Sơ đồ mô hình độc quyền của Apple</span><button class="close-img">Đóng</button></div><img src="Images/Anh 6.png" alt="Sơ đồ mô hình độc quyền của Apple" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="game" class="tab-panel">
+      <div class="section-head">
+        <div class="kicker">Game ôn tập</div>
+        <h2>Kiểm tra nhanh nội dung bài học</h2>
+        <p class="section-desc">Chọn đáp án đúng để ôn lại các ý chính: cạnh tranh, độc quyền, giá cả độc quyền và trường hợp Apple.</p>
+      </div>
+      <div class="surface">
+        <div class="quiz-box">
+          <div class="question" data-answer="b">
+            <h3>1. Theo lý luận đã học, tự do cạnh tranh có thể dẫn tới độc quyền vì sao?</h3>
+            <div class="answers">
+              <button class="answer" data-choice="a">Vì mọi doanh nghiệp luôn có quy mô bằng nhau.</button>
+              <button class="answer" data-choice="b">Vì cạnh tranh làm tư bản tích tụ, tập trung vào các doanh nghiệp thắng lợi.</button>
+              <button class="answer" data-choice="c">Vì thị trường tự động xóa bỏ doanh nghiệp lớn.</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+          <div class="question" data-answer="a">
+            <h3>2. Giá iPhone cao nhờ thương hiệu và hệ sinh thái khép kín có thể được liên hệ với khái niệm nào?</h3>
+            <div class="answers">
+              <button class="answer" data-choice="a">Giá cả độc quyền cao.</button>
+              <button class="answer" data-choice="b">Giá cả độc quyền thấp.</button>
+              <button class="answer" data-choice="c">Xuất khẩu tư bản.</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+          <div class="question" data-answer="c">
+            <h3>3. Việc App Store thu hoa hồng từ lập trình viên thể hiện điều gì trong bài phân tích?</h3>
+            <div class="answers">
+              <button class="answer" data-choice="a">Apple không có quyền lực nền tảng.</button>
+              <button class="answer" data-choice="b">Lập trình viên hoàn toàn không phụ thuộc hệ sinh thái.</button>
+              <button class="answer" data-choice="c">Apple có thể chi phối điều kiện phân phối và chia sẻ doanh thu.</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+          <div class="question" data-answer="b">
+            <h3>4. Trong tab lý thuyết, Lênin nêu đặc điểm nào của độc quyền?</h3>
+            <div class="answers">
+              <button class="answer" data-choice="a">Chỉ có cạnh tranh nhỏ lẻ, không có tư bản tài chính.</button>
+              <button class="answer" data-choice="b">Tích tụ tư bản, tư bản tài chính, xuất khẩu tư bản và phân chia thị trường.</button>
+              <button class="answer" data-choice="c">Chỉ có sản xuất thủ công và trao đổi trực tiếp.</button>
+            </div>
+            <div class="feedback"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-note">© Nội dung học tập về kinh tế chính trị Mác - Lênin và phân tích tình huống Apple.</p>
+  </main>
 
   <script>
     const tabButtons = document.querySelectorAll('.tab-btn');
-    const panels = document.querySelectorAll('.panel');
-    function activateTab(tabId){
-      tabButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabId));
-      panels.forEach(panel => panel.classList.toggle('active', panel.id === tabId));
-      document.body.classList.remove('theme-theory','theme-apple','theme-debate');
-      document.body.classList.add(tabId === 'apple' ? 'theme-apple' : tabId === 'debate' ? 'theme-debate' : 'theme-theory');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    const panels = document.querySelectorAll('.tab-panel');
+    function openTab(id){
+      tabButtons.forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+      panels.forEach(p => p.classList.toggle('active', p.id === id));
+      window.scrollTo({top:0, behavior:'smooth'});
     }
-    tabButtons.forEach(btn => btn.addEventListener('click', () => activateTab(btn.dataset.tab)));
+    tabButtons.forEach(btn => btn.addEventListener('click', () => openTab(btn.dataset.tab)));
+    document.querySelectorAll('[data-go]').forEach(btn => btn.addEventListener('click', () => openTab(btn.dataset.go)));
 
-    const subButtons = document.querySelectorAll('.sub-tab');
-    const subPanels = document.querySelectorAll('.sub-panel');
+    const subButtons = document.querySelectorAll('.sub-btn');
     subButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        subButtons.forEach(item => item.classList.toggle('active', item.dataset.sub === btn.dataset.sub));
-        subPanels.forEach(panel => panel.classList.toggle('active', panel.id === btn.dataset.sub));
+        const parent = btn.closest('.surface');
+        parent.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+        parent.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        parent.querySelector('#' + btn.dataset.sub).classList.add('active');
       });
     });
 
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImg');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalClose = document.getElementById('modalClose');
+    document.querySelectorAll('.acc button').forEach(btn => {
+      btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
+    });
 
-    document.querySelectorAll('.image-link').forEach(link => {
-      link.addEventListener('click', () => {
-        modalImg.src = link.dataset.img;
-        modalTitle.textContent = link.dataset.title || 'Ảnh minh họa';
-        modal.classList.add('show');
-        modal.setAttribute('aria-hidden','false');
+    document.querySelectorAll('.highlight').forEach(el => {
+      el.addEventListener('click', () => {
+        const target = document.getElementById(el.dataset.img);
+        if (!target) return;
+        const isOpen = target.classList.contains('show');
+        document.querySelectorAll('.inline-image').forEach(img => img.classList.remove('show'));
+        if (!isOpen) {
+          target.classList.add('show');
+          target.scrollIntoView({behavior:'smooth', block:'nearest'});
+        }
       });
     });
-    function closeModal(){
-      modal.classList.remove('show');
-      modal.setAttribute('aria-hidden','true');
-      modalImg.src = '';
-    }
-    modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
-    window.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+    document.querySelectorAll('.close-img').forEach(btn => btn.addEventListener('click', () => btn.closest('.inline-image').classList.remove('show')));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.inline-image').forEach(img => img.classList.remove('show')); });
+
+    document.querySelectorAll('.question').forEach(q => {
+      q.querySelectorAll('.answer').forEach(a => {
+        a.addEventListener('click', () => {
+          const correct = q.dataset.answer;
+          q.querySelectorAll('.answer').forEach(btn => {
+            btn.classList.remove('correct','wrong');
+            if (btn.dataset.choice === correct) btn.classList.add('correct');
+          });
+          if (a.dataset.choice !== correct) a.classList.add('wrong');
+          const feedback = q.querySelector('.feedback');
+          feedback.textContent = a.dataset.choice === correct ? 'Đúng. Đây là ý chính của bài.' : 'Chưa đúng. Xem đáp án được tô xanh để ôn lại.';
+        });
+      });
+    });
   </script>
 </body>
 </html>
