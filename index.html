@@ -437,7 +437,7 @@
       <div class="section-head">
         <div class="kicker">Game ôn tập</div>
         <h2>Ôn tập chương độc quyền</h2>
-        <p class="section-desc">Chọn một trong hai chế độ: chơi đuổi hình bắt chữ theo phòng hoặc ôn luyện lý thuyết với AI. Khi đã vào một chế độ, giao diện chỉ hiện đúng phần đó để dễ dùng.</p>
+        <p class="section-desc">Chọn chế độ chơi theo phòng hoặc ôn luyện lý thuyết với AI. Ở phần đuổi hình bắt chữ, người chơi điền từng chữ vào các ô đáp án và bảng live feed chỉ ghi nhận người trả lời đúng.</p>
       </div>
       <div class="surface">
         <div class="game-shell">
@@ -517,6 +517,7 @@
 
                 <div class="puzzle-question" id="puzzleQuestion">Câu hỏi sẽ hiện ở đây.</div>
                 <div class="hint-box" id="hintBox">Gợi ý sẽ hiện ở đây.</div>
+                <div class="reveal-word" id="answerBoxes" aria-label="Ô chữ đáp án"></div>
                 <div class="answer-row">
                   <input id="answerInput" class="game-input" placeholder="Nhập đáp án..." autocomplete="off" />
                   <button id="submitAnswer" class="game-btn good">Trả lời</button>
@@ -539,7 +540,7 @@
                   <div class="leaderboard" id="leaderboard"></div>
                 </div>
                 <div class="game-card">
-                  <h3>Live feed</h3>
+                  <h3>Live feed · người trả lời đúng</h3>
                   <div class="feed" id="liveFeed"></div>
                 </div>
               </div>
@@ -552,7 +553,7 @@
               <div class="practice-card intro">
                 <span class="badge hot">AI Tutor</span>
                 <h3>Ôn tập với AI từ học liệu</h3>
-                <p>Chọn số lượng câu, chọn dạng câu hỏi, rồi đưa nguồn từ slide hoặc giáo trình. AI sẽ dựa vào nguồn đó để tạo câu hỏi và giải thích ngay khi người học trả lời sai.</p>
+                <p>Người học chỉ cần chọn số câu và dạng câu hỏi. Nguồn học liệu được lấy từ backend/API do quản trị viên chuẩn bị sẵn, nên người dùng không cần upload tài liệu.</p>
 
                 <div class="ai-source-box">
                   <div class="ai-form-row">
@@ -570,21 +571,9 @@
                     </div>
                   </div>
 
-                  <div class="ai-field">
-                    <label for="sourceText">Nguồn học liệu</label>
-                    <textarea id="sourceText" placeholder="Dán nội dung slide, giáo trình hoặc phần lý thuyết cần ôn vào đây. AI sẽ ưu tiên tạo câu hỏi từ nguồn này."></textarea>
-                    <p class="source-tip">Có thể copy nội dung từ Google Docs, PDF, slide hoặc file giáo trình rồi dán vào đây. Nếu để trống, AI sẽ dùng phạm vi kiến thức có sẵn của bài.</p>
-                  </div>
-
-                  <div class="ai-field">
-                    <label for="sourceFile">Hoặc tải file nguồn dạng text</label>
-                    <input id="sourceFile" type="file" accept=".txt,.md,.html,.csv" />
-                    <p class="source-tip" id="sourceFileStatus">Hỗ trợ nhanh: .txt, .md, .html, .csv. Với PDF/DOCX/PPTX, nên copy nội dung rồi dán vào ô nguồn học liệu.</p>
-                  </div>
-
                   <div class="mini-actions">
-                    <button id="startPractice" class="game-btn good">Tạo câu hỏi bằng AI</button>
-                    <button id="useDefaultPractice" class="game-btn alt">Dùng bộ câu hỏi có sẵn</button>
+                    <button id="startPractice" class="game-btn good">Tạo câu hỏi từ học liệu</button>
+                    <button id="useDefaultPractice" class="game-btn alt">Dùng bộ câu hỏi dự phòng</button>
                   </div>
                   <p class="game-note" id="practiceGenerateStatus">Sẵn sàng tạo câu hỏi.</p>
                 </div>
@@ -594,10 +583,10 @@
                 <ul>
                   <li>Nhập tối đa <b>50 câu</b> cho một lần ôn tập.</li>
                   <li>Chọn <b>Multiple choice</b>, <b>Điền vào chỗ trống</b> hoặc <b>Kết hợp</b>.</li>
-                  <li>Nếu có slide/giáo trình, dán nội dung vào ô nguồn để AI bám sát tài liệu.</li>
+                  <li>Nguồn slide/giáo trình nằm trong backend/API, người học không cần upload tài liệu.</li>
                   <li>Khi trả lời sai, AI sẽ giải thích vì sao sai và nhắc lại ý lý thuyết liên quan.</li>
                 </ul>
-                <p class="source-pill">Nguồn ưu tiên: slide / giáo trình / nội dung bạn dán</p>
+                <p class="source-pill">Nguồn ưu tiên: học liệu backend / giáo trình / slide</p>
               </div>
             </div>
 
@@ -913,8 +902,7 @@
       const status = $('practiceGenerateStatus');
       const startBtn = $('startPractice');
       const settings = getPracticeSettings();
-      const sourceText = (($('sourceText') && $('sourceText').value) || '').trim();
-      if(status) status.textContent = useAI ? `AI đang tạo ${settings.count} câu hỏi...` : `Đang tạo ${settings.count} câu từ bộ có sẵn...`;
+      if(status) status.textContent = useAI ? `AI đang tạo ${settings.count} câu hỏi từ học liệu backend...` : `Đang tạo ${settings.count} câu từ bộ dự phòng...`;
       if(startBtn) startBtn.disabled = true;
 
       let generated = null;
@@ -923,13 +911,13 @@
           const res = await fetch('/api/generate-quiz', {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({count: settings.count, questionType: settings.questionType, sourceText})
+            body: JSON.stringify({count: settings.count, questionType: settings.questionType})
           });
           const data = await res.json();
           if(!res.ok) throw new Error(data.error || 'Không gọi được AI');
           if(!Array.isArray(data.questions) || !data.questions.length) throw new Error('AI không trả về câu hỏi hợp lệ');
           generated = data.questions.map(normalizePracticeQuestion).filter(validPracticeQuestion);
-          if(status) status.textContent = sourceText ? 'AI đã tạo câu hỏi dựa trên nguồn học liệu.' : 'AI đã tạo câu hỏi theo phạm vi bài học.';
+          if(status) status.textContent = 'AI đã tạo câu hỏi dựa trên học liệu backend.';
         }catch(err){
           console.warn('AI quiz fallback:', err);
           generated = buildFallbackSet(settings.count, settings.questionType);
@@ -1089,7 +1077,14 @@
       const feed = $('liveFeed');
       if(!feed) return;
       feed.innerHTML = '';
-      const items = Array.isArray(feedItems) ? [...feedItems].sort((a,b)=>(b.at||0)-(a.at||0)) : [];
+      const items = Array.isArray(feedItems) ? [...feedItems].filter(f => f && f.type === 'correct').sort((a,b)=>(b.at||0)-(a.at||0)) : [];
+      if(!items.length){
+        const empty = document.createElement('div');
+        empty.className = 'feed-item';
+        empty.textContent = 'Chưa có người trả lời đúng.';
+        feed.appendChild(empty);
+        return;
+      }
       items.slice(0, 18).forEach(f => {
         const item = document.createElement('div');
         item.className = 'feed-item';
@@ -1287,6 +1282,32 @@
         return;
       }
     }
+
+    function answerLetters(answer){
+      return [...String(answer || '').toUpperCase()];
+    }
+    function renderAnswerBoxes(answer, typed = ''){
+      const box = $('answerBoxes');
+      if(!box) return;
+      const chars = answerLetters(answer);
+      const typedChars = [...String(typed || '').toUpperCase().replace(/\s+/g,'')];
+      let index = 0;
+      box.innerHTML = '';
+      chars.forEach(ch => {
+        if(ch === ' '){
+          const sp = document.createElement('span');
+          sp.className = 'letter-space';
+          box.appendChild(sp);
+          return;
+        }
+        const cell = document.createElement('span');
+        cell.className = 'letter-box';
+        cell.textContent = typedChars[index] || '';
+        if(!typedChars[index]) cell.classList.add('blank');
+        box.appendChild(cell);
+        index++;
+      });
+    }
     function loadRound(startMs = Date.now()){
       const puzzle = puzzles[round];
       questionStartMs = startMs;
@@ -1313,8 +1334,9 @@
         if(art){ art.style.display = 'block'; art.textContent = puzzle.art || '🧠'; }
       }
       $('puzzleQuestion').textContent = puzzle.question || 'Nhìn hình và đoán khái niệm.';
-      $('hintBox').innerHTML = '<b>💡 Gợi ý:</b> ' + puzzle.hint + '<div class="answer-key-small">Đáp án gồm ' + [...puzzle.answer].filter(c=>c !== ' ').length + ' chữ cái.</div>';
+      $('hintBox').innerHTML = '<b>💡 Gợi ý:</b> ' + puzzle.hint + '<div class="answer-key-small">Nhập đáp án theo các ô chữ bên dưới.</div>';
       $('answerInput').value = '';
+      renderAnswerBoxes(puzzle.answer, '');
       updateTimer();
       setTimeout(() => $('answerInput')?.focus(), 80);
     }
@@ -1382,7 +1404,7 @@
       try{
         await updateDoc(roomRef(), {
           [`players.${localPlayerId}`]: { name: currentMe.name, score, role: currentMe.role || currentRole || 'player', joinedAt: Date.now() },
-          feed: arrayUnion({ text: `${currentMe.name} trả lời đúng “${puzzle.answer}” và nhận ${earned} điểm.`, at: Date.now() })
+          feed: arrayUnion({ type: 'correct', text: `${currentMe.name} trả lời đúng “${puzzle.answer}” và nhận ${earned} điểm.`, at: Date.now() })
         });
         await advanceRoomQuestion(null, 650);
       }catch(err){
@@ -1444,7 +1466,6 @@
     document.querySelectorAll('.count-btn').forEach(btn => btn.addEventListener('click', () => setPracticeCount(Number(btn.dataset.count))));
     $('startPractice')?.addEventListener('click', () => startPractice(true));
     $('useDefaultPractice')?.addEventListener('click', () => startPractice(false));
-    $('sourceFile')?.addEventListener('change', async (e) => { const text = await readSourceFile(e.target.files[0]); if(text && $('sourceText')) $('sourceText').value = text; });
     $('nextPractice')?.addEventListener('click', nextPractice);
     $('restartPractice')?.addEventListener('click', restartPractice);
 
@@ -1459,8 +1480,9 @@
       $('startGame').addEventListener('click', startGame);
       $('resetGame').addEventListener('click', resetGame);
       $('submitAnswer').addEventListener('click', submitAnswer);
-      $('passQuestion').addEventListener('click', () => { addFeed('Bạn đã qua câu.'); nextRound(); });
+      $('passQuestion').addEventListener('click', () => { $('statusText').textContent = 'Đã qua câu.'; nextRound(); });
       $('answerInput').addEventListener('keydown', e => { if(e.key === 'Enter') submitAnswer(); });
+      $('answerInput').addEventListener('input', e => { const puzzle = puzzles[round]; if(puzzle) renderAnswerBoxes(puzzle.answer, e.target.value); });
       $('hostName').value = '';
       $('playerName').value = '';
       renderPlayers();
