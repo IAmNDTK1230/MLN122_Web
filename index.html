@@ -359,6 +359,41 @@
       pointer-events:auto!important;
     }
 
+
+    /* --- Smooth answer input update --- */
+    #answerInput{
+      display:block!important;
+    }
+    .answer-row.compact{
+      grid-template-columns:1fr auto!important;
+      justify-content:stretch!important;
+      margin-top:16px!important;
+    }
+    .letter-box{
+      pointer-events:none;
+    }
+    .answer-state{display:none!important}
+    .round-summary-card.show{
+      padding:34px!important;
+    }
+    .round-summary-card.show h3{
+      font-size:34px!important;
+      margin-bottom:22px!important;
+    }
+    .round-summary-card.show .leaderboard .rank{
+      padding:18px 20px!important;
+      font-size:20px!important;
+      border-radius:20px!important;
+    }
+    .final-summary-card.show{
+      padding:38px!important;
+    }
+    .final-summary-card.show .leaderboard .rank{
+      padding:20px 22px!important;
+      font-size:22px!important;
+      border-radius:22px!important;
+    }
+
 </style>
 </head>
 <body>
@@ -602,7 +637,7 @@
                     <span class="badge hot" id="roundBadge">Câu 1/10</span>
                     <span class="badge">Điểm câu này: <b id="currentPoint">600</b></span>
                   </div>
-                  <div class="timer-ring" id="timerRing"><span id="timerText">60s</span></div>
+                  <div class="timer-ring" id="timerRing"><span id="timerText">45s</span></div>
                 </div>
 
                 <div class="puzzle-frame">
@@ -652,9 +687,9 @@
                 <div class="final-title">
                   <div>
                     <h3>Kết quả chung cuộc</h3>
-                    <p>Hoàn thành 10 câu. Đây là bảng xếp hạng cuối cùng của phòng.</p>
+                    <p>Hoàn thành 10 câu. Top 3 người chơi có điểm cao nhất.</p>
                   </div>
-                  <span class="badge hot">Top người chơi</span>
+                  <span class="badge hot">Top 3</span>
                 </div>
                 <div class="leaderboard big" id="finalLeaderboard"></div>
               </div>
@@ -889,7 +924,7 @@
     let playing = false;
     let currentRole = null;
     let currentPhase = 'idle';
-    const QUESTION_TIME = 60;
+    const QUESTION_TIME = 45;
     const REVIEW_TIME = 4;
     let localPlayerId = sessionStorage.getItem('mlnPlayerId') || ('p_' + Math.random().toString(36).slice(2,10));
     let localPlayerName = '';
@@ -1258,7 +1293,7 @@
       const board = $('finalLeaderboard');
       if(!board) return;
       board.innerHTML = '';
-      const ordered = sortedPlayers(players);
+      const ordered = sortedPlayers(players).slice(0,3);
       if(!ordered.length){
         board.innerHTML = '<div class="rank"><span>Chưa có dữ liệu</span><span>0</span></div>';
         return;
@@ -1387,7 +1422,7 @@
             } else {
               round = remoteRound;
               const puzzle = puzzles[round];
-              if(puzzle) renderAnswerBoxes(puzzle.answer);
+              if(puzzle) renderAnswerBoxes(puzzle.answer, '', getRevealCount(puzzle.answer, timeLeft));
             }
             const answered = playerHasAnswered(localPlayerId, roomData);
             setAnswerDisabled(answered);
@@ -1517,23 +1552,20 @@
     function getLetterCount(answer){
       return answerLetters(answer).filter(ch => ch !== ' ').length;
     }
-    function revealRandomLetters(answer, secondsLeft){
+    function getRevealCount(answer, secondsLeft){
+      const totalLetters = getLetterCount(answer);
+      if(totalLetters <= 1) return 0;
+
       const elapsed = QUESTION_TIME - secondsLeft;
-      const targetStep = Math.floor(elapsed / 5);
-      const total = getLetterCount(answer);
-      while(lastRevealStep < targetStep && revealedIndexes.size < Math.max(total - 1, 0)){
-        const addCount = Math.random() > 0.5 ? 2 : 1;
-        for(let k = 0; k < addCount && revealedIndexes.size < Math.max(total - 1, 0); k++){
-          const available = [];
-          for(let i = 0; i < total; i++){
-            if(!revealedIndexes.has(i)) available.push(i);
-          }
-          if(!available.length) break;
-          const picked = available[Math.floor(Math.random() * available.length)];
-          revealedIndexes.add(picked);
-        }
-        lastRevealStep++;
+      const steps = Math.floor(elapsed / 5);
+      let count = 0;
+
+      for(let step = 1; step <= steps; step++){
+        const remainingAtStep = QUESTION_TIME - step * 5;
+        count += remainingAtStep <= 30 ? (step % 2 === 0 ? 2 : 1) : 1;
       }
+
+      return Math.min(totalLetters - 1, count);
     }
     function updateTimer(){
       if(playing){
@@ -1547,7 +1579,7 @@
       const puzzle = puzzles[round];
       if(puzzle){
         revealRandomLetters(puzzle.answer, timeLeft);
-        renderAnswerBoxes(puzzle.answer);
+        renderAnswerBoxes(puzzle.answer, $('answerInput')?.value || '', getRevealCount(puzzle.answer, timeLeft));
       }
       if(timeLeft <= 0 && playing){
         if(currentRole === 'host') openRoundReview(`Hết giờ câu ${round+1}.`);
@@ -1558,13 +1590,15 @@
     function answerLetters(answer){
       return [...String(answer || '').toUpperCase()];
     }
-    function renderAnswerBoxes(answer){
+    function renderAnswerBoxes(answer, typed = '', revealCount = 0){
       const box = $('answerBoxes');
       if(!box) return;
-      const existing = [...box.querySelectorAll('.letter-input')].map(input => input.value || '');
+
       const chars = answerLetters(answer);
+      const typedChars = [...String(typed || '').toUpperCase().replace(/\s+/g,'')];
+      let typedIndex = 0;
       let letterIndex = 0;
-      let inputIndex = 0;
+
       box.innerHTML = '';
       chars.forEach(ch => {
         if(ch === ' '){
@@ -1577,68 +1611,21 @@
         const cell = document.createElement('span');
         cell.className = 'letter-box';
 
-        const input = document.createElement('input');
-        input.className = 'letter-input';
-        input.maxLength = 1;
-        input.dataset.index = String(letterIndex);
-        input.autocomplete = 'off';
-        input.inputMode = 'text';
-
-        if(revealedIndexes.has(letterIndex)){
-          input.value = ch;
-          input.disabled = true;
+        const typedChar = typedChars[typedIndex] || '';
+        if(typedChar){
+          cell.textContent = typedChar;
+        }else if(letterIndex < revealCount){
+          cell.textContent = ch;
           cell.classList.add('revealed');
         }else{
-          input.value = existing[inputIndex] || '';
-          if(!input.value) cell.classList.add('blank');
+          cell.textContent = '';
+          cell.classList.add('blank');
         }
 
-        input.addEventListener('input', handleLetterInput);
-        input.addEventListener('keydown', handleLetterKeydown);
-
-        cell.appendChild(input);
         box.appendChild(cell);
+        typedIndex++;
         letterIndex++;
-        inputIndex++;
       });
-    }
-    function collectBoxAnswer(){
-      return [...document.querySelectorAll('#answerBoxes .letter-input')]
-        .map(input => input.value || '')
-        .join('');
-    }
-    function focusLetterInput(index){
-      const inputs = [...document.querySelectorAll('#answerBoxes .letter-input:not(:disabled)')];
-      if(!inputs.length) return;
-      const target = inputs.find(input => Number(input.dataset.index) >= index) || inputs[inputs.length - 1];
-      target.focus();
-      target.select();
-    }
-    function handleLetterInput(e){
-      const input = e.target;
-      input.value = (input.value || '').toUpperCase().slice(-1);
-      const idx = Number(input.dataset.index || 0);
-      const parent = input.closest('.letter-box');
-      if(parent) parent.classList.toggle('blank', !input.value);
-      if(input.value) focusLetterInput(idx + 1);
-    }
-    function handleLetterKeydown(e){
-      const idx = Number(e.target.dataset.index || 0);
-      if(e.key === 'Backspace' && !e.target.value){
-        e.preventDefault();
-        focusLetterInput(Math.max(0, idx - 1));
-      }
-      if(e.key === 'Enter'){
-        e.preventDefault();
-        submitAnswer();
-      }
-    }
-    function focusFirstEmptyLetter(){
-      const input = [...document.querySelectorAll('#answerBoxes .letter-input:not(:disabled)')].find(i => !i.value);
-      if(input){
-        input.focus();
-        input.select();
-      }
     }
     function loadRound(startMs = Date.now()){
       const puzzle = puzzles[round];
@@ -1674,9 +1661,9 @@
       if(answerBox) answerBox.innerHTML = '';
       setAnswerDisabled(false);
       $('answerState').textContent = '';
-      renderAnswerBoxes(puzzle.answer);
+      renderAnswerBoxes(puzzle.answer, $('answerInput')?.value || '', getRevealCount(puzzle.answer, timeLeft));
       updateTimer();
-      setTimeout(() => focusFirstEmptyLetter(), 80);
+      setTimeout(() => $('answerInput')?.focus(), 80);
     }
     async function startGame(){
       if(!ensureRoom()) return;
@@ -1747,7 +1734,7 @@
         return;
       }
       const puzzle = puzzles[round];
-      const ok = normalizeAnswer(collectBoxAnswer()) === normalizeAnswer(puzzle.answer);
+      const ok = normalizeAnswer($('answerInput').value) === normalizeAnswer(puzzle.answer);
       if(!ok){
         $('statusText').textContent = 'Chưa đúng, thử lại nhanh trước khi có thêm gợi ý.';
         return;
@@ -1844,6 +1831,10 @@
       $('resetGame').addEventListener('click', resetGame);
       $('submitAnswer').addEventListener('click', submitAnswer);
       $('answerInput').addEventListener('keydown', e => { if(e.key === 'Enter') submitAnswer(); });
+      $('answerInput').addEventListener('input', e => {
+        const puzzle = puzzles[round];
+        if(puzzle) renderAnswerBoxes(puzzle.answer, e.target.value, getRevealCount(puzzle.answer, timeLeft));
+      });
       $('hostRoomName').value = '';
       $('playerName').value = '';
       renderPlayers();
