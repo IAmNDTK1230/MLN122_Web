@@ -491,6 +491,39 @@
       box-shadow:0 0 24px rgba(111,224,255,.34);
     }
 
+
+    /* --- 4-digit room code center fix --- */
+    .room-code{
+      min-width:220px!important;
+      max-width:260px!important;
+      margin-left:auto!important;
+      margin-right:auto!important;
+      text-align:center!important;
+      display:flex!important;
+      flex-direction:column!important;
+      align-items:center!important;
+      justify-content:center!important;
+      padding:22px 28px!important;
+      box-sizing:border-box!important;
+    }
+    .room-code b,
+    #roomCode{
+      display:block!important;
+      width:100%!important;
+      text-align:center!important;
+      letter-spacing:6px!important;
+      line-height:1!important;
+      font-variant-numeric:tabular-nums!important;
+      white-space:nowrap!important;
+      margin:0 auto!important;
+      transform:translateX(3px);
+    }
+    .room-code span{
+      display:block!important;
+      width:100%!important;
+      text-align:center!important;
+    }
+
 </style>
 </head>
 <body>
