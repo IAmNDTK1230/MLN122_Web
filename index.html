@@ -539,6 +539,15 @@
       cursor:not-allowed;
     }
 
+
+    .letter-box.revealed{
+      animation:popReveal .22s ease both;
+    }
+    @keyframes popReveal{
+      from{transform:scale(.92);filter:brightness(.8)}
+      to{transform:scale(1);filter:brightness(1)}
+    }
+
 </style>
 </head>
 <body>
@@ -1731,6 +1740,7 @@
     }
     let questionStartMs = Date.now();
     let revealedIndexes = new Set();
+    let revealOrder = [];
     let lastRevealStep = 0;
     function getLetterCount(answer){
       return answerLetters(answer).filter(ch => ch !== ' ').length;
@@ -1789,12 +1799,28 @@
     function answerLetters(answer){
       return [...String(answer || '').toUpperCase()];
     }
+    function makeRevealOrder(answer){
+      const indexes = [];
+      let letterIndex = 0;
+      answerLetters(answer).forEach(ch => {
+        if(ch !== ' ') indexes.push(letterIndex);
+        if(ch !== ' ') letterIndex++;
+      });
+
+      // Xáo trộn để chữ gợi ý hiện ngẫu nhiên, không chạy từ trái sang phải.
+      for(let i = indexes.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [indexes[i], indexes[j]] = [indexes[j], indexes[i]];
+      }
+      return indexes;
+    }
     function renderAnswerBoxes(answer, typed = '', revealCount = 0){
       const box = $('answerBoxes');
       if(!box) return;
 
       const chars = answerLetters(answer);
       const typedChars = [...String(typed || '').toUpperCase().replace(/\s+/g,'')];
+      const revealed = new Set((revealOrder || []).slice(0, revealCount));
       let typedIndex = 0;
       let letterIndex = 0;
 
@@ -1813,7 +1839,7 @@
         const typedChar = typedChars[typedIndex] || '';
         if(typedChar){
           cell.textContent = typedChar;
-        }else if(letterIndex < revealCount){
+        }else if(revealed.has(letterIndex)){
           cell.textContent = ch;
           cell.classList.add('revealed');
         }else{
@@ -1830,6 +1856,7 @@
       const puzzle = puzzles[round];
       questionStartMs = startMs;
       revealedIndexes = new Set();
+      revealOrder = makeRevealOrder(puzzle.answer);
       lastRevealStep = 0;
       timeLeft = Math.max(0, QUESTION_TIME - Math.max(0, Math.floor((Date.now() - questionStartMs) / 1000)));
       $('roundBadge').textContent = `Câu ${round+1}/${puzzles.length}`;
@@ -1897,6 +1924,7 @@
       round = remoteRound;
       playing = true;
       revealedIndexes = new Set();
+      revealOrder = [];
       lastRevealStep = 0;
       clearInterval(timer);
       loadRound(startMs || Date.now());
