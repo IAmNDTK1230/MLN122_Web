@@ -253,7 +253,33 @@
     .puzzle-frame{background:radial-gradient(circle at 25% 18%,rgba(255,77,141,.14),transparent 30%),radial-gradient(circle at 82% 72%,rgba(57,229,255,.14),transparent 34%),linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}
     .letter-box:not(.blank){background:linear-gradient(135deg,var(--pink),var(--orange));box-shadow:0 12px 28px rgba(255,77,141,.22)}
 
-  </style>
+  
+
+    /* --- Focused player-view update for room game --- */
+    .game-main-card{grid-column:1}
+    .score-panel.host-side{display:grid;gap:14px}
+    .game-stage.player-view{grid-template-columns:1fr}
+    .game-stage.player-view .host-side{display:none}
+    .round-summary-card,.final-summary-card{display:none;grid-column:1 / -1}
+    .round-summary-card.show,.final-summary-card.show{display:block;animation:fade .25s ease both}
+    .game-stage.show-final{grid-template-columns:1fr}
+    .game-stage.show-final .game-main-card,
+    .game-stage.show-final .host-side,
+    .game-stage.show-final .round-summary-card{display:none !important}
+    .answer-row.compact{grid-template-columns:1fr auto}
+    .letter-box.revealed{color:#fff;background:linear-gradient(135deg,rgba(70,166,255,.22),rgba(57,229,255,.18));border-color:rgba(57,229,255,.4)}
+    .answer-state{margin-top:10px;color:var(--muted);font-size:13px;line-height:1.6}
+    .summary-note{margin:10px 0 0;color:var(--muted);line-height:1.7}
+    .leaderboard.big .rank{padding:16px 18px;font-size:18px;border-radius:18px}
+    .leaderboard.big .rank span:last-child{font-size:22px}
+    .final-title{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+    .final-title h3{margin:0;font-size:34px}
+    .final-title p{margin:8px 0 0;color:var(--muted)}
+    .host-status-box{padding:16px 18px;border-radius:20px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08)}
+    .host-status-box b{display:block;font-size:18px;margin-bottom:6px}
+    .host-status-box p{margin:0;color:var(--muted);line-height:1.65}
+
+</style>
 </head>
 <body>
   <div class="bg-layer"><div class="planet one"></div><div class="planet two"></div><div class="wire"></div></div>
@@ -263,7 +289,7 @@
       <div class="brand">
         <div class="logo">ML</div>
         <div>
-          <div class="brand-title">mln122</div>
+          <div class="brand-title">Đế chế Apple</div>
           <div class="brand-sub">Góc nhìn kinh tế chính trị Mác - Lênin</div>
         </div>
       </div>
@@ -489,11 +515,11 @@
             </div>
 
             <div class="game-stage" id="gameStage">
-              <div class="game-card" style="position:relative">
+              <div class="game-card game-main-card" id="gameMainCard" style="position:relative">
                 <div class="confetti" id="confetti"></div>
                 <div class="game-top">
                   <div style="display:flex;gap:8px;flex-wrap:wrap">
-                    <span class="badge hot" id="roundBadge">Câu 1/8</span>
+                    <span class="badge hot" id="roundBadge">Câu 1/10</span>
                     <span class="badge">Điểm câu này: <b id="currentPoint">600</b></span>
                   </div>
                   <div class="timer-ring" id="timerRing"><span id="timerText">60s</span></div>
@@ -511,31 +537,46 @@
                 <div class="puzzle-question" id="puzzleQuestion">Câu hỏi sẽ hiện ở đây.</div>
                 <div class="hint-box" id="hintBox">Gợi ý sẽ hiện ở đây.</div>
                 <div class="reveal-word" id="answerBoxes" aria-label="Ô chữ đáp án"></div>
-                <div class="answer-row">
+                <div class="answer-row compact">
                   <input id="answerInput" class="game-input" placeholder="Nhập đáp án..." autocomplete="off" />
                   <button id="submitAnswer" class="game-btn good">Trả lời</button>
-                  <button id="passQuestion" class="game-btn warn">Qua câu</button>
                 </div>
+                <div class="answer-state" id="answerState">Điền đáp án vào ô nhập bên trên. Càng về cuối, hệ thống sẽ gợi mở thêm chữ cái.</div>
               </div>
 
-              <div class="score-panel">
+              <div class="score-panel host-side" id="hostSidePanel">
                 <div class="game-card">
-                  <h3>Điểm của bạn</h3>
-                  <div class="score-big" id="scoreText">0</div>
-                  <p class="game-note" id="statusText">Tạo phòng rồi bấm “Bắt đầu game”.</p>
-                  <div class="room-actions">
+                  <h3>Điều khiển quản trò</h3>
+                  <div class="host-status-box">
+                    <b id="hostProgressText">Đang chờ bắt đầu</b>
+                    <p id="statusText">Tạo phòng rồi bấm “Bắt đầu game”.</p>
+                  </div>
+                  <div class="room-actions" style="margin-top:14px">
                     <button id="startGame" class="game-btn">Bắt đầu game</button>
                     <button id="resetGame" class="game-btn alt">Chơi lại</button>
                   </div>
                 </div>
                 <div class="game-card">
-                  <h3>Bảng xếp hạng</h3>
+                  <h3>Bảng điểm hiện tại</h3>
                   <div class="leaderboard" id="leaderboard"></div>
                 </div>
-                <div class="game-card">
-                  <h3>Live feed · người trả lời đúng</h3>
-                  <div class="feed" id="liveFeed"></div>
+              </div>
+
+              <div class="game-card round-summary-card" id="roundSummaryCard">
+                <h3 id="roundSummaryTitle">Top 5 sau câu này</h3>
+                <div class="leaderboard" id="roundLeaderboard"></div>
+                <p class="summary-note" id="roundSummaryNote">Đang chờ chuyển sang câu tiếp theo...</p>
+              </div>
+
+              <div class="game-card final-summary-card" id="finalLeaderboardCard">
+                <div class="final-title">
+                  <div>
+                    <h3>Kết quả chung cuộc</h3>
+                    <p>Hoàn thành 10 câu. Đây là bảng xếp hạng cuối cùng của phòng.</p>
+                  </div>
+                  <span class="badge hot">Top người chơi</span>
                 </div>
+                <div class="leaderboard big" id="finalLeaderboard"></div>
               </div>
             </div>
           </div>
@@ -757,8 +798,12 @@
     let round = 0;
     let timeLeft = 60;
     let timer = null;
+    let reviewTimer = null;
     let playing = false;
     let currentRole = null;
+    let currentPhase = 'idle';
+    const QUESTION_TIME = 60;
+    const REVIEW_TIME = 4;
     let localPlayerId = sessionStorage.getItem('mlnPlayerId') || ('p_' + Math.random().toString(36).slice(2,10));
     let localPlayerName = '';
     let unsubscribeRoom = null;
@@ -1045,64 +1090,124 @@
     function roomRef(code = room){
       return doc(db, 'mln_rooms', String(code));
     }
-    function addFeed(text){
-      const feed = $('liveFeed');
-      if(!feed) return;
-      const item = document.createElement('div');
-      item.className = 'feed-item';
-      item.textContent = text;
-      feed.prepend(item);
+    function addFeed(){ }
+    async function addRoomFeed(){ }
+    function renderRemoteFeed(){ }
+    function getActivePlayers(list = players){
+      const active = (list || []).filter(p => (p.role || 'player') !== 'host');
+      return active.length ? active : (list || []);
     }
-    async function addRoomFeed(text){
-      if(!room){ addFeed(text); return; }
-      try{
-        await updateDoc(roomRef(), { feed: arrayUnion({ text, at: Date.now() }) });
-      }catch(err){
-        addFeed(text);
-        console.warn('Không ghi được live feed:', err);
-      }
+    function getAnsweredMap(data = roomData){
+      return data && data.answeredPlayers ? data.answeredPlayers : {};
     }
-    function renderRemoteFeed(feedItems){
-      const feed = $('liveFeed');
-      if(!feed) return;
-      feed.innerHTML = '';
-      const items = Array.isArray(feedItems) ? [...feedItems].filter(f => f && f.type === 'correct').sort((a,b)=>(b.at||0)-(a.at||0)) : [];
-      if(!items.length){
-        const empty = document.createElement('div');
-        empty.className = 'feed-item';
-        empty.textContent = 'Chưa có người trả lời đúng.';
-        feed.appendChild(empty);
-        return;
-      }
-      items.slice(0, 18).forEach(f => {
-        const item = document.createElement('div');
-        item.className = 'feed-item';
-        item.textContent = f.text || String(f);
-        feed.appendChild(item);
-      });
+    function playerHasAnswered(id = localPlayerId, data = roomData){
+      return !!getAnsweredMap(data)[id];
+    }
+    function setAnswerDisabled(disabled){
+      const input = $('answerInput');
+      const btn = $('submitAnswer');
+      if(input) input.disabled = disabled;
+      if(btn) btn.disabled = disabled;
+    }
+    function sortedPlayers(list = players){
+      return [...(list || [])]
+        .filter(p => (p.role || 'player') !== 'host')
+        .sort((a,b)=>b.score-a.score);
+    }
+    function updateStageLayout(){
+      const stage = $('gameStage');
+      if(!stage) return;
+      const questionMode = roomData?.status === 'playing' && (roomData?.phase || 'question') === 'question';
+      stage.classList.toggle('player-view', currentRole === 'player' && questionMode);
+      const hostSide = $('hostSidePanel');
+      if(hostSide) hostSide.style.display = currentRole === 'host' ? 'grid' : 'none';
     }
     function renderPlayers(){
       const list = $('playerList');
-      if(!list) return;
-      list.innerHTML = '';
-      players.forEach(p => {
-        const row = document.createElement('div');
-        row.className = 'player';
-        row.innerHTML = `<span>${p.name}${p.role === 'host' ? ' · Quản trò' : ''}</span><b>${p.score}</b>`;
-        list.appendChild(row);
-      });
+      if(list){
+        list.innerHTML = '';
+        players.forEach(p => {
+          const row = document.createElement('div');
+          row.className = 'player';
+          row.innerHTML = `<span>${p.name}${p.role === 'host' ? ' · Quản trò' : ''}</span><b>${p.score}</b>`;
+          list.appendChild(row);
+        });
+      }
       renderLeaderboard();
+      renderRoundLeaderboard();
+      renderFinalLeaderboard();
     }
     function renderLeaderboard(){
       const board = $('leaderboard');
       if(!board) return;
       board.innerHTML = '';
-      [...players].sort((a,b)=>b.score-a.score).forEach((p,i)=>{
+      sortedPlayers(players).forEach((p,i)=>{
         const row = document.createElement('div');
         row.className = 'rank' + (p.me ? ' me' : '');
         row.innerHTML = `<span>#${i+1} ${p.name}</span><span>${p.score}</span>`;
         board.appendChild(row);
       });
+    }
+    function renderRoundLeaderboard(){
+      const board = $('roundLeaderboard');
+      if(!board) return;
+      board.innerHTML = '';
+      const top = sortedPlayers(players).slice(0,5);
+      if(!top.length){
+        board.innerHTML = '<div class="rank"><span>Chưa có dữ liệu</span><span>0</span></div>';
+        return;
+      }
+      top.forEach((p,i)=>{
+        const row = document.createElement('div');
+        row.className = 'rank' + (p.me ? ' me' : '');
+        row.innerHTML = `<span>#${i+1} ${p.name}</span><span>${p.score}</span>`;
+        board.appendChild(row);
+      });
+    }
+    function renderFinalLeaderboard(){
+      const board = $('finalLeaderboard');
+      if(!board) return;
+      board.innerHTML = '';
+      const ordered = sortedPlayers(players);
+      if(!ordered.length){
+        board.innerHTML = '<div class="rank"><span>Chưa có dữ liệu</span><span>0</span></div>';
+        return;
+      }
+      ordered.forEach((p,i)=>{
+        const row = document.createElement('div');
+        row.className = 'rank' + (p.me ? ' me' : '');
+        row.innerHTML = `<span>#${i+1} ${p.name}</span><span>${p.score}</span>`;
+        board.appendChild(row);
+      });
+    }
+    function setQuestionSummaryVisible(show, note = ''){
+      const card = $('roundSummaryCard');
+      if(!card) return;
+      card.classList.toggle('show', !!show);
+      $('roundSummaryTitle').textContent = `Top 5 sau câu ${Math.min(round + 1, puzzles.length)}`;
+      if(note) $('roundSummaryNote').textContent = note;
+    }
+    function showFinalLeaderboard(show){
+      const stage = $('gameStage');
+      const card = $('finalLeaderboardCard');
+      if(stage) stage.classList.toggle('show-final', !!show);
+      if(card) card.classList.toggle('show', !!show);
+      renderFinalLeaderboard();
+    }
+    function updateHostProgress(){
+      const hostProgress = $('hostProgressText');
+      if(!hostProgress) return;
+      if(roomData?.status === 'waiting'){
+        hostProgress.textContent = 'Đang chờ bắt đầu';
+        return;
+      }
+      if(roomData?.status === 'finished'){
+        hostProgress.textContent = 'Đã hoàn thành 10/10 câu';
+        return;
+      }
+      const active = getActivePlayers(players);
+      const answeredCount = Object.keys(getAnsweredMap(roomData)).length;
+      hostProgress.textContent = `Đã trả lời: ${answeredCount}/${active.length || 0} người chơi`;
     }
     function showRoleForm(role){
       $('hostForm')?.classList.toggle('show', role === 'host');
@@ -1136,7 +1241,7 @@
     }
     function getRoomPlayers(data){
       const obj = data && data.players ? data.players : {};
-      return Object.entries(obj).map(([id, p]) => ({ id, name: p.name || 'Người chơi', score: Number(p.score || 0), role: p.role || 'player', me: id === localPlayerId }));
+      return Object.entries(obj).map(([id, p]) => ({ id, name: p.name || 'Bạn', score: Number(p.score || 0), role: p.role || 'player', me: id === localPlayerId }));
     }
     function listenToRoom(code){
       if(unsubscribeRoom) unsubscribeRoom();
@@ -1145,36 +1250,98 @@
           $('statusText').textContent = 'Không tìm thấy phòng hoặc phòng đã bị xóa.';
           return;
         }
+        const prevPhase = currentPhase;
+        const prevRound = round;
         roomData = snap.data();
         room = code;
+        currentPhase = roomData.phase || (roomData.status === 'finished' ? 'finished' : 'question');
         players = getRoomPlayers(roomData);
         const me = players.find(p => p.me);
         if(me) score = me.score;
         $('roomCode').textContent = room;
         $('lobbyTitle').textContent = roomData.roomName || ('Phòng ' + room);
         renderPlayers();
-        renderRemoteFeed(roomData.feed);
+        updateHostProgress();
+        updateStageLayout();
+
         if(roomData.status === 'waiting'){
-          if(!playing){
-            $('roomLobby')?.classList.add('show');
-            $('gameStage')?.classList.remove('show');
-            $('lobbyDesc').textContent = currentRole === 'host' ? 'Người chơi đã vào phòng sẽ thấy màn chờ. Quản trò bấm “Bắt đầu game” để tất cả cùng chơi.' : 'Bạn đang ở phòng chờ. Khi quản trò bấm bắt đầu, game sẽ tự chạy trên máy bạn.';
-            $('statusText').textContent = currentRole === 'host' ? 'Phòng đang chờ. Bấm “Bắt đầu game” khi sẵn sàng.' : 'Đang chờ quản trò bắt đầu game.';
-          }
+          clearInterval(timer);
+          clearTimeout(reviewTimer);
+          playing = false;
+          showFinalLeaderboard(false);
+          setQuestionSummaryVisible(false);
+          $('roomLobby')?.classList.add('show');
+          $('gameStage')?.classList.remove('show');
+          $('lobbyDesc').textContent = currentRole === 'host'
+            ? 'Chia sẻ mã phòng cho người chơi. Khi đủ người, quản trò bấm “Bắt đầu game”.'
+            : 'Bạn đã vào phòng. Chờ quản trò bắt đầu trò chơi.';
+          $('statusText').textContent = currentRole === 'host'
+            ? 'Phòng đã sẵn sàng. Bấm “Bắt đầu game” khi muốn bắt đầu.'
+            : 'Đã tham gia phòng. Chờ quản trò bắt đầu.';
+          return;
         }
+
         if(roomData.status === 'playing'){
           const remoteRound = Number(roomData.currentQuestion || 0);
-          const questionStart = roomData.questionStartedAt && roomData.questionStartedAt.toMillis ? roomData.questionStartedAt.toMillis() : Date.now();
-          if(!playing || round !== remoteRound){
-            beginRemoteGame(remoteRound, questionStart);
+          const startMs = roomData.questionStartedAt?.toMillis ? roomData.questionStartedAt.toMillis() : Date.now();
+          $('roomLobby')?.classList.remove('show');
+          $('gameStage')?.classList.add('show');
+          updateStageLayout();
+
+          if(currentPhase === 'question'){
+            clearTimeout(reviewTimer);
+            showFinalLeaderboard(false);
+            setQuestionSummaryVisible(false);
+            if(!playing || remoteRound !== prevRound || prevPhase !== 'question'){
+              beginRemoteGame(remoteRound, startMs);
+            } else {
+              round = remoteRound;
+              const puzzle = puzzles[round];
+              if(puzzle) renderAnswerBoxes(puzzle.answer, $('answerInput')?.value || '', getRevealCount(puzzle.answer, timeLeft));
+            }
+            const answered = playerHasAnswered(localPlayerId, roomData);
+            setAnswerDisabled(answered);
+            $('answerState').textContent = answered
+              ? 'Bạn đã trả lời câu này. Chờ những người chơi còn lại hoàn thành.'
+              : 'Điền đáp án vào ô nhập bên trên. Càng về cuối, hệ thống sẽ gợi mở thêm chữ cái.';
+            $('statusText').textContent = currentRole === 'host'
+              ? 'Đang trong câu hỏi. Khi tất cả người chơi trả lời hoặc hết giờ, hệ thống sẽ hiện top 5.'
+              : answered ? 'Bạn đã trả lời xong. Đang chờ các người chơi khác.' : 'Hãy nhập đáp án trước khi hết giờ.';
+            updateHostProgress();
+            const activePlayers = getActivePlayers(players);
+            const answeredCount = Object.keys(getAnsweredMap(roomData)).length;
+            if(currentRole === 'host' && activePlayers.length && answeredCount >= activePlayers.length){
+              openRoundReview(`Tất cả người chơi đã hoàn thành câu ${remoteRound+1}.`);
+            }
           }
+
+          if(currentPhase === 'review'){
+            playing = false;
+            clearInterval(timer);
+            setAnswerDisabled(true);
+            setQuestionSummaryVisible(true, roomData.reviewMessage || 'Đã hoàn thành câu này. Chuẩn bị chuyển sang câu tiếp theo...');
+            renderRoundLeaderboard();
+            $('statusText').textContent = currentRole === 'host'
+              ? 'Đang hiển thị top 5 của câu này.'
+              : 'Đang hiển thị top 5 sau câu vừa rồi.';
+            if(currentRole === 'host' && (prevPhase !== 'review' || prevRound !== remoteRound)){
+              clearTimeout(reviewTimer);
+              reviewTimer = setTimeout(() => advanceAfterReview(), REVIEW_TIME * 1000);
+            }
+          }
+          return;
         }
+
         if(roomData.status === 'finished'){
           playing = false;
           clearInterval(timer);
-          $('statusText').textContent = 'Game đã kết thúc. Xem bảng điểm bên phải.';
+          clearTimeout(reviewTimer);
           $('roomLobby')?.classList.remove('show');
           $('gameStage')?.classList.add('show');
+          setQuestionSummaryVisible(false);
+          showFinalLeaderboard(true);
+          $('statusText').textContent = 'Game đã kết thúc. Đây là bảng xếp hạng cuối cùng.';
+          updateHostProgress();
         }
       }, err => {
         console.error(err);
@@ -1183,7 +1350,7 @@
     }
     async function createRoom(){
       const roomName = $('hostRoomName').value.trim() || 'Phòng ôn tập MLN';
-      const host = roomName;
+      const host = 'Quản trò';
       localPlayerName = host;
       room = generateRoomCode();
       players = [{id:localPlayerId, name:host, score:0, role:'host', me:true}];
@@ -1204,7 +1371,8 @@
           players: {
             [localPlayerId]: { name: host, score: 0, role: 'host', joinedAt: Date.now() }
           },
-          feed: [{ text: `${host} đã tạo phòng ${room}.`, at: Date.now() }],
+          answeredPlayers: {},
+          phase: 'question',
           createdAt: serverTimestamp()
         });
         listenToRoom(room);
@@ -1233,7 +1401,7 @@
         }
         await updateDoc(ref, {
           [`players.${localPlayerId}`]: { name, score: 0, role: 'player', joinedAt: Date.now() },
-          feed: arrayUnion({ text: `${name} đã tham gia phòng ${room}.`, at: Date.now() })
+          updatedAt: Date.now()
         });
         listenToRoom(room);
       }catch(err){
@@ -1249,25 +1417,32 @@
       try{
         await updateDoc(roomRef(), {
           [`players.${botId}`]: { name, score: Math.max(0, score - Math.floor(Math.random()*140)), role: 'player', joinedAt: Date.now() },
-          feed: arrayUnion({ text: `${name} đã vào phòng.`, at: Date.now() })
+          updatedAt: Date.now()
         });
       }catch(err){
         console.warn(err);
       }
     }
     let questionStartMs = Date.now();
+    function getRevealCount(answer, secondsLeft){
+      const totalLetters = answerLetters(answer).filter(ch => ch !== ' ').length;
+      return Math.min(Math.max(totalLetters - 1, 0), Math.floor((QUESTION_TIME - secondsLeft) / 10));
+    }
     function updateTimer(){
       if(playing){
-        timeLeft = Math.max(0, 60 - Math.floor((Date.now() - questionStartMs) / 1000));
+        timeLeft = Math.max(0, QUESTION_TIME - Math.floor((Date.now() - questionStartMs) / 1000));
       }
-      const pct = Math.max(0, Math.round((timeLeft/60)*100));
+      const pct = Math.max(0, Math.round((timeLeft/QUESTION_TIME)*100));
       $('timerText').textContent = timeLeft + 's';
       $('timerRing').style.setProperty('--progress', pct + '%');
       const points = Math.max(80, Math.round(timeLeft * 10));
       $('currentPoint').textContent = points;
       const puzzle = puzzles[round];
+      if(puzzle){
+        renderAnswerBoxes(puzzle.answer, $('answerInput')?.value || '', getRevealCount(puzzle.answer, timeLeft));
+      }
       if(timeLeft <= 0 && playing){
-        if(currentRole === 'host') advanceRoomQuestion(`Hết giờ. Đáp án là: ${puzzle.answer}.`);
+        if(currentRole === 'host') openRoundReview(`Hết giờ câu ${round+1}.`);
         return;
       }
     }
@@ -1275,7 +1450,7 @@
     function answerLetters(answer){
       return [...String(answer || '').toUpperCase()];
     }
-    function renderAnswerBoxes(answer, typed = ''){
+    function renderAnswerBoxes(answer, typed = '', revealCount = 0){
       const box = $('answerBoxes');
       if(!box) return;
       const chars = answerLetters(answer);
@@ -1291,8 +1466,16 @@
         }
         const cell = document.createElement('span');
         cell.className = 'letter-box';
-        cell.textContent = typedChars[index] || '';
-        if(!typedChars[index]) cell.classList.add('blank');
+        const typedChar = typedChars[index] || '';
+        if(typedChar){
+          cell.textContent = typedChar;
+        }else if(index < revealCount){
+          cell.textContent = ch;
+          cell.classList.add('revealed');
+        }else{
+          cell.textContent = '';
+          cell.classList.add('blank');
+        }
         box.appendChild(cell);
         index++;
       });
@@ -1300,7 +1483,7 @@
     function loadRound(startMs = Date.now()){
       const puzzle = puzzles[round];
       questionStartMs = startMs;
-      timeLeft = Math.max(0, 60 - Math.floor((Date.now() - questionStartMs) / 1000));
+      timeLeft = Math.max(0, QUESTION_TIME - Math.floor((Date.now() - questionStartMs) / 1000));
       $('roundBadge').textContent = `Câu ${round+1}/${puzzles.length}`;
       $('categoryBadge').textContent = puzzle.category;
       const frame = document.querySelector('.puzzle-frame');
@@ -1323,9 +1506,11 @@
         if(art){ art.style.display = 'block'; art.textContent = puzzle.art || '🧠'; }
       }
       $('puzzleQuestion').textContent = puzzle.question || 'Nhìn hình và đoán khái niệm.';
-      $('hintBox').innerHTML = '<b>💡 Gợi ý:</b> ' + puzzle.hint + '<div class="answer-key-small">Nhập đáp án theo các ô chữ bên dưới.</div>';
+      $('hintBox').innerHTML = '<b>💡 Gợi ý:</b> ' + puzzle.hint;
       $('answerInput').value = '';
-      renderAnswerBoxes(puzzle.answer, '');
+      setAnswerDisabled(false);
+      $('answerState').textContent = 'Điền đáp án vào ô nhập bên trên. Càng về cuối, hệ thống sẽ gợi mở thêm chữ cái.';
+      renderAnswerBoxes(puzzle.answer, '', getRevealCount(puzzle.answer, timeLeft));
       updateTimer();
       setTimeout(() => $('answerInput')?.focus(), 80);
     }
@@ -1340,10 +1525,13 @@
       try{
         await updateDoc(roomRef(), {
           status: 'playing',
+          phase: 'question',
           currentQuestion: 0,
           questionStartedAt: serverTimestamp(),
-          players: resetPlayers,
-          feed: arrayUnion({ text: 'Quản trò đã bắt đầu game. Có 10 câu, mỗi câu 60 giây.', at: Date.now() })
+          answeredPlayers: {},
+          reviewStartedAt: null,
+          reviewMessage: 'Chuẩn bị câu đầu tiên.',
+          players: resetPlayers
         });
       }catch(err){
         console.error(err);
@@ -1355,14 +1543,12 @@
       $('gameStage')?.classList.add('show');
       round = remoteRound;
       playing = true;
-      const me = players.find(p=>p.me);
-      score = me ? me.score : 0;
-      $('scoreText').textContent = score;
-      $('statusText').textContent = currentRole === 'host' ? 'Game đang chạy. Người chơi trả lời càng nhanh càng nhiều điểm.' : 'Game đã bắt đầu. Nhập đáp án càng sớm càng nhiều điểm.';
       clearInterval(timer);
       loadRound(startMs || Date.now());
       timer = setInterval(updateTimer, 1000);
+      updateStageLayout();
       renderPlayers();
+      updateHostProgress();
     }
     function correctEffect(){
       const box = $('confetti');
@@ -1376,63 +1562,81 @@
       }
       setTimeout(()=>box.innerHTML='',1500);
     }
+    async function openRoundReview(message){
+      if(!room || !roomData || (roomData.phase || 'question') === 'review') return;
+      try{
+        await updateDoc(roomRef(), {
+          phase: 'review',
+          reviewStartedAt: serverTimestamp(),
+          reviewMessage: message || `Đã hoàn thành câu ${round+1}.`
+        });
+      }catch(err){
+        console.warn('Không mở được màn top 5:', err);
+      }
+    }
     async function submitAnswer(){
       if(!playing || !roomData) return;
+      if(playerHasAnswered(localPlayerId, roomData)){
+        $('statusText').textContent = 'Bạn đã trả lời câu này rồi.';
+        return;
+      }
       const puzzle = puzzles[round];
       const ok = normalizeAnswer($('answerInput').value) === normalizeAnswer(puzzle.answer);
       if(!ok){
-        $('statusText').textContent = 'Chưa đúng, thử lại nhanh trước khi điểm giảm.';
+        $('statusText').textContent = 'Chưa đúng, thử lại nhanh trước khi có thêm gợi ý.';
         return;
       }
       const earned = Math.max(80, Math.round((timeLeft+1) * 10));
       const currentMe = players.find(p => p.me) || { name: localPlayerName || 'Bạn', role: currentRole || 'player', score: 0 };
-      score = Number(currentMe.score || 0) + earned;
-      $('scoreText').textContent = score;
-      $('statusText').textContent = `Chính xác. +${earned} điểm.`;
+      const newScore = Number(currentMe.score || 0) + earned;
+      $('statusText').textContent = `Chính xác. +${earned} điểm. Đang chờ người chơi khác...`;
+      $('answerState').textContent = 'Bạn đã trả lời đúng. Chờ những người chơi còn lại hoàn thành câu này.';
+      setAnswerDisabled(true);
       correctEffect();
       try{
         await updateDoc(roomRef(), {
-          [`players.${localPlayerId}`]: { name: currentMe.name, score, role: currentMe.role || currentRole || 'player', joinedAt: Date.now() },
-          feed: arrayUnion({ type: 'correct', text: `${currentMe.name} trả lời đúng “${puzzle.answer}” và nhận ${earned} điểm.`, at: Date.now() })
+          [`players.${localPlayerId}`]: { name: currentMe.name, score: newScore, role: currentMe.role || currentRole || 'player', joinedAt: Date.now() },
+          [`answeredPlayers.${localPlayerId}`]: { correct: true, earned, at: Date.now(), question: round }
         });
-        await advanceRoomQuestion(null, 650);
+        if(currentRole === 'host' && getActivePlayers(players).length <= 1){
+          await openRoundReview(`Hoàn thành câu ${round+1}.`);
+        }
       }catch(err){
         console.error(err);
         $('statusText').textContent = 'Đúng nhưng chưa đồng bộ được điểm. Kiểm tra kết nối Firebase.';
       }
     }
-    async function advanceRoomQuestion(feedText = null, delay = 0){
-      if(!room || !playing) return;
-      setTimeout(async () => {
-        const next = round + 1;
-        try{
-          if(next >= puzzles.length){
-            await updateDoc(roomRef(), {
-              status: 'finished',
-              feed: arrayUnion({ text: feedText || 'Game kết thúc. Xem bảng xếp hạng cuối.', at: Date.now() })
-            });
-          }else{
-            await updateDoc(roomRef(), {
-              currentQuestion: next,
-              questionStartedAt: serverTimestamp(),
-              feed: feedText ? arrayUnion({ text: feedText, at: Date.now() }) : arrayUnion({ text: `Chuyển sang câu ${next+1}.`, at: Date.now() })
-            });
-          }
-        }catch(err){
-          console.warn('Không chuyển câu được:', err);
+    async function advanceAfterReview(){
+      if(currentRole !== 'host') return;
+      const next = round + 1;
+      try{
+        if(next >= puzzles.length){
+          await updateDoc(roomRef(), {
+            status: 'finished',
+            phase: 'finished'
+          });
+        }else{
+          await updateDoc(roomRef(), {
+            status: 'playing',
+            phase: 'question',
+            currentQuestion: next,
+            questionStartedAt: serverTimestamp(),
+            answeredPlayers: {},
+            reviewStartedAt: null,
+            reviewMessage: `Chuẩn bị câu ${next+1}.`
+          });
         }
-      }, delay);
-    }
-    function nextRound(){
-      advanceRoomQuestion('Đã chuyển câu.');
+      }catch(err){
+        console.warn('Không chuyển sang câu tiếp theo được:', err);
+      }
     }
     async function resetGame(){
       if(!room) return;
       clearInterval(timer);
+      clearTimeout(reviewTimer);
       playing = false;
-      score = 0; round = 0; timeLeft = 60;
-      $('scoreText').textContent = '0';
-      $('timerText').textContent = '60s';
+      score = 0; round = 0; timeLeft = QUESTION_TIME;
+      $('timerText').textContent = QUESTION_TIME + 's';
       $('timerRing').style.setProperty('--progress','100%');
       $('currentPoint').textContent = '600';
       const resetPlayers = {};
@@ -1440,11 +1644,15 @@
       try{
         await updateDoc(roomRef(), {
           status: 'waiting',
+          phase: 'question',
           currentQuestion: 0,
           questionStartedAt: null,
-          players: resetPlayers,
-          feed: arrayUnion({ text: 'Quản trò đã reset game.', at: Date.now() })
+          answeredPlayers: {},
+          reviewStartedAt: null,
+          reviewMessage: '',
+          players: resetPlayers
         });
+        showFinalLeaderboard(false);
       }catch(err){
         console.warn(err);
       }
@@ -1469,9 +1677,8 @@
       $('startGame').addEventListener('click', startGame);
       $('resetGame').addEventListener('click', resetGame);
       $('submitAnswer').addEventListener('click', submitAnswer);
-      $('passQuestion').addEventListener('click', () => { $('statusText').textContent = 'Đã qua câu.'; nextRound(); });
       $('answerInput').addEventListener('keydown', e => { if(e.key === 'Enter') submitAnswer(); });
-      $('answerInput').addEventListener('input', e => { const puzzle = puzzles[round]; if(puzzle) renderAnswerBoxes(puzzle.answer, e.target.value); });
+      $('answerInput').addEventListener('input', e => { const puzzle = puzzles[round]; if(puzzle) renderAnswerBoxes(puzzle.answer, e.target.value, getRevealCount(puzzle.answer, timeLeft)); });
       $('hostRoomName').value = '';
       $('playerName').value = '';
       renderPlayers();
