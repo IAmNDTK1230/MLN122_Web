@@ -336,20 +336,13 @@
       opacity:1;
       -webkit-text-fill-color:#fff;
     }
-    header.auto-hide-top{
-      transform:translateY(-110%);
-      transition:transform .28s ease;
-    }
-    body.scrolled header.auto-hide-top{
-      transform:translateY(0);
-    }
 
 </style>
 </head>
 <body>
   <div class="bg-layer"><div class="planet one"></div><div class="planet two"></div><div class="wire"></div></div>
 
-  <header class="auto-hide-top">
+  <header>
     <div class="nav">
       <div class="brand">
         <div class="logo">ML</div>
@@ -1648,6 +1641,8 @@
       $('puzzleQuestion').textContent = puzzle.question || 'Nhìn hình và đoán khái niệm.';
       $('hintBox').innerHTML = '<b>💡 Gợi ý:</b> ' + puzzle.hint;
       $('answerInput').value = '';
+      const answerBox = $('answerBoxes');
+      if(answerBox) answerBox.innerHTML = '';
       setAnswerDisabled(false);
       $('answerState').textContent = '';
       renderAnswerBoxes(puzzle.answer);
@@ -1683,6 +1678,8 @@
       $('gameStage')?.classList.add('show');
       round = remoteRound;
       playing = true;
+      revealedIndexes = new Set();
+      lastRevealStep = 0;
       clearInterval(timer);
       loadRound(startMs || Date.now());
       timer = setInterval(updateTimer, 1000);
@@ -1822,10 +1819,7 @@
       $('playerName').value = '';
       renderPlayers();
       loadRound();
-
-      window.addEventListener('scroll', () => {
-        document.body.classList.toggle('scrolled', window.scrollY > 120);
-      });
+});
       document.body.classList.toggle('scrolled', window.scrollY > 120);
     }
   </script>
