@@ -317,7 +317,6 @@
       <div class="section-head">
         <div class="kicker">Tình huống Apple</div>
         <h2>Thị trường smartphone và hệ sinh thái iOS</h2>
-        <p class="section-desc">Tình huống dùng Apple để kiểm tra hai câu hỏi: cạnh tranh có dẫn tới độc quyền không, và Apple có áp đặt giá cả độc quyền để thu lợi nhuận độc quyền không.</p>
       </div>
       <div class="surface">
         <div class="grid-2">
@@ -350,7 +349,6 @@
       <div class="section-head">
         <div class="kicker">Lý thuyết nền tảng</div>
         <h2>Cạnh tranh ở cấp độ độc quyền trong nền kinh tế thị trường</h2>
-        <p class="section-desc">Nội dung lý thuyết được trình bày theo file nội dung chính: độc quyền, độc quyền nhà nước, tác động của độc quyền, quan hệ cạnh tranh trong điều kiện độc quyền và lý luận của V.I. Lênin.</p>
       </div>
       <div class="surface">
         <div class="sub-tabs">
@@ -406,7 +404,6 @@
       <div class="section-head">
         <div class="kicker">Phân tích tình huống</div>
         <h2>Apple qua lý luận cạnh tranh, giá cả và lợi nhuận độc quyền</h2>
-        <p class="section-desc">Phần này đi theo hai câu hỏi trong file tình huống: quá trình cạnh tranh dẫn tới độc quyền và cơ chế giá cả độc quyền trong hệ sinh thái Apple.</p>
       </div>
       <div class="surface">
         <div class="timeline">
@@ -437,8 +434,7 @@
     <section id="game" class="tab-panel">
       <div class="section-head">
         <div class="kicker">Game ôn tập</div>
-        <h2>Ôn tập chương độc quyền</h2>
-        <p class="section-desc">Chọn chế độ chơi theo phòng hoặc ôn luyện lý thuyết với AI. Ở phần đuổi hình bắt chữ, người chơi điền từng chữ vào các ô đáp án và bảng live feed chỉ ghi nhận người trả lời đúng.</p>
+        <h2>Ôn tập</h2>
       </div>
       <div class="surface">
         <div class="game-shell">
@@ -456,7 +452,6 @@
                 <p>Tạo phòng mới, hiển thị mã phòng và điều khiển game ôn tập.</p>
                 <button class="role-select" id="chooseHost">Chọn Quản Trò</button>
                 <div class="role-form" id="hostForm">
-                  <input id="hostName" class="room-input" placeholder="Tên quản trò" maxlength="18" />
                   <input id="hostRoomName" class="room-input" placeholder="Tên phòng" maxlength="24" />
                   <button id="createRoom" class="game-btn">Tạo phòng mới</button>
                 </div>
@@ -1194,8 +1189,8 @@
       });
     }
     async function createRoom(){
-      const host = $('hostName').value.trim() || 'Quản trò';
       const roomName = $('hostRoomName').value.trim() || 'Phòng ôn tập MLN';
+      const host = roomName;
       localPlayerName = host;
       room = generateRoomCode();
       players = [{id:localPlayerId, name:host, score:0, role:'host', me:true}];
@@ -1484,7 +1479,7 @@
       $('passQuestion').addEventListener('click', () => { $('statusText').textContent = 'Đã qua câu.'; nextRound(); });
       $('answerInput').addEventListener('keydown', e => { if(e.key === 'Enter') submitAnswer(); });
       $('answerInput').addEventListener('input', e => { const puzzle = puzzles[round]; if(puzzle) renderAnswerBoxes(puzzle.answer, e.target.value); });
-      $('hostName').value = '';
+      $('hostRoomName').value = '';
       $('playerName').value = '';
       renderPlayers();
       loadRound();
