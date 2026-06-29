@@ -481,6 +481,16 @@
       width:100%;
     }
 
+
+    .brand{
+      cursor:pointer;
+      user-select:none;
+    }
+    .brand:hover .logo{
+      transform:translateY(-1px) scale(1.03);
+      box-shadow:0 0 24px rgba(111,224,255,.34);
+    }
+
 </style>
 </head>
 <body>
@@ -488,7 +498,7 @@
 
   <header>
     <div class="nav">
-      <div class="brand">
+      <div class="brand" role="button" tabindex="0" aria-label="Về trang chủ" data-go="home">
         <div class="logo">ML</div>
         <div>
           <div class="brand-title">MLN122</div>
@@ -722,7 +732,6 @@
                   <b id="roomCode">-----</b>
                 </div>
                 <div class="room-actions">
-                  <button id="addBot" class="game-btn alt">Thêm người chơi ảo</button>
                   <button id="startGameLobby" class="game-btn good">Bắt đầu game</button>
                 </div>
               </div>
@@ -910,6 +919,13 @@
       }, true);
     });
     document.querySelectorAll('[data-go]').forEach(btn => btn.addEventListener('click', () => openTab(btn.dataset.go)));
+
+    document.querySelector('.brand')?.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        openTab('home');
+      }
+    });
 
     const subButtons = document.querySelectorAll('.sub-btn');
     subButtons.forEach(btn => {
@@ -1321,7 +1337,7 @@
     async function addRoomFeed(){ }
     function renderRemoteFeed(){ }
     function getActivePlayers(list = players){
-      const active = (list || []).filter(p => (p.role || 'player') !== 'host');
+      const active = (list || []).filter(p => (p.role || 'player') !== 'host' && (p.role || 'player') !== 'bot');
       return active.length ? active : (list || []);
     }
     function getAnsweredMap(data = roomData){
@@ -1341,7 +1357,7 @@
     }
     function sortedPlayers(list = players){
       return [...(list || [])]
-        .filter(p => (p.role || 'player') !== 'host')
+        .filter(p => (p.role || 'player') !== 'host' && (p.role || 'player') !== 'bot')
         .sort((a,b)=>b.score-a.score);
     }
     function updateStageLayout(){
@@ -1357,12 +1373,20 @@
       const list = $('playerList');
       if(list){
         list.innerHTML = '';
-        players.forEach(p => {
-          const row = document.createElement('div');
-          row.className = 'player';
-          row.innerHTML = `<span>${p.name}${p.role === 'host' ? ' · Quản trò' : ''}</span><b>${p.score}</b>`;
-          list.appendChild(row);
-        });
+        const realPlayers = players.filter(p => (p.role || 'player') !== 'host' && (p.role || 'player') !== 'bot');
+        if(!realPlayers.length){
+          const empty = document.createElement('div');
+          empty.className = 'player';
+          empty.innerHTML = '<span>Chưa có người chơi tham gia</span><b>0</b>';
+          list.appendChild(empty);
+        }else{
+          realPlayers.forEach(p => {
+            const row = document.createElement('div');
+            row.className = 'player';
+            row.innerHTML = `<span>${p.name}</span><b>${p.score}</b>`;
+            list.appendChild(row);
+          });
+        }
       }
       renderLeaderboard();
       renderRoundLeaderboard();
@@ -1459,7 +1483,7 @@
       const startCardBtn = $('startGame');
       if(startCardBtn) startCardBtn.style.display = role === 'host' ? 'inline-flex' : 'none';
       const addBotBtn = $('addBot');
-      if(addBotBtn) addBotBtn.style.display = role === 'host' ? 'inline-flex' : 'none';
+      if(addBotBtn) addBotBtn.style.display = 'none';
     }
     function ensureRoom(){
       if(room) return true;
@@ -1946,7 +1970,6 @@
       $('choosePlayer').addEventListener('click', () => showRoleForm('player'));
       createRoomBtn.addEventListener('click', createRoom);
       $('joinRoom').addEventListener('click', joinRoom);
-      $('addBot').addEventListener('click', addBot);
       $('startGameLobby').addEventListener('click', startGame);
       $('startGame').addEventListener('click', startGame);
       $('resetGame').addEventListener('click', resetGame);
