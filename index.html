@@ -171,7 +171,7 @@
     .role-screen{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:22px}.role-card{min-height:430px;background:rgba(3,8,16,.78);border:1px solid rgba(160,190,255,.22);border-radius:32px;padding:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.32);position:relative;overflow:hidden}.role-card:before{content:"";position:absolute;inset:-120px;background:radial-gradient(circle at 50% 20%,rgba(255,77,109,.22),transparent 34%);opacity:.8}.player-card:before{background:radial-gradient(circle at 50% 20%,rgba(255,159,28,.20),transparent 34%)}.role-card>*{position:relative;z-index:1}.role-icon{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-size:46px;background:rgba(255,77,109,.15);border:1px solid rgba(255,77,109,.28);margin-bottom:22px}.role-icon.amber{background:rgba(255,159,28,.13);border-color:rgba(255,159,28,.28)}.role-card h3{font-size:34px;margin:0 0 14px;letter-spacing:-1px}.role-card p{color:var(--muted);line-height:1.65;max-width:480px;margin:0 0 26px;font-size:16px}.role-select{width:min(100%,440px);border:0;border-radius:18px;padding:16px 18px;font-family:inherit;font-weight:900;font-size:16px;cursor:pointer;color:#fff;background:linear-gradient(135deg,#ff3f6e,#ff6b6b);box-shadow:0 18px 48px rgba(255,77,109,.22)}.role-select.amber,.amber-btn{background:linear-gradient(135deg,#f59e0b,#ffbf1f)!important;color:#111827!important}.role-form{width:min(100%,440px);display:none;gap:12px;margin-top:18px}.role-form.show{display:grid}.room-lobby{display:none;grid-template-columns:1.1fr .9fr;gap:18px;margin-bottom:22px}.room-lobby.show{display:grid}.lobby-main{display:flex;align-items:center;justify-content:space-between;gap:18px}.big-room-code{min-width:190px;border-radius:26px;padding:18px 22px;text-align:center;background:rgba(57,229,255,.1);border:1px solid rgba(57,229,255,.28);box-shadow:inset 0 0 40px rgba(57,229,255,.07)}.big-room-code span{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;font-weight:900;letter-spacing:1px;margin-bottom:8px}.big-room-code b{font-size:42px;letter-spacing:5px;color:#e7fbff}.game-stage{display:none}.game-stage.show{display:grid}
 
 
-    .game-mode-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;padding:8px;border-radius:999px;background:rgba(255,255,255,.045);border:1px solid rgba(160,190,255,.14);width:max-content;max-width:100%}
+    .game-mode-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;padding:8px;border-radius:999px;background:rgba(255,255,255,.045);border:1px solid rgba(160,190,255,.14);width:max-content;max-width:100%}.mode-back{margin-bottom:18px}
     .game-mode-btn{border:0;border-radius:999px;padding:12px 16px;font-family:inherit;font-weight:900;color:#dbeafe;background:transparent;cursor:pointer;transition:.2s ease}.game-mode-btn:hover{background:rgba(255,255,255,.06);color:#fff}.game-mode-btn.active{color:#06111f;background:linear-gradient(135deg,#39e5ff,#ffd166,#ff4d8d);box-shadow:0 14px 42px rgba(57,229,255,.18)}
     .game-mode-panel{display:none}.game-mode-panel.show{display:block;animation:fade .25s ease both}
     .practice-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.practice-card,.practice-main,.practice-side .game-card{background:linear-gradient(180deg,rgba(8,18,34,.86),rgba(10,23,42,.72));border:1px solid rgba(160,190,255,.16);border-radius:28px;padding:24px;box-shadow:0 28px 80px rgba(0,0,0,.32)}.practice-card.intro{background:radial-gradient(circle at 20% 10%,rgba(255,77,141,.16),transparent 38%),linear-gradient(180deg,rgba(8,18,34,.9),rgba(10,23,42,.74))}.practice-card h3,.practice-main h3{margin:14px 0 12px;font-size:26px}.practice-card p,.practice-card li{color:var(--muted);line-height:1.75}.practice-counts{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.count-btn{border:1px solid rgba(160,190,255,.18);background:rgba(255,255,255,.06);color:#dbeafe;border-radius:999px;padding:11px 16px;font-family:inherit;font-weight:900;cursor:pointer}.count-btn.active{background:linear-gradient(135deg,var(--pink),var(--blue));border-color:transparent;color:#fff}.practice-quiz{display:none;grid-template-columns:1.25fr .75fr;gap:20px}.practice-quiz.show{display:grid}.practice-progress{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin:12px 0 22px}.practice-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--pink));border-radius:999px;transition:.25s ease}.practice-options{display:grid;gap:12px;margin:18px 0}.option-btn{border:1px solid rgba(160,190,255,.16);background:rgba(255,255,255,.055);color:#eaf6ff;border-radius:18px;padding:15px 16px;text-align:left;font-family:inherit;font-weight:800;cursor:pointer;line-height:1.5}.option-btn:hover{border-color:rgba(57,229,255,.45);background:rgba(57,229,255,.08)}.option-btn.correct{border-color:rgba(34,197,94,.55);background:rgba(34,197,94,.14)}.option-btn.wrong{border-color:rgba(255,77,109,.55);background:rgba(255,77,109,.14)}.option-btn:disabled{cursor:default}.ai-explain{display:none;margin-top:16px;padding:18px;border-radius:22px;background:rgba(57,229,255,.075);border:1px solid rgba(57,229,255,.22);color:#dffcff;line-height:1.7}.ai-explain.show{display:block}.ai-explain b{display:block;margin-bottom:8px;color:#ffe7a2}.ai-explain p{margin:0;color:#dbeafe}.practice-side{display:grid;gap:14px}.practice-side .feed{height:360px}
@@ -437,16 +437,17 @@
       <div class="section-head">
         <div class="kicker">Game ôn tập</div>
         <h2>Ôn tập chương độc quyền</h2>
-        <p class="section-desc">Chọn chơi đuổi hình bắt chữ theo phòng hoặc luyện lý thuyết dạng trắc nghiệm. Phần luyện lý thuyết có giải thích ngay khi trả lời sai để người học hiểu lại kiến thức.</p>
+        <p class="section-desc">Chọn một trong hai chế độ: chơi đuổi hình bắt chữ theo phòng hoặc ôn luyện lý thuyết với AI. Khi đã vào một chế độ, giao diện chỉ hiện đúng phần đó để dễ dùng.</p>
       </div>
       <div class="surface">
         <div class="game-shell">
-          <div class="game-mode-tabs">
-            <button class="game-mode-btn active" data-game-mode="roomMode">🎮 Đuổi hình bắt chữ</button>
-            <button class="game-mode-btn" data-game-mode="practiceMode">🧠 Ôn luyện lý thuyết</button>
+          <div class="game-mode-tabs" id="gameModeSelector">
+            <button class="game-mode-btn" data-game-mode="roomMode">🎮 Chơi đuổi hình bắt chữ</button>
+            <button class="game-mode-btn" data-game-mode="practiceMode">🧠 Ôn luyện lý thuyết với AI</button>
           </div>
 
-          <div class="game-mode-panel show" id="roomMode">
+          <div class="game-mode-panel" id="roomMode">
+            <button class="game-btn alt mode-back" type="button">← Chọn chế độ khác</button>
             <div class="role-screen" id="roleScreen">
               <div class="role-card host-card">
                 <div class="role-icon">🎮</div>
@@ -516,7 +517,6 @@
 
                 <div class="puzzle-question" id="puzzleQuestion">Câu hỏi sẽ hiện ở đây.</div>
                 <div class="hint-box" id="hintBox">Gợi ý sẽ hiện ở đây.</div>
-                <div class="reveal-word" id="revealWord"></div>
                 <div class="answer-row">
                   <input id="answerInput" class="game-input" placeholder="Nhập đáp án..." autocomplete="off" />
                   <button id="submitAnswer" class="game-btn good">Trả lời</button>
@@ -547,6 +547,7 @@
           </div>
 
           <div class="game-mode-panel" id="practiceMode">
+            <button class="game-btn alt mode-back" type="button">← Chọn chế độ khác</button>
             <div class="practice-grid" id="practiceSetup">
               <div class="practice-card intro">
                 <span class="badge hot">AI Tutor</span>
@@ -640,7 +641,23 @@
     <p class="footer-note">© Nội dung học tập về kinh tế chính trị Mác - Lênin và phân tích tình huống Apple.</p>
   </main>
 
-  <script>
+  <script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getFirestore, doc, setDoc, getDoc, updateDoc, onSnapshot, serverTimestamp, arrayUnion } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBgasCH5TtnnaWzvofHHgR9NP6lczAPU5M",
+      authDomain: "mln122-63e0c.firebaseapp.com",
+      projectId: "mln122-63e0c",
+      storageBucket: "mln122-63e0c.firebasestorage.app",
+      messagingSenderId: "75579579116",
+      appId: "1:75579579116:web:f4f63d1af921119fe663c9",
+      measurementId: "G-TB20Y6DB9P"
+    };
+
+    const firebaseApp = initializeApp(firebaseConfig);
+    const db = getFirestore(firebaseApp);
     const tabButtons = document.querySelectorAll('.tab-btn');
     const panels = document.querySelectorAll('.tab-panel');
     function openTab(id){
@@ -756,13 +773,19 @@
     ];
 
     let room = null;
+    let roomData = null;
     let players = [];
     let score = 0;
     let round = 0;
     let timeLeft = 60;
     let timer = null;
     let playing = false;
-    let revealedCount = 0;
+    let currentRole = null;
+    let localPlayerId = sessionStorage.getItem('mlnPlayerId') || ('p_' + Math.random().toString(36).slice(2,10));
+    let localPlayerName = '';
+    let unsubscribeRoom = null;
+    let syncingRemote = false;
+    sessionStorage.setItem('mlnPlayerId', localPlayerId);
 
     const $ = id => document.getElementById(id);
     const normalizeAnswer = str => (str || '')
@@ -809,9 +832,19 @@
       return a;
     }
     function switchGameMode(id){
+      const selector = $('gameModeSelector');
+      if(selector) selector.style.display = 'none';
       document.querySelectorAll('.game-mode-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.gameMode === id));
       document.querySelectorAll('.game-mode-panel').forEach(panel => panel.classList.toggle('show', panel.id === id));
       if(id === 'practiceMode') clearInterval(timer);
+    }
+    function backToGameModeSelector(){
+      clearInterval(timer);
+      playing = false;
+      document.querySelectorAll('.game-mode-panel').forEach(panel => panel.classList.remove('show'));
+      const selector = $('gameModeSelector');
+      if(selector) selector.style.display = 'flex';
+      document.querySelectorAll('.game-mode-btn').forEach(btn => btn.classList.remove('active'));
     }
     function getPracticeSettings(){
       const countInput = $('aiQuestionCount');
@@ -1032,6 +1065,9 @@
       practiceScoreValue = 0;
     }
 
+    function roomRef(code = room){
+      return doc(db, 'mln_rooms', String(code));
+    }
     function addFeed(text){
       const feed = $('liveFeed');
       if(!feed) return;
@@ -1040,6 +1076,27 @@
       item.textContent = text;
       feed.prepend(item);
     }
+    async function addRoomFeed(text){
+      if(!room){ addFeed(text); return; }
+      try{
+        await updateDoc(roomRef(), { feed: arrayUnion({ text, at: Date.now() }) });
+      }catch(err){
+        addFeed(text);
+        console.warn('Không ghi được live feed:', err);
+      }
+    }
+    function renderRemoteFeed(feedItems){
+      const feed = $('liveFeed');
+      if(!feed) return;
+      feed.innerHTML = '';
+      const items = Array.isArray(feedItems) ? [...feedItems].sort((a,b)=>(b.at||0)-(a.at||0)) : [];
+      items.slice(0, 18).forEach(f => {
+        const item = document.createElement('div');
+        item.className = 'feed-item';
+        item.textContent = f.text || String(f);
+        feed.appendChild(item);
+      });
+    }
     function renderPlayers(){
       const list = $('playerList');
       if(!list) return;
@@ -1047,7 +1104,7 @@
       players.forEach(p => {
         const row = document.createElement('div');
         row.className = 'player';
-        row.innerHTML = `<span>${p.name}</span><b>${p.score}</b>`;
+        row.innerHTML = `<span>${p.name}${p.role === 'host' ? ' · Quản trò' : ''}</span><b>${p.score}</b>`;
         list.appendChild(row);
       });
       renderLeaderboard();
@@ -1075,7 +1132,12 @@
       currentRole = role;
       $('roleBadge').textContent = role === 'host' ? 'Quản trò' : 'Người chơi';
       const startLobby = $('startGameLobby');
-      if(startLobby) startLobby.style.display = role === 'host' ? 'inline-flex' : 'none';
+      if(startLobby){
+        startLobby.style.display = role === 'host' ? 'inline-flex' : 'none';
+        startLobby.textContent = 'Bắt đầu game';
+      }
+      const startCardBtn = $('startGame');
+      if(startCardBtn) startCardBtn.style.display = role === 'host' ? 'inline-flex' : 'none';
       const addBotBtn = $('addBot');
       if(addBotBtn) addBotBtn.style.display = role === 'host' ? 'inline-flex' : 'none';
     }
@@ -1088,78 +1150,147 @@
     function generateRoomCode(){
       return String(Math.floor(1000 + Math.random()*90000)).slice(0, Math.random() > .45 ? 5 : 4);
     }
-    function createRoom(){
+    function getRoomPlayers(data){
+      const obj = data && data.players ? data.players : {};
+      return Object.entries(obj).map(([id, p]) => ({ id, name: p.name || 'Người chơi', score: Number(p.score || 0), role: p.role || 'player', me: id === localPlayerId }));
+    }
+    function listenToRoom(code){
+      if(unsubscribeRoom) unsubscribeRoom();
+      unsubscribeRoom = onSnapshot(roomRef(code), snap => {
+        if(!snap.exists()){
+          $('statusText').textContent = 'Không tìm thấy phòng hoặc phòng đã bị xóa.';
+          return;
+        }
+        roomData = snap.data();
+        room = code;
+        players = getRoomPlayers(roomData);
+        const me = players.find(p => p.me);
+        if(me) score = me.score;
+        $('roomCode').textContent = room;
+        $('lobbyTitle').textContent = roomData.roomName || ('Phòng ' + room);
+        renderPlayers();
+        renderRemoteFeed(roomData.feed);
+        if(roomData.status === 'waiting'){
+          if(!playing){
+            $('roomLobby')?.classList.add('show');
+            $('gameStage')?.classList.remove('show');
+            $('lobbyDesc').textContent = currentRole === 'host' ? 'Người chơi đã vào phòng sẽ thấy màn chờ. Quản trò bấm “Bắt đầu game” để tất cả cùng chơi.' : 'Bạn đang ở phòng chờ. Khi quản trò bấm bắt đầu, game sẽ tự chạy trên máy bạn.';
+            $('statusText').textContent = currentRole === 'host' ? 'Phòng đang chờ. Bấm “Bắt đầu game” khi sẵn sàng.' : 'Đang chờ quản trò bắt đầu game.';
+          }
+        }
+        if(roomData.status === 'playing'){
+          const remoteRound = Number(roomData.currentQuestion || 0);
+          const questionStart = roomData.questionStartedAt && roomData.questionStartedAt.toMillis ? roomData.questionStartedAt.toMillis() : Date.now();
+          if(!playing || round !== remoteRound){
+            beginRemoteGame(remoteRound, questionStart);
+          }
+        }
+        if(roomData.status === 'finished'){
+          playing = false;
+          clearInterval(timer);
+          $('statusText').textContent = 'Game đã kết thúc. Xem bảng điểm bên phải.';
+          $('roomLobby')?.classList.remove('show');
+          $('gameStage')?.classList.add('show');
+        }
+      }, err => {
+        console.error(err);
+        $('statusText').textContent = 'Không kết nối được Firebase. Kiểm tra Firestore đã bật và rules cho phép đọc/ghi.';
+      });
+    }
+    async function createRoom(){
       const host = $('hostName').value.trim() || 'Quản trò';
       const roomName = $('hostRoomName').value.trim() || 'Phòng ôn tập MLN';
+      localPlayerName = host;
       room = generateRoomCode();
-      players = [{name:host, score:0, me:true}];
+      players = [{id:localPlayerId, name:host, score:0, role:'host', me:true}];
       $('roomCode').textContent = room;
       $('lobbyTitle').textContent = roomName;
-      $('lobbyDesc').textContent = 'Chia sẻ mã phòng cho người chơi. Khi đủ người, quản trò bấm “Bắt đầu game”.';
-      $('statusText').textContent = 'Phòng đã tạo. Chờ người chơi vào phòng, sau đó bấm “Bắt đầu game”.';
+      $('lobbyDesc').textContent = 'Đang tạo phòng...';
+      $('statusText').textContent = 'Đang kết nối Firebase...';
       showLobby('host');
-      addFeed(`${host} đã tạo phòng ${room}.`);
-      renderPlayers();
+      try{
+        await setDoc(roomRef(), {
+          code: room,
+          roomName,
+          hostId: localPlayerId,
+          hostName: host,
+          status: 'waiting',
+          currentQuestion: 0,
+          questionStartedAt: null,
+          players: {
+            [localPlayerId]: { name: host, score: 0, role: 'host', joinedAt: Date.now() }
+          },
+          feed: [{ text: `${host} đã tạo phòng ${room}.`, at: Date.now() }],
+          createdAt: serverTimestamp()
+        });
+        listenToRoom(room);
+      }catch(err){
+        console.error(err);
+        $('statusText').textContent = 'Tạo phòng thất bại. Hãy bật Cloud Firestore và để rules test mode khi demo.';
+      }
     }
-    function joinRoom(){
-      const code = ($('roomInput').value.trim() || '1234').toUpperCase();
-      const name = $('playerName').value.trim() || 'Người chơi';
+    async function joinRoom(){
+      const code = ($('roomInput').value.trim() || '').toUpperCase();
+      const name = $('playerName').value.trim() || 'Bạn';
+      if(!code){ $('statusText').textContent = 'Nhập mã phòng trước khi tham gia.'; return; }
+      localPlayerName = name;
       room = code;
-      players = [{name, score:0, me:true}];
       $('roomCode').textContent = room;
       $('lobbyTitle').textContent = 'Phòng ' + room;
-      $('lobbyDesc').textContent = 'Bạn đã tham gia phòng. Chờ quản trò bắt đầu game.';
-      $('statusText').textContent = 'Đã tham gia phòng. Hiện đang ở phòng chờ.';
+      $('lobbyDesc').textContent = 'Đang tham gia phòng...';
+      $('statusText').textContent = 'Đang kết nối Firebase...';
       showLobby('player');
-      addFeed(`${name} đã tham gia phòng ${room}.`);
-      renderPlayers();
+      try{
+        const ref = roomRef(room);
+        const snap = await getDoc(ref);
+        if(!snap.exists()){
+          $('statusText').textContent = 'Không tìm thấy phòng. Kiểm tra lại mã phòng.';
+          return;
+        }
+        await updateDoc(ref, {
+          [`players.${localPlayerId}`]: { name, score: 0, role: 'player', joinedAt: Date.now() },
+          feed: arrayUnion({ text: `${name} đã tham gia phòng ${room}.`, at: Date.now() })
+        });
+        listenToRoom(room);
+      }catch(err){
+        console.error(err);
+        $('statusText').textContent = 'Tham gia phòng thất bại. Kiểm tra Firestore rules và mã phòng.';
+      }
     }
-    function addBot(){
+    async function addBot(){
       if(!room) return;
       const names = ['Lan', 'Minh', 'Quốc', 'Vy', 'Khoa', 'An'];
       const name = names[Math.floor(Math.random()*names.length)] + ' AI';
-      players.push({name, score:Math.max(0, score - Math.floor(Math.random()*140)), me:false});
-      addFeed(`${name} đã vào phòng.`);
-      renderPlayers();
+      const botId = 'bot_' + Math.random().toString(36).slice(2,8);
+      try{
+        await updateDoc(roomRef(), {
+          [`players.${botId}`]: { name, score: Math.max(0, score - Math.floor(Math.random()*140)), role: 'player', joinedAt: Date.now() },
+          feed: arrayUnion({ text: `${name} đã vào phòng.`, at: Date.now() })
+        });
+      }catch(err){
+        console.warn(err);
+      }
     }
-    function drawReveal(answer){
-      const wrap = $('revealWord');
-      wrap.innerHTML = '';
-      const letters = [...answer];
-      const visibleIndexes = [];
-      letters.forEach((ch,i)=>{ if(ch !== ' ') visibleIndexes.push(i); });
-      const visibleSet = new Set(visibleIndexes.slice(0, revealedCount));
-      letters.forEach((ch,i)=>{
-        const box = document.createElement('div');
-        if(ch === ' '){ box.className = 'letter-space'; }
-        else { box.className = 'letter-box' + (visibleSet.has(i) ? '' : ' blank'); box.textContent = ch; }
-        wrap.appendChild(box);
-      });
-    }
+    let questionStartMs = Date.now();
     function updateTimer(){
+      if(playing){
+        timeLeft = Math.max(0, 60 - Math.floor((Date.now() - questionStartMs) / 1000));
+      }
       const pct = Math.max(0, Math.round((timeLeft/60)*100));
       $('timerText').textContent = timeLeft + 's';
       $('timerRing').style.setProperty('--progress', pct + '%');
       const points = Math.max(80, Math.round(timeLeft * 10));
       $('currentPoint').textContent = points;
       const puzzle = puzzles[round];
-      const totalLetters = [...puzzle.answer].filter(c=>c!==' ').length;
-      const shouldReveal = Math.min(totalLetters, Math.floor((60 - timeLeft) / 6));
-      if(shouldReveal !== revealedCount){
-        revealedCount = shouldReveal;
-        drawReveal(puzzle.answer);
-      }
-      if(timeLeft <= 0){
-        addFeed(`Hết giờ. Đáp án là: ${puzzle.answer}.`);
-        nextRound();
+      if(timeLeft <= 0 && playing){
+        if(currentRole === 'host') advanceRoomQuestion(`Hết giờ. Đáp án là: ${puzzle.answer}.`);
         return;
       }
-      timeLeft--;
     }
-    function loadRound(){
+    function loadRound(startMs = Date.now()){
       const puzzle = puzzles[round];
-      timeLeft = 60;
-      revealedCount = 0;
+      questionStartMs = startMs;
+      timeLeft = Math.max(0, 60 - Math.floor((Date.now() - questionStartMs) / 1000));
       $('roundBadge').textContent = `Câu ${round+1}/${puzzles.length}`;
       $('categoryBadge').textContent = puzzle.category;
       const frame = document.querySelector('.puzzle-frame');
@@ -1182,25 +1313,43 @@
         if(art){ art.style.display = 'block'; art.textContent = puzzle.art || '🧠'; }
       }
       $('puzzleQuestion').textContent = puzzle.question || 'Nhìn hình và đoán khái niệm.';
-      $('hintBox').innerHTML = '<b>💡 Gợi ý:</b> ' + puzzle.hint + '<div class="answer-key-small">Đáp án gồm ' + [...puzzle.answer].filter(c=>c !== ' ').length + ' chữ cái, chữ sẽ hé lộ dần theo thời gian.</div>';
+      $('hintBox').innerHTML = '<b>💡 Gợi ý:</b> ' + puzzle.hint + '<div class="answer-key-small">Đáp án gồm ' + [...puzzle.answer].filter(c=>c !== ' ').length + ' chữ cái.</div>';
       $('answerInput').value = '';
-      $('answerInput').focus();
-      drawReveal(puzzle.answer);
       updateTimer();
+      setTimeout(() => $('answerInput')?.focus(), 80);
     }
-    function startGame(){
+    async function startGame(){
       if(!ensureRoom()) return;
+      if(currentRole !== 'host'){
+        $('statusText').textContent = 'Đang chờ quản trò bấm bắt đầu game.';
+        return;
+      }
+      const resetPlayers = {};
+      players.forEach(p => resetPlayers[p.id] = { name: p.name, score: 0, role: p.role || 'player', joinedAt: Date.now() });
+      try{
+        await updateDoc(roomRef(), {
+          status: 'playing',
+          currentQuestion: 0,
+          questionStartedAt: serverTimestamp(),
+          players: resetPlayers,
+          feed: arrayUnion({ text: 'Quản trò đã bắt đầu game. Có 10 câu, mỗi câu 60 giây.', at: Date.now() })
+        });
+      }catch(err){
+        console.error(err);
+        $('statusText').textContent = 'Không bắt đầu được game. Kiểm tra kết nối Firebase.';
+      }
+    }
+    function beginRemoteGame(remoteRound, startMs){
       $('roomLobby')?.classList.remove('show');
       $('gameStage')?.classList.add('show');
-      score = 0;
-      round = 0;
+      round = remoteRound;
       playing = true;
-      players.forEach(p => p.score = 0);
+      const me = players.find(p=>p.me);
+      score = me ? me.score : 0;
       $('scoreText').textContent = score;
-      $('statusText').textContent = 'Game đang chạy. Trả lời càng nhanh càng nhiều điểm.';
-      addFeed('Game bắt đầu. Có 10 câu, mỗi câu 60 giây. Trả lời càng sớm điểm càng cao.');
+      $('statusText').textContent = currentRole === 'host' ? 'Game đang chạy. Người chơi trả lời càng nhanh càng nhiều điểm.' : 'Game đã bắt đầu. Nhập đáp án càng sớm càng nhiều điểm.';
       clearInterval(timer);
-      loadRound();
+      loadRound(startMs || Date.now());
       timer = setInterval(updateTimer, 1000);
       renderPlayers();
     }
@@ -1216,54 +1365,82 @@
       }
       setTimeout(()=>box.innerHTML='',1500);
     }
-    function submitAnswer(){
-      if(!playing) return;
+    async function submitAnswer(){
+      if(!playing || !roomData) return;
       const puzzle = puzzles[round];
       const ok = normalizeAnswer($('answerInput').value) === normalizeAnswer(puzzle.answer);
       if(!ok){
-        addFeed('Một đáp án chưa đúng vừa được gửi.');
         $('statusText').textContent = 'Chưa đúng, thử lại nhanh trước khi điểm giảm.';
         return;
       }
       const earned = Math.max(80, Math.round((timeLeft+1) * 10));
-      score += earned;
-      players.find(p=>p.me).score = score;
+      const currentMe = players.find(p => p.me) || { name: localPlayerName || 'Bạn', role: currentRole || 'player', score: 0 };
+      score = Number(currentMe.score || 0) + earned;
       $('scoreText').textContent = score;
-      addFeed(`Đúng: ${puzzle.answer}. Bạn nhận ${earned} điểm.`);
       $('statusText').textContent = `Chính xác. +${earned} điểm.`;
       correctEffect();
-      renderPlayers();
-      setTimeout(nextRound, 650);
+      try{
+        await updateDoc(roomRef(), {
+          [`players.${localPlayerId}`]: { name: currentMe.name, score, role: currentMe.role || currentRole || 'player', joinedAt: Date.now() },
+          feed: arrayUnion({ text: `${currentMe.name} trả lời đúng “${puzzle.answer}” và nhận ${earned} điểm.`, at: Date.now() })
+        });
+        await advanceRoomQuestion(null, 650);
+      }catch(err){
+        console.error(err);
+        $('statusText').textContent = 'Đúng nhưng chưa đồng bộ được điểm. Kiểm tra kết nối Firebase.';
+      }
+    }
+    async function advanceRoomQuestion(feedText = null, delay = 0){
+      if(!room || !playing) return;
+      setTimeout(async () => {
+        const next = round + 1;
+        try{
+          if(next >= puzzles.length){
+            await updateDoc(roomRef(), {
+              status: 'finished',
+              feed: arrayUnion({ text: feedText || 'Game kết thúc. Xem bảng xếp hạng cuối.', at: Date.now() })
+            });
+          }else{
+            await updateDoc(roomRef(), {
+              currentQuestion: next,
+              questionStartedAt: serverTimestamp(),
+              feed: feedText ? arrayUnion({ text: feedText, at: Date.now() }) : arrayUnion({ text: `Chuyển sang câu ${next+1}.`, at: Date.now() })
+            });
+          }
+        }catch(err){
+          console.warn('Không chuyển câu được:', err);
+        }
+      }, delay);
     }
     function nextRound(){
-      if(!playing) return;
-      round++;
-      if(round >= puzzles.length){
-        clearInterval(timer);
-        playing = false;
-        $('statusText').textContent = `Kết thúc game. Tổng điểm: ${score}.`;
-        addFeed(`Game kết thúc. Tổng điểm của bạn là ${score}.`);
-        renderPlayers();
-        return;
-      }
-      loadRound();
+      advanceRoomQuestion('Đã chuyển câu.');
     }
-    function resetGame(){
+    async function resetGame(){
+      if(!room) return;
       clearInterval(timer);
       playing = false;
-      score = 0; round = 0; timeLeft = 60; revealedCount = 0;
+      score = 0; round = 0; timeLeft = 60;
       $('scoreText').textContent = '0';
       $('timerText').textContent = '60s';
       $('timerRing').style.setProperty('--progress','100%');
       $('currentPoint').textContent = '600';
-      $('statusText').textContent = 'Đã reset. Bấm “Bắt đầu game” để chơi lại.';
-      if(players.length) players.forEach(p=>p.score=0);
-      loadRound();
-      renderPlayers();
-      addFeed('Đã reset game.');
+      const resetPlayers = {};
+      players.forEach(p => resetPlayers[p.id] = { name: p.name, score: 0, role: p.role || 'player', joinedAt: Date.now() });
+      try{
+        await updateDoc(roomRef(), {
+          status: 'waiting',
+          currentQuestion: 0,
+          questionStartedAt: null,
+          players: resetPlayers,
+          feed: arrayUnion({ text: 'Quản trò đã reset game.', at: Date.now() })
+        });
+      }catch(err){
+        console.warn(err);
+      }
     }
 
     document.querySelectorAll('.game-mode-btn').forEach(btn => btn.addEventListener('click', () => switchGameMode(btn.dataset.gameMode)));
+    document.querySelectorAll('.mode-back').forEach(btn => btn.addEventListener('click', backToGameModeSelector));
     document.querySelectorAll('.count-btn').forEach(btn => btn.addEventListener('click', () => setPracticeCount(Number(btn.dataset.count))));
     $('startPractice')?.addEventListener('click', () => startPractice(true));
     $('useDefaultPractice')?.addEventListener('click', () => startPractice(false));
