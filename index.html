@@ -337,6 +337,28 @@
       -webkit-text-fill-color:#fff;
     }
 
+
+    /* --- Navigation click fix --- */
+    header{
+      position:sticky!important;
+      top:0!important;
+      z-index:99999!important;
+      transform:none!important;
+      pointer-events:auto!important;
+    }
+    .nav,.nav-tabs,.tab-btn{
+      pointer-events:auto!important;
+      position:relative;
+      z-index:100000!important;
+    }
+    .tab-panel:not(.active){
+      display:none!important;
+      pointer-events:none!important;
+    }
+    .tab-panel.active{
+      pointer-events:auto!important;
+    }
+
 </style>
 </head>
 <body>
@@ -352,11 +374,11 @@
         </div>
       </div>
       <nav class="nav-tabs" aria-label="Điều hướng nội dung">
-        <button class="tab-btn active" data-tab="home">Trang chủ</button>
-        <button class="tab-btn" data-tab="case">Tình huống</button>
-        <button class="tab-btn" data-tab="theory">Lý thuyết</button>
-        <button class="tab-btn" data-tab="analysis">Phân tích</button>
-        <button class="tab-btn" data-tab="game">Game ôn tập</button>
+        <button class="tab-btn active" data-tab="home" onclick="window.__mlnOpenTab && window.__mlnOpenTab('home')">Trang chủ</button>
+        <button class="tab-btn" data-tab="case" onclick="window.__mlnOpenTab && window.__mlnOpenTab('case')">Tình huống</button>
+        <button class="tab-btn" data-tab="theory" onclick="window.__mlnOpenTab && window.__mlnOpenTab('theory')">Lý thuyết</button>
+        <button class="tab-btn" data-tab="analysis" onclick="window.__mlnOpenTab && window.__mlnOpenTab('analysis')">Phân tích</button>
+        <button class="tab-btn" data-tab="game" onclick="window.__mlnOpenTab && window.__mlnOpenTab('game')">Game ôn tập</button>
       </nav>
     </div>
   </header>
@@ -746,7 +768,14 @@
       panels.forEach(p => p.classList.toggle('active', p.id === id));
       window.scrollTo({top:0, behavior:'smooth'});
     }
-    tabButtons.forEach(btn => btn.addEventListener('click', () => openTab(btn.dataset.tab)));
+    window.__mlnOpenTab = openTab;
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openTab(btn.dataset.tab);
+      }, true);
+    });
     document.querySelectorAll('[data-go]').forEach(btn => btn.addEventListener('click', () => openTab(btn.dataset.go)));
 
     const subButtons = document.querySelectorAll('.sub-btn');
@@ -1819,8 +1848,6 @@
       $('playerName').value = '';
       renderPlayers();
       loadRound();
-});
-      document.body.classList.toggle('scrolled', window.scrollY > 120);
     }
   </script>
 </body>
