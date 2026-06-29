@@ -279,12 +279,77 @@
     .host-status-box b{display:block;font-size:18px;margin-bottom:6px}
     .host-status-box p{margin:0;color:var(--muted);line-height:1.65}
 
+
+    /* --- Final game UX update: direct letter inputs + larger mode buttons + hidden hint line --- */
+    .game-mode-tabs{
+      width:min(100%,760px)!important;
+      padding:14px!important;
+      gap:14px!important;
+      border-radius:34px!important;
+      justify-content:center!important;
+      margin:0 auto 28px!important;
+    }
+    .game-mode-btn{
+      font-size:18px!important;
+      padding:18px 26px!important;
+      border-radius:24px!important;
+      min-width:270px!important;
+    }
+    .answer-state{display:none!important}
+    .answer-row.compact{
+      grid-template-columns:auto!important;
+      justify-content:center!important;
+      margin-top:18px!important;
+    }
+    #answerInput{display:none!important}
+    .answer-row.compact #submitAnswer{
+      min-width:180px;
+      padding:15px 26px;
+      font-size:16px;
+    }
+    .letter-box{
+      padding:0!important;
+      overflow:hidden;
+    }
+    .letter-input{
+      width:100%;
+      height:100%;
+      border:0;
+      outline:0;
+      background:transparent;
+      color:#fff;
+      text-align:center;
+      font-family:inherit;
+      font-size:23px;
+      font-weight:900;
+      text-transform:uppercase;
+    }
+    .letter-input:focus{
+      background:rgba(57,229,255,.13);
+      box-shadow:inset 0 0 0 2px rgba(57,229,255,.55);
+    }
+    .letter-box.revealed .letter-input{
+      color:#fff;
+      background:linear-gradient(135deg,rgba(70,166,255,.24),rgba(57,229,255,.18));
+    }
+    .letter-input:disabled{
+      opacity:1;
+      -webkit-text-fill-color:#fff;
+    }
+    header.auto-hide-top{
+      transform:translateY(-110%);
+      transition:transform .28s ease;
+    }
+    body.scrolled header.auto-hide-top{
+      transform:translateY(0);
+    }
+
 </style>
 </head>
 <body>
   <div class="bg-layer"><div class="planet one"></div><div class="planet two"></div><div class="wire"></div></div>
 
-  <header>
+  <header class="auto-hide-top">
     <div class="nav">
       <div class="brand">
         <div class="logo">ML</div>
@@ -541,7 +606,7 @@
                   <input id="answerInput" class="game-input" placeholder="Nhập đáp án..." autocomplete="off" />
                   <button id="submitAnswer" class="game-btn good">Trả lời</button>
                 </div>
-                <div class="answer-state" id="answerState">Điền đáp án vào ô nhập bên trên. Càng về cuối, hệ thống sẽ gợi mở thêm chữ cái.</div>
+                <div class="answer-state" id="answerState"></div>
               </div>
 
               <div class="score-panel host-side" id="hostSidePanel">
@@ -1107,6 +1172,9 @@
       const input = $('answerInput');
       const btn = $('submitAnswer');
       if(input) input.disabled = disabled;
+      document.querySelectorAll('#answerBoxes .letter-input').forEach(el => {
+        if(!el.closest('.letter-box')?.classList.contains('revealed')) el.disabled = disabled;
+      });
       if(btn) btn.disabled = disabled;
     }
     function sortedPlayers(list = players){
@@ -1297,13 +1365,11 @@
             } else {
               round = remoteRound;
               const puzzle = puzzles[round];
-              if(puzzle) renderAnswerBoxes(puzzle.answer, $('answerInput')?.value || '', getRevealCount(puzzle.answer, timeLeft));
+              if(puzzle) renderAnswerBoxes(puzzle.answer);
             }
             const answered = playerHasAnswered(localPlayerId, roomData);
             setAnswerDisabled(answered);
-            $('answerState').textContent = answered
-              ? 'Bạn đã trả lời câu này. Chờ những người chơi còn lại hoàn thành.'
-              : 'Điền đáp án vào ô nhập bên trên. Càng về cuối, hệ thống sẽ gợi mở thêm chữ cái.';
+            $('answerState').textContent = '';
             $('statusText').textContent = currentRole === 'host'
               ? 'Đang trong câu hỏi. Khi tất cả người chơi trả lời hoặc hết giờ, hệ thống sẽ hiện top 5.'
               : answered ? 'Bạn đã trả lời xong. Đang chờ các người chơi khác.' : 'Hãy nhập đáp án trước khi hết giờ.';
@@ -1424,9 +1490,28 @@
       }
     }
     let questionStartMs = Date.now();
-    function getRevealCount(answer, secondsLeft){
-      const totalLetters = answerLetters(answer).filter(ch => ch !== ' ').length;
-      return Math.min(Math.max(totalLetters - 1, 0), Math.floor((QUESTION_TIME - secondsLeft) / 10));
+    let revealedIndexes = new Set();
+    let lastRevealStep = 0;
+    function getLetterCount(answer){
+      return answerLetters(answer).filter(ch => ch !== ' ').length;
+    }
+    function revealRandomLetters(answer, secondsLeft){
+      const elapsed = QUESTION_TIME - secondsLeft;
+      const targetStep = Math.floor(elapsed / 5);
+      const total = getLetterCount(answer);
+      while(lastRevealStep < targetStep && revealedIndexes.size < Math.max(total - 1, 0)){
+        const addCount = Math.random() > 0.5 ? 2 : 1;
+        for(let k = 0; k < addCount && revealedIndexes.size < Math.max(total - 1, 0); k++){
+          const available = [];
+          for(let i = 0; i < total; i++){
+            if(!revealedIndexes.has(i)) available.push(i);
+          }
+          if(!available.length) break;
+          const picked = available[Math.floor(Math.random() * available.length)];
+          revealedIndexes.add(picked);
+        }
+        lastRevealStep++;
+      }
     }
     function updateTimer(){
       if(playing){
@@ -1439,7 +1524,8 @@
       $('currentPoint').textContent = points;
       const puzzle = puzzles[round];
       if(puzzle){
-        renderAnswerBoxes(puzzle.answer, $('answerInput')?.value || '', getRevealCount(puzzle.answer, timeLeft));
+        revealRandomLetters(puzzle.answer, timeLeft);
+        renderAnswerBoxes(puzzle.answer);
       }
       if(timeLeft <= 0 && playing){
         if(currentRole === 'host') openRoundReview(`Hết giờ câu ${round+1}.`);
@@ -1450,12 +1536,13 @@
     function answerLetters(answer){
       return [...String(answer || '').toUpperCase()];
     }
-    function renderAnswerBoxes(answer, typed = '', revealCount = 0){
+    function renderAnswerBoxes(answer){
       const box = $('answerBoxes');
       if(!box) return;
+      const existing = [...box.querySelectorAll('.letter-input')].map(input => input.value || '');
       const chars = answerLetters(answer);
-      const typedChars = [...String(typed || '').toUpperCase().replace(/\s+/g,'')];
-      let index = 0;
+      let letterIndex = 0;
+      let inputIndex = 0;
       box.innerHTML = '';
       chars.forEach(ch => {
         if(ch === ' '){
@@ -1464,25 +1551,78 @@
           box.appendChild(sp);
           return;
         }
+
         const cell = document.createElement('span');
         cell.className = 'letter-box';
-        const typedChar = typedChars[index] || '';
-        if(typedChar){
-          cell.textContent = typedChar;
-        }else if(index < revealCount){
-          cell.textContent = ch;
+
+        const input = document.createElement('input');
+        input.className = 'letter-input';
+        input.maxLength = 1;
+        input.dataset.index = String(letterIndex);
+        input.autocomplete = 'off';
+        input.inputMode = 'text';
+
+        if(revealedIndexes.has(letterIndex)){
+          input.value = ch;
+          input.disabled = true;
           cell.classList.add('revealed');
         }else{
-          cell.textContent = '';
-          cell.classList.add('blank');
+          input.value = existing[inputIndex] || '';
+          if(!input.value) cell.classList.add('blank');
         }
+
+        input.addEventListener('input', handleLetterInput);
+        input.addEventListener('keydown', handleLetterKeydown);
+
+        cell.appendChild(input);
         box.appendChild(cell);
-        index++;
+        letterIndex++;
+        inputIndex++;
       });
+    }
+    function collectBoxAnswer(){
+      return [...document.querySelectorAll('#answerBoxes .letter-input')]
+        .map(input => input.value || '')
+        .join('');
+    }
+    function focusLetterInput(index){
+      const inputs = [...document.querySelectorAll('#answerBoxes .letter-input:not(:disabled)')];
+      if(!inputs.length) return;
+      const target = inputs.find(input => Number(input.dataset.index) >= index) || inputs[inputs.length - 1];
+      target.focus();
+      target.select();
+    }
+    function handleLetterInput(e){
+      const input = e.target;
+      input.value = (input.value || '').toUpperCase().slice(-1);
+      const idx = Number(input.dataset.index || 0);
+      const parent = input.closest('.letter-box');
+      if(parent) parent.classList.toggle('blank', !input.value);
+      if(input.value) focusLetterInput(idx + 1);
+    }
+    function handleLetterKeydown(e){
+      const idx = Number(e.target.dataset.index || 0);
+      if(e.key === 'Backspace' && !e.target.value){
+        e.preventDefault();
+        focusLetterInput(Math.max(0, idx - 1));
+      }
+      if(e.key === 'Enter'){
+        e.preventDefault();
+        submitAnswer();
+      }
+    }
+    function focusFirstEmptyLetter(){
+      const input = [...document.querySelectorAll('#answerBoxes .letter-input:not(:disabled)')].find(i => !i.value);
+      if(input){
+        input.focus();
+        input.select();
+      }
     }
     function loadRound(startMs = Date.now()){
       const puzzle = puzzles[round];
       questionStartMs = startMs;
+      revealedIndexes = new Set();
+      lastRevealStep = 0;
       timeLeft = Math.max(0, QUESTION_TIME - Math.floor((Date.now() - questionStartMs) / 1000));
       $('roundBadge').textContent = `Câu ${round+1}/${puzzles.length}`;
       $('categoryBadge').textContent = puzzle.category;
@@ -1509,10 +1649,10 @@
       $('hintBox').innerHTML = '<b>💡 Gợi ý:</b> ' + puzzle.hint;
       $('answerInput').value = '';
       setAnswerDisabled(false);
-      $('answerState').textContent = 'Điền đáp án vào ô nhập bên trên. Càng về cuối, hệ thống sẽ gợi mở thêm chữ cái.';
-      renderAnswerBoxes(puzzle.answer, '', getRevealCount(puzzle.answer, timeLeft));
+      $('answerState').textContent = '';
+      renderAnswerBoxes(puzzle.answer);
       updateTimer();
-      setTimeout(() => $('answerInput')?.focus(), 80);
+      setTimeout(() => focusFirstEmptyLetter(), 80);
     }
     async function startGame(){
       if(!ensureRoom()) return;
@@ -1581,7 +1721,7 @@
         return;
       }
       const puzzle = puzzles[round];
-      const ok = normalizeAnswer($('answerInput').value) === normalizeAnswer(puzzle.answer);
+      const ok = normalizeAnswer(collectBoxAnswer()) === normalizeAnswer(puzzle.answer);
       if(!ok){
         $('statusText').textContent = 'Chưa đúng, thử lại nhanh trước khi có thêm gợi ý.';
         return;
@@ -1590,7 +1730,7 @@
       const currentMe = players.find(p => p.me) || { name: localPlayerName || 'Bạn', role: currentRole || 'player', score: 0 };
       const newScore = Number(currentMe.score || 0) + earned;
       $('statusText').textContent = `Chính xác. +${earned} điểm. Đang chờ người chơi khác...`;
-      $('answerState').textContent = 'Bạn đã trả lời đúng. Chờ những người chơi còn lại hoàn thành câu này.';
+      $('answerState').textContent = '';
       setAnswerDisabled(true);
       correctEffect();
       try{
@@ -1678,11 +1818,15 @@
       $('resetGame').addEventListener('click', resetGame);
       $('submitAnswer').addEventListener('click', submitAnswer);
       $('answerInput').addEventListener('keydown', e => { if(e.key === 'Enter') submitAnswer(); });
-      $('answerInput').addEventListener('input', e => { const puzzle = puzzles[round]; if(puzzle) renderAnswerBoxes(puzzle.answer, e.target.value, getRevealCount(puzzle.answer, timeLeft)); });
       $('hostRoomName').value = '';
       $('playerName').value = '';
       renderPlayers();
       loadRound();
+
+      window.addEventListener('scroll', () => {
+        document.body.classList.toggle('scrolled', window.scrollY > 120);
+      });
+      document.body.classList.toggle('scrolled', window.scrollY > 120);
     }
   </script>
 </body>
