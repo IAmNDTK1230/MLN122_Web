@@ -1528,7 +1528,7 @@
             } else {
               round = remoteRound;
               const puzzle = puzzles[round];
-              if(puzzle) renderAnswerBoxes(puzzle.answer, '', getRevealCount(puzzle.answer, timeLeft));
+              if(puzzle) renderAnswerBoxes(puzzle.answer, $('answerInput')?.value || '', getRevealCount(puzzle.answer, timeLeft));
             }
             const answered = playerHasAnswered(localPlayerId, roomData);
             setAnswerDisabled(answered);
@@ -1537,6 +1537,9 @@
               ? 'Đang trong câu hỏi. Khi tất cả người chơi trả lời hoặc hết giờ, hệ thống sẽ hiện top 5.'
               : answered ? 'Bạn đã trả lời xong. Đang chờ các người chơi khác.' : 'Hãy nhập đáp án trước khi hết giờ.';
             updateHostProgress();
+            if(playing && !timer){
+              timer = setInterval(updateTimer, 1000);
+            }
             const activePlayers = getActivePlayers(players);
             const answeredCount = Object.keys(getAnsweredMap(roomData)).length;
             if(currentRole === 'host' && activePlayers.length && answeredCount >= activePlayers.length){
@@ -1679,7 +1682,8 @@
     }
     function updateTimer(){
       if(playing){
-        timeLeft = Math.max(0, QUESTION_TIME - Math.floor((Date.now() - questionStartMs) / 1000));
+        const elapsed = Math.max(0, Math.floor((Date.now() - questionStartMs) / 1000));
+        timeLeft = Math.max(0, QUESTION_TIME - elapsed);
       }
       const pct = Math.max(0, Math.round((timeLeft/QUESTION_TIME)*100));
       $('timerText').textContent = timeLeft + 's';
@@ -1688,7 +1692,6 @@
       $('currentPoint').textContent = points;
       const puzzle = puzzles[round];
       if(puzzle){
-        revealRandomLetters(puzzle.answer, timeLeft);
         renderAnswerBoxes(puzzle.answer, $('answerInput')?.value || '', getRevealCount(puzzle.answer, timeLeft));
       }
       if(timeLeft <= 0 && playing){
@@ -1742,7 +1745,7 @@
       questionStartMs = startMs;
       revealedIndexes = new Set();
       lastRevealStep = 0;
-      timeLeft = Math.max(0, QUESTION_TIME - Math.floor((Date.now() - questionStartMs) / 1000));
+      timeLeft = Math.max(0, QUESTION_TIME - Math.max(0, Math.floor((Date.now() - questionStartMs) / 1000)));
       $('roundBadge').textContent = `Câu ${round+1}/${puzzles.length}`;
       $('categoryBadge').textContent = puzzle.category;
       const frame = document.querySelector('.puzzle-frame');
