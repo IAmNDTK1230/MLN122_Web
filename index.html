@@ -524,6 +524,21 @@
       text-align:center!important;
     }
 
+
+    /* --- Stable game timer/answer feedback fix --- */
+    .answer-state{
+      display:block!important;
+      min-height:26px;
+      margin-top:10px;
+      color:var(--gold);
+      font-weight:900;
+      line-height:1.5;
+    }
+    #answerInput:disabled{
+      opacity:.7;
+      cursor:not-allowed;
+    }
+
 </style>
 </head>
 <body>
@@ -1571,7 +1586,9 @@
 
         if(roomData.status === 'playing'){
           const remoteRound = Number(roomData.currentQuestion || 0);
-          const startMs = roomData.questionStartedAt?.toMillis ? roomData.questionStartedAt.toMillis() : Date.now();
+          let startMs = Number(roomData.questionStartedAtMs || 0);
+          if(!startMs && roomData.questionStartedAt?.toMillis) startMs = roomData.questionStartedAt.toMillis();
+          if(!startMs || startMs > Date.now() + 1000) startMs = Date.now();
           $('roomLobby')?.classList.remove('show');
           $('gameStage')?.classList.add('show');
           updateStageLayout();
@@ -1595,7 +1612,7 @@
               : answered ? 'Bạn đã trả lời xong. Đang chờ các người chơi khác.' : 'Hãy nhập đáp án trước khi hết giờ.';
             updateHostProgress();
             if(playing && !timer){
-              timer = setInterval(updateTimer, 1000);
+              timer = setInterval(updateTimer, 250);
             }
             const activePlayers = getActivePlayers(players);
             const answeredCount = Object.keys(getAnsweredMap(roomData)).length;
@@ -1721,39 +1738,51 @@
     function getRevealCount(answer, secondsLeft){
       const totalLetters = getLetterCount(answer);
       if(totalLetters <= 1) return 0;
+      if(secondsLeft <= 0) return totalLetters;
 
-      const elapsed = QUESTION_TIME - secondsLeft;
-      const steps = Math.floor(elapsed / 5);
+      if(secondsLeft > 25) return 0;
+
       let count = 0;
 
-      for(let step = 1; step <= steps; step++){
-        const remainingAtStep = QUESTION_TIME - step * 5;
-        if(remainingAtStep <= 15){
-          count += step % 2 === 0 ? 2 : 1;
-        }else if(remainingAtStep <= 25){
-          count += 1;
+      // 25s -> 20s: mở chậm, mỗi mốc 5s khoảng 1 chữ.
+      count += Math.max(0, Math.floor((25 - secondsLeft) / 5) + 1);
+
+      // Từ 15s trở xuống: tăng nhịp, mỗi mốc 5s mở thêm 1-2 chữ.
+      if(secondsLeft <= 15){
+        const fastSteps = Math.floor((15 - secondsLeft) / 5) + 1;
+        for(let i = 1; i <= fastSteps; i++){
+          count += i % 2 === 0 ? 2 : 1;
         }
       }
 
-      return Math.min(totalLetters - 1, count);
+      return Math.min(totalLetters, count);
     }
     function updateTimer(){
       if(playing){
         const elapsed = Math.max(0, Math.floor((Date.now() - questionStartMs) / 1000));
         timeLeft = Math.max(0, QUESTION_TIME - elapsed);
       }
-      const pct = Math.max(0, Math.round((timeLeft/QUESTION_TIME)*100));
+
+      const pct = Math.max(0, Math.round((timeLeft / QUESTION_TIME) * 100));
       $('timerText').textContent = timeLeft + 's';
       $('timerRing').style.setProperty('--progress', pct + '%');
-      const points = Math.max(80, Math.round(timeLeft * 10));
+
+      const points = Math.max(0, Math.round(timeLeft * 10));
       $('currentPoint').textContent = points;
+
       const puzzle = puzzles[round];
       if(puzzle){
         renderAnswerBoxes(puzzle.answer, $('answerInput')?.value || '', getRevealCount(puzzle.answer, timeLeft));
       }
+
       if(timeLeft <= 0 && playing){
-        if(currentRole === 'host') openRoundReview(`Hết giờ câu ${round+1}.`);
-        return;
+        if(currentRole === 'host'){
+          openRoundReview(`Hết giờ câu ${round+1}.`);
+        }else{
+          setAnswerDisabled(true);
+          $('answerState').textContent = `Hết giờ. Đáp án: ${puzzle ? puzzle.answer : ''}`;
+          renderAnswerBoxes(puzzle.answer, puzzle.answer, getLetterCount(puzzle.answer));
+        }
       }
     }
 
@@ -1829,11 +1858,13 @@
       $('answerInput').value = '';
       const answerBox = $('answerBoxes');
       if(answerBox) answerBox.innerHTML = '';
-      setAnswerDisabled(false);
-      $('answerState').textContent = '';
-      renderAnswerBoxes(puzzle.answer, $('answerInput')?.value || '', getRevealCount(puzzle.answer, timeLeft));
+      setAnswerDisabled(currentRole === 'host');
+      $('answerState').textContent = currentRole === 'host' ? '' : 'Nhập đáp án rồi bấm Trả lời.';
+      renderAnswerBoxes(puzzle.answer, '', getRevealCount(puzzle.answer, timeLeft));
       updateTimer();
-      setTimeout(() => $('answerInput')?.focus(), 80);
+      setTimeout(() => {
+        if(currentRole !== 'host') $('answerInput')?.focus();
+      }, 80);
     }
     async function startGame(){
       if(!ensureRoom()) return;
@@ -1849,6 +1880,7 @@
           phase: 'question',
           currentQuestion: 0,
           questionStartedAt: serverTimestamp(),
+          questionStartedAtMs: Date.now(),
           answeredPlayers: {},
           reviewStartedAt: null,
           reviewMessage: 'Chuẩn bị câu đầu tiên.',
@@ -1868,7 +1900,7 @@
       lastRevealStep = 0;
       clearInterval(timer);
       loadRound(startMs || Date.now());
-      timer = setInterval(updateTimer, 1000);
+      timer = setInterval(updateTimer, 250);
       updateStageLayout();
       if(currentRole === 'host') setAnswerDisabled(true);
       renderPlayers();
@@ -1908,19 +1940,35 @@
         $('statusText').textContent = 'Bạn đã trả lời câu này rồi.';
         return;
       }
+      updateTimer();
       const puzzle = puzzles[round];
-      const ok = normalizeAnswer($('answerInput').value) === normalizeAnswer(puzzle.answer);
-      if(!ok){
-        $('statusText').textContent = 'Chưa đúng, thử lại trước khi hết giờ.';
-        $('answerState').textContent = 'Đáp án chưa chính xác. Bạn vẫn có thể nhập lại.';
+      if(timeLeft <= 0){
+        $('statusText').textContent = 'Hết giờ.';
+        $('answerState').textContent = `Hết giờ. Đáp án: ${puzzle.answer}`;
+        setAnswerDisabled(true);
+        renderAnswerBoxes(puzzle.answer, puzzle.answer, getLetterCount(puzzle.answer));
         return;
       }
-      const earned = Math.max(80, Math.round((timeLeft+1) * 10));
+
+      const rawAnswer = $('answerInput').value.trim();
+      const ok = normalizeAnswer(rawAnswer) === normalizeAnswer(puzzle.answer);
+      if(!ok){
+        $('statusText').textContent = 'Chưa đúng, thử lại trước khi hết giờ.';
+        $('answerState').textContent = 'Sai rồi, nhập lại nhanh nhé.';
+        $('answerInput')?.focus();
+        return;
+      }
+
+      const earned = Math.max(10, Math.round(timeLeft * 10));
       const currentMe = players.find(p => p.me) || { name: localPlayerName || 'Bạn', role: currentRole || 'player', score: 0 };
       const newScore = Number(currentMe.score || 0) + earned;
+      const localPlayer = players.find(p => p.id === localPlayerId);
+      if(localPlayer) localPlayer.score = newScore;
+      renderPlayers();
+      $('currentPoint').textContent = earned;
       $('statusText').textContent = `Chính xác. +${earned} điểm.`;
       $('answerState').textContent = `Đúng rồi. Đáp án: ${puzzle.answer}. Bạn nhận ${earned} điểm.`;
-      renderAnswerBoxes(puzzle.answer, puzzle.answer, getLetterCount ? getLetterCount(puzzle.answer) : 99);
+      renderAnswerBoxes(puzzle.answer, puzzle.answer, getLetterCount(puzzle.answer));
       setAnswerDisabled(true);
       correctEffect();
       try{
@@ -1951,6 +1999,7 @@
             phase: 'question',
             currentQuestion: next,
             questionStartedAt: serverTimestamp(),
+            questionStartedAtMs: Date.now(),
             answeredPlayers: {},
             reviewStartedAt: null,
             reviewMessage: `Chuẩn bị câu ${next+1}.`
@@ -1977,6 +2026,7 @@
           phase: 'question',
           currentQuestion: 0,
           questionStartedAt: null,
+          questionStartedAtMs: null,
           answeredPlayers: {},
           reviewStartedAt: null,
           reviewMessage: '',
