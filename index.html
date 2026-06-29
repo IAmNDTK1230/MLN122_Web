@@ -394,6 +394,26 @@
       border-radius:22px!important;
     }
 
+
+    .answer-state{
+      display:block!important;
+      margin-top:10px;
+      color:var(--gold);
+      font-weight:800;
+      line-height:1.6;
+    }
+
+
+    /* --- Host screen no-answer + 30s timing update --- */
+    .game-stage.host-view .answer-row,
+    .game-stage.host-view #answerBoxes,
+    .game-stage.host-view #answerState{
+      display:none!important;
+    }
+    .game-stage.host-view .puzzle-question{
+      margin-bottom:14px;
+    }
+
 </style>
 </head>
 <body>
@@ -404,7 +424,7 @@
       <div class="brand">
         <div class="logo">ML</div>
         <div>
-          <div class="brand-title">MLN122</div>
+          <div class="brand-title">Đế chế Apple</div>
           <div class="brand-sub">Góc nhìn kinh tế chính trị Mác - Lênin</div>
         </div>
       </div>
@@ -497,9 +517,15 @@
             <div class="card"><div class="num">3</div><h3>Biểu hiện</h3><p>Quy luật giá trị biểu hiện thành giá cả độc quyền; quy luật giá trị thặng dư biểu hiện thành lợi nhuận độc quyền.</p></div>
           </div>
           <div class="card" style="margin-top:22px">
-            <h3>Sơ đồ phần 1 · Độc quyền</h3>
-            <p>Sơ đồ dưới đây tóm tắt mạch kiến thức chính của phần độc quyền: khái niệm, nguyên nhân hình thành, biểu hiện, tác động và quan hệ cạnh tranh trong điều kiện độc quyền.</p>
-            <div class="inline-image show" id="img10"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/Anh 10.png" alt="Sơ đồ phần độc quyền trong nền kinh tế thị trường" /></div>
+            <h3>Ảnh giới thiệu phần 1 · Độc quyền</h3>
+            <p>Ảnh này dùng để mở đầu phần cạnh tranh và độc quyền trong nền kinh tế thị trường.</p>
+            <div class="inline-image show" id="img10"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/Anh 10.png" alt="Ảnh giới thiệu cạnh tranh và độc quyền trong nền kinh tế thị trường" /></div>
+          </div>
+
+          <div class="card" style="margin-top:22px">
+            <h3>Sơ đồ tóm tắt phần 1</h3>
+            <p>Sơ đồ này hệ thống hóa mạch kiến thức của phần độc quyền: từ cạnh tranh tự do, tích tụ và tập trung sản xuất đến độc quyền, sau đó là khái niệm, nguyên nhân, biểu hiện, tác động và quan hệ cạnh tranh.</p>
+            <div class="inline-image show" id="img10b"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/sơ đồ 1.png" alt="Sơ đồ tóm tắt phần 1 độc quyền" /></div>
           </div>
 
           <div class="grid-2" style="margin-top:22px">
@@ -638,7 +664,7 @@
                     <span class="badge hot" id="roundBadge">Câu 1/10</span>
                     <span class="badge">Điểm câu này: <b id="currentPoint">600</b></span>
                   </div>
-                  <div class="timer-ring" id="timerRing"><span id="timerText">45s</span></div>
+                  <div class="timer-ring" id="timerRing"><span id="timerText">30s</span></div>
                 </div>
 
                 <div class="puzzle-frame">
@@ -703,7 +729,7 @@
               <div class="practice-card intro">
                 <span class="badge hot">AI Tutor</span>
                 <h3>Ôn tập với AI từ học liệu</h3>
-                <p>Người học chỉ cần chọn số câu và dạng câu hỏi. Nguồn học liệu được lấy từ backend/API do quản trị viên chuẩn bị sẵn, nên người dùng không cần upload tài liệu.</p>
+                <p>Người học chỉ cần chọn số câu muốn luyện và dạng câu hỏi phù hợp.</p>
 
                 <div class="ai-source-box">
                   <div class="ai-form-row">
@@ -733,10 +759,7 @@
                 <ul>
                   <li>Nhập tối đa <b>50 câu</b> cho một lần ôn tập.</li>
                   <li>Chọn <b>Multiple choice</b>, <b>Điền vào chỗ trống</b> hoặc <b>Kết hợp</b>.</li>
-                  <li>Nguồn slide/giáo trình nằm trong backend/API, người học không cần upload tài liệu.</li>
-                  <li>Khi trả lời sai, AI sẽ giải thích vì sao sai và nhắc lại ý lý thuyết liên quan.</li>
                 </ul>
-                <p class="source-pill">Nguồn ưu tiên: học liệu backend / giáo trình / slide</p>
               </div>
             </div>
 
@@ -925,7 +948,7 @@
     let playing = false;
     let currentRole = null;
     let currentPhase = 'idle';
-    const QUESTION_TIME = 45;
+    const QUESTION_TIME = 30;
     const REVIEW_TIME = 4;
     let localPlayerId = sessionStorage.getItem('mlnPlayerId') || ('p_' + Math.random().toString(36).slice(2,10));
     let localPlayerName = '';
@@ -1245,6 +1268,7 @@
       if(!stage) return;
       const questionMode = roomData?.status === 'playing' && (roomData?.phase || 'question') === 'question';
       stage.classList.toggle('player-view', currentRole === 'player' && questionMode);
+      stage.classList.toggle('host-view', currentRole === 'host' && questionMode);
       const hostSide = $('hostSidePanel');
       if(hostSide) hostSide.style.display = currentRole === 'host' ? 'grid' : 'none';
     }
@@ -1563,7 +1587,11 @@
 
       for(let step = 1; step <= steps; step++){
         const remainingAtStep = QUESTION_TIME - step * 5;
-        count += remainingAtStep <= 30 ? (step % 2 === 0 ? 2 : 1) : 1;
+        if(remainingAtStep <= 15){
+          count += step % 2 === 0 ? 2 : 1;
+        }else if(remainingAtStep <= 25){
+          count += 1;
+        }
       }
 
       return Math.min(totalLetters - 1, count);
@@ -1701,6 +1729,7 @@
       loadRound(startMs || Date.now());
       timer = setInterval(updateTimer, 1000);
       updateStageLayout();
+      if(currentRole === 'host') setAnswerDisabled(true);
       renderPlayers();
       updateHostProgress();
     }
@@ -1729,6 +1758,10 @@
       }
     }
     async function submitAnswer(){
+      if(currentRole === 'host'){
+        $('statusText').textContent = 'Quản trò chỉ điều khiển game, không trả lời câu hỏi.';
+        return;
+      }
       if(!playing || !roomData) return;
       if(playerHasAnswered(localPlayerId, roomData)){
         $('statusText').textContent = 'Bạn đã trả lời câu này rồi.';
@@ -1737,14 +1770,16 @@
       const puzzle = puzzles[round];
       const ok = normalizeAnswer($('answerInput').value) === normalizeAnswer(puzzle.answer);
       if(!ok){
-        $('statusText').textContent = 'Chưa đúng, thử lại nhanh trước khi có thêm gợi ý.';
+        $('statusText').textContent = 'Chưa đúng, thử lại trước khi hết giờ.';
+        $('answerState').textContent = 'Đáp án chưa chính xác. Bạn vẫn có thể nhập lại.';
         return;
       }
       const earned = Math.max(80, Math.round((timeLeft+1) * 10));
       const currentMe = players.find(p => p.me) || { name: localPlayerName || 'Bạn', role: currentRole || 'player', score: 0 };
       const newScore = Number(currentMe.score || 0) + earned;
-      $('statusText').textContent = `Chính xác. +${earned} điểm. Đang chờ người chơi khác...`;
-      $('answerState').textContent = '';
+      $('statusText').textContent = `Chính xác. +${earned} điểm.`;
+      $('answerState').textContent = `Đúng rồi. Đáp án: ${puzzle.answer}. Bạn nhận ${earned} điểm.`;
+      renderAnswerBoxes(puzzle.answer, puzzle.answer, getLetterCount ? getLetterCount(puzzle.answer) : 99);
       setAnswerDisabled(true);
       correctEffect();
       try{
