@@ -170,7 +170,13 @@
 
     .role-screen{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:22px}.role-card{min-height:430px;background:rgba(3,8,16,.78);border:1px solid rgba(160,190,255,.22);border-radius:32px;padding:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.32);position:relative;overflow:hidden}.role-card:before{content:"";position:absolute;inset:-120px;background:radial-gradient(circle at 50% 20%,rgba(255,77,109,.22),transparent 34%);opacity:.8}.player-card:before{background:radial-gradient(circle at 50% 20%,rgba(255,159,28,.20),transparent 34%)}.role-card>*{position:relative;z-index:1}.role-icon{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-size:46px;background:rgba(255,77,109,.15);border:1px solid rgba(255,77,109,.28);margin-bottom:22px}.role-icon.amber{background:rgba(255,159,28,.13);border-color:rgba(255,159,28,.28)}.role-card h3{font-size:34px;margin:0 0 14px;letter-spacing:-1px}.role-card p{color:var(--muted);line-height:1.65;max-width:480px;margin:0 0 26px;font-size:16px}.role-select{width:min(100%,440px);border:0;border-radius:18px;padding:16px 18px;font-family:inherit;font-weight:900;font-size:16px;cursor:pointer;color:#fff;background:linear-gradient(135deg,#ff3f6e,#ff6b6b);box-shadow:0 18px 48px rgba(255,77,109,.22)}.role-select.amber,.amber-btn{background:linear-gradient(135deg,#f59e0b,#ffbf1f)!important;color:#111827!important}.role-form{width:min(100%,440px);display:none;gap:12px;margin-top:18px}.role-form.show{display:grid}.room-lobby{display:none;grid-template-columns:1.1fr .9fr;gap:18px;margin-bottom:22px}.room-lobby.show{display:grid}.lobby-main{display:flex;align-items:center;justify-content:space-between;gap:18px}.big-room-code{min-width:190px;border-radius:26px;padding:18px 22px;text-align:center;background:rgba(57,229,255,.1);border:1px solid rgba(57,229,255,.28);box-shadow:inset 0 0 40px rgba(57,229,255,.07)}.big-room-code span{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;font-weight:900;letter-spacing:1px;margin-bottom:8px}.big-room-code b{font-size:42px;letter-spacing:5px;color:#e7fbff}.game-stage{display:none}.game-stage.show{display:grid}
 
-    @media (max-width:960px){.hero,.grid-2,.grid-3,.room-panel,.game-stage,.role-screen,.room-lobby{grid-template-columns:1fr}.grid-5{grid-template-columns:repeat(2,1fr)}.hero{min-height:auto}.hero-visual{min-height:420px}.chip{position:relative;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important}.apple-orbit{display:none}.hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:12px}.price-model{grid-template-columns:1fr}.arrow-mid{display:none}.brand{min-width:auto}.brand-sub{display:none}}
+
+    .game-mode-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;padding:8px;border-radius:999px;background:rgba(255,255,255,.045);border:1px solid rgba(160,190,255,.14);width:max-content;max-width:100%}
+    .game-mode-btn{border:0;border-radius:999px;padding:12px 16px;font-family:inherit;font-weight:900;color:#dbeafe;background:transparent;cursor:pointer;transition:.2s ease}.game-mode-btn:hover{background:rgba(255,255,255,.06);color:#fff}.game-mode-btn.active{color:#06111f;background:linear-gradient(135deg,#39e5ff,#ffd166,#ff4d8d);box-shadow:0 14px 42px rgba(57,229,255,.18)}
+    .game-mode-panel{display:none}.game-mode-panel.show{display:block;animation:fade .25s ease both}
+    .practice-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.practice-card,.practice-main,.practice-side .game-card{background:linear-gradient(180deg,rgba(8,18,34,.86),rgba(10,23,42,.72));border:1px solid rgba(160,190,255,.16);border-radius:28px;padding:24px;box-shadow:0 28px 80px rgba(0,0,0,.32)}.practice-card.intro{background:radial-gradient(circle at 20% 10%,rgba(255,77,141,.16),transparent 38%),linear-gradient(180deg,rgba(8,18,34,.9),rgba(10,23,42,.74))}.practice-card h3,.practice-main h3{margin:14px 0 12px;font-size:26px}.practice-card p,.practice-card li{color:var(--muted);line-height:1.75}.practice-counts{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.count-btn{border:1px solid rgba(160,190,255,.18);background:rgba(255,255,255,.06);color:#dbeafe;border-radius:999px;padding:11px 16px;font-family:inherit;font-weight:900;cursor:pointer}.count-btn.active{background:linear-gradient(135deg,var(--pink),var(--blue));border-color:transparent;color:#fff}.practice-quiz{display:none;grid-template-columns:1.25fr .75fr;gap:20px}.practice-quiz.show{display:grid}.practice-progress{height:10px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin:12px 0 22px}.practice-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--pink));border-radius:999px;transition:.25s ease}.practice-options{display:grid;gap:12px;margin:18px 0}.option-btn{border:1px solid rgba(160,190,255,.16);background:rgba(255,255,255,.055);color:#eaf6ff;border-radius:18px;padding:15px 16px;text-align:left;font-family:inherit;font-weight:800;cursor:pointer;line-height:1.5}.option-btn:hover{border-color:rgba(57,229,255,.45);background:rgba(57,229,255,.08)}.option-btn.correct{border-color:rgba(34,197,94,.55);background:rgba(34,197,94,.14)}.option-btn.wrong{border-color:rgba(255,77,109,.55);background:rgba(255,77,109,.14)}.option-btn:disabled{cursor:default}.ai-explain{display:none;margin-top:16px;padding:18px;border-radius:22px;background:rgba(57,229,255,.075);border:1px solid rgba(57,229,255,.22);color:#dffcff;line-height:1.7}.ai-explain.show{display:block}.ai-explain b{display:block;margin-bottom:8px;color:#ffe7a2}.ai-explain p{margin:0;color:#dbeafe}.practice-side{display:grid;gap:14px}.practice-side .feed{height:360px}
+
+    @media (max-width:960px){.hero,.grid-2,.grid-3,.room-panel,.game-stage,.role-screen,.room-lobby,.practice-grid,.practice-quiz{grid-template-columns:1fr}.grid-5{grid-template-columns:repeat(2,1fr)}.hero{min-height:auto}.hero-visual{min-height:420px}.chip{position:relative;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important}.apple-orbit{display:none}.hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:12px}.price-model{grid-template-columns:1fr}.arrow-mid{display:none}.brand{min-width:auto}.brand-sub{display:none}}
     @media (max-width:640px){main{width:min(100% - 22px,1180px);padding-top:24px}.nav{width:min(100% - 18px,1180px);height:auto;min-height:72px;align-items:flex-start;flex-direction:column;padding:12px 0}.nav-tabs{width:100%}h1{letter-spacing:-1px}.surface{padding:20px;border-radius:22px}.grid-5{grid-template-columns:1fr}.step{grid-template-columns:1fr}.hero-visual{display:none}.tab-btn{font-size:12px}.answer-row{grid-template-columns:1fr}.room-card>div[style]{grid-template-columns:1fr!important}.puzzle-art{font-size:54px;letter-spacing:8px}.letter-box{width:34px;height:44px;font-size:18px}}
 
 
@@ -428,103 +434,170 @@
     <section id="game" class="tab-panel">
       <div class="section-head">
         <div class="kicker">Game ôn tập</div>
-        <h2>Đuổi hình bắt chữ: Độc quyền Apple</h2>
-        <p class="section-desc">Mỗi câu có 60 giây. Trả lời càng sớm điểm càng cao. Từ khóa sẽ hiện dần theo thời gian, càng chờ lâu điểm càng giảm.</p>
+        <h2>Ôn tập chương độc quyền</h2>
+        <p class="section-desc">Chọn chơi đuổi hình bắt chữ theo phòng hoặc luyện lý thuyết dạng trắc nghiệm. Phần luyện lý thuyết có giải thích ngay khi trả lời sai để người học hiểu lại kiến thức.</p>
       </div>
       <div class="surface">
         <div class="game-shell">
-          <div class="role-screen" id="roleScreen">
-            <div class="role-card host-card">
-              <div class="role-icon">🎮</div>
-              <h3>Bạn là Quản Trò?</h3>
-              <p>Tạo phòng mới, hiển thị mã phòng và điều khiển game ôn tập.</p>
-              <button class="role-select" id="chooseHost">Chọn Quản Trò</button>
-              <div class="role-form" id="hostForm">
-                <input id="hostName" class="room-input" placeholder="Tên quản trò" maxlength="18" />
-                <input id="hostRoomName" class="room-input" placeholder="Tên phòng" maxlength="24" />
-                <button id="createRoom" class="game-btn">Tạo phòng mới</button>
-              </div>
-            </div>
-            <div class="role-card player-card">
-              <div class="role-icon amber">👥</div>
-              <h3>Bạn là Người Chơi?</h3>
-              <p>Nhập mã phòng từ màn hình của quản trò để tham gia.</p>
-              <button class="role-select amber" id="choosePlayer">Chọn Người Chơi</button>
-              <div class="role-form" id="playerForm">
-                <input id="roomInput" class="room-input" placeholder="Nhập mã phòng" maxlength="5" />
-                <input id="playerName" class="room-input" placeholder="Tên của bạn" maxlength="18" />
-                <button id="joinRoom" class="game-btn amber-btn">Tham gia ngay</button>
-              </div>
-            </div>
+          <div class="game-mode-tabs">
+            <button class="game-mode-btn active" data-game-mode="roomMode">🎮 Đuổi hình bắt chữ</button>
+            <button class="game-mode-btn" data-game-mode="practiceMode">🧠 Ôn luyện lý thuyết</button>
           </div>
 
-          <div class="room-lobby" id="roomLobby">
-            <div class="room-card lobby-main">
-              <div>
-                <span class="badge hot" id="roleBadge">Quản trò</span>
-                <h3 id="lobbyTitle">Phòng ôn tập</h3>
-                <p class="game-note" id="lobbyDesc">Chia sẻ mã phòng cho người chơi. Đây là bản mô phỏng trong 1 file HTML nên người chơi ảo sẽ được thêm trực tiếp trên giao diện.</p>
-              </div>
-              <div class="big-room-code">
-                <span>Mã phòng</span>
-                <b id="roomCode">-----</b>
-              </div>
-              <div class="room-actions">
-                <button id="addBot" class="game-btn alt">Thêm người chơi ảo</button>
-                <button id="backRole" class="game-btn alt">Đổi vai</button>
-              </div>
-            </div>
-            <div class="room-card">
-              <h3>Người chơi trong phòng</h3>
-              <div class="player-list" id="playerList"></div>
-            </div>
-          </div>
-
-          <div class="game-stage" id="gameStage">
-            <div class="game-card" style="position:relative">
-              <div class="confetti" id="confetti"></div>
-              <div class="game-top">
-                <div style="display:flex;gap:8px;flex-wrap:wrap">
-                  <span class="badge hot" id="roundBadge">Câu 1/8</span>
-                  <span class="badge">Điểm câu này: <b id="currentPoint">600</b></span>
+          <div class="game-mode-panel show" id="roomMode">
+            <div class="role-screen" id="roleScreen">
+              <div class="role-card host-card">
+                <div class="role-icon">🎮</div>
+                <h3>Bạn là Quản Trò?</h3>
+                <p>Tạo phòng mới, hiển thị mã phòng và điều khiển game ôn tập.</p>
+                <button class="role-select" id="chooseHost">Chọn Quản Trò</button>
+                <div class="role-form" id="hostForm">
+                  <input id="hostName" class="room-input" placeholder="Tên quản trò" maxlength="18" />
+                  <input id="hostRoomName" class="room-input" placeholder="Tên phòng" maxlength="24" />
+                  <button id="createRoom" class="game-btn">Tạo phòng mới</button>
                 </div>
-                <div class="timer-ring" id="timerRing"><span id="timerText">60s</span></div>
               </div>
-
-              <div class="puzzle-frame">
-                <div class="puzzle-title">
-                  <span class="badge" id="categoryBadge">Lý thuyết</span>
-                  <span class="badge">Đuổi hình bắt chữ</span>
+              <div class="role-card player-card">
+                <div class="role-icon amber">👥</div>
+                <h3>Bạn là Người Chơi?</h3>
+                <p>Nhập mã phòng từ màn hình của quản trò để tham gia.</p>
+                <button class="role-select amber" id="choosePlayer">Chọn Người Chơi</button>
+                <div class="role-form" id="playerForm">
+                  <input id="roomInput" class="room-input" placeholder="Nhập mã phòng" maxlength="5" />
+                  <input id="playerName" class="room-input" placeholder="Tên bạn" maxlength="18" />
+                  <button id="joinRoom" class="game-btn amber-btn">Tham gia ngay</button>
                 </div>
-                <div class="puzzle-art" id="puzzleArt">🏭 ➜ 🏢</div>
-              </div>
-
-              <div class="hint-box" id="hintBox">Gợi ý sẽ hiện ở đây.</div>
-              <div class="reveal-word" id="revealWord"></div>
-              <div class="answer-row">
-                <input id="answerInput" class="game-input" placeholder="Nhập đáp án..." autocomplete="off" />
-                <button id="submitAnswer" class="game-btn good">Trả lời</button>
-                <button id="passQuestion" class="game-btn warn">Qua câu</button>
               </div>
             </div>
 
-            <div class="score-panel">
-              <div class="game-card">
-                <h3>Điểm của bạn</h3>
-                <div class="score-big" id="scoreText">0</div>
-                <p class="game-note" id="statusText">Tạo phòng rồi bấm “Bắt đầu game”.</p>
+            <div class="room-lobby" id="roomLobby">
+              <div class="room-card lobby-main">
+                <div>
+                  <span class="badge hot" id="roleBadge">Quản trò</span>
+                  <h3 id="lobbyTitle">Phòng ôn tập</h3>
+                  <p class="game-note" id="lobbyDesc">Chia sẻ mã phòng cho người chơi. Khi đủ người, quản trò bấm “Bắt đầu game”.</p>
+                </div>
+                <div class="big-room-code">
+                  <span>Mã phòng</span>
+                  <b id="roomCode">-----</b>
+                </div>
                 <div class="room-actions">
-                  <button id="startGame" class="game-btn">Bắt đầu game</button>
-                  <button id="resetGame" class="game-btn alt">Chơi lại</button>
+                  <button id="addBot" class="game-btn alt">Thêm người chơi ảo</button>
+                  <button id="startGameLobby" class="game-btn good">Bắt đầu game</button>
                 </div>
               </div>
-              <div class="game-card">
-                <h3>Bảng xếp hạng</h3>
-                <div class="leaderboard" id="leaderboard"></div>
+              <div class="room-card">
+                <h3>Người chơi trong phòng</h3>
+                <div class="player-list" id="playerList"></div>
               </div>
-              <div class="game-card">
-                <h3>Live feed</h3>
-                <div class="feed" id="liveFeed"></div>
+            </div>
+
+            <div class="game-stage" id="gameStage">
+              <div class="game-card" style="position:relative">
+                <div class="confetti" id="confetti"></div>
+                <div class="game-top">
+                  <div style="display:flex;gap:8px;flex-wrap:wrap">
+                    <span class="badge hot" id="roundBadge">Câu 1/8</span>
+                    <span class="badge">Điểm câu này: <b id="currentPoint">600</b></span>
+                  </div>
+                  <div class="timer-ring" id="timerRing"><span id="timerText">60s</span></div>
+                </div>
+
+                <div class="puzzle-frame">
+                  <div class="puzzle-title">
+                    <span class="badge" id="categoryBadge">Lý thuyết</span>
+                    <span class="badge">Đuổi hình bắt chữ</span>
+                  </div>
+                  <div class="puzzle-art" id="puzzleArt">🏭 ➜ 🏢</div>
+                </div>
+
+                <div class="hint-box" id="hintBox">Gợi ý sẽ hiện ở đây.</div>
+                <div class="reveal-word" id="revealWord"></div>
+                <div class="answer-row">
+                  <input id="answerInput" class="game-input" placeholder="Nhập đáp án..." autocomplete="off" />
+                  <button id="submitAnswer" class="game-btn good">Trả lời</button>
+                  <button id="passQuestion" class="game-btn warn">Qua câu</button>
+                </div>
+              </div>
+
+              <div class="score-panel">
+                <div class="game-card">
+                  <h3>Điểm của bạn</h3>
+                  <div class="score-big" id="scoreText">0</div>
+                  <p class="game-note" id="statusText">Tạo phòng rồi bấm “Bắt đầu game”.</p>
+                  <div class="room-actions">
+                    <button id="startGame" class="game-btn">Bắt đầu game</button>
+                    <button id="resetGame" class="game-btn alt">Chơi lại</button>
+                  </div>
+                </div>
+                <div class="game-card">
+                  <h3>Bảng xếp hạng</h3>
+                  <div class="leaderboard" id="leaderboard"></div>
+                </div>
+                <div class="game-card">
+                  <h3>Live feed</h3>
+                  <div class="feed" id="liveFeed"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="game-mode-panel" id="practiceMode">
+            <div class="practice-grid" id="practiceSetup">
+              <div class="practice-card intro">
+                <span class="badge hot">AI Tutor</span>
+                <h3>Ôn luyện lý thuyết chương độc quyền</h3>
+                <p>Người học chọn số lượng câu muốn ôn. Web sẽ gọi AI để tạo đúng số câu, chấm ngay và giải thích vì sao đáp án đúng hoặc sai. Nếu API lỗi, hệ thống tự dùng ngân hàng câu hỏi dự phòng.</p>
+                <div class="practice-counts">
+                  <button class="count-btn active" data-count="10">10 câu</button>
+                  <button class="count-btn" data-count="15">15 câu</button>
+                  <button class="count-btn" data-count="20">20 câu</button>
+                </div>
+                <button id="startPractice" class="game-btn good">Tạo câu hỏi bằng AI</button>
+                <p class="game-note" id="practiceGenerateStatus">Sẵn sàng tạo câu hỏi.</p>
+              </div>
+              <div class="practice-card">
+                <h3>Nội dung ôn</h3>
+                <ul>
+                  <li>Cạnh tranh tự do, tích tụ và tập trung sản xuất.</li>
+                  <li>Độc quyền, giá cả độc quyền và lợi nhuận độc quyền.</li>
+                  <li>Đặc điểm kinh tế của độc quyền theo V.I. Lênin.</li>
+                  <li>Vận dụng vào tình huống Apple.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="practice-quiz" id="practiceQuiz">
+              <div class="practice-main">
+                <div class="game-top">
+                  <div style="display:flex;gap:8px;flex-wrap:wrap">
+                    <span class="badge hot" id="practiceCounter">Câu 1/10</span>
+                    <span class="badge">Điểm: <b id="practiceScore">0</b></span>
+                  </div>
+                  <span class="badge" id="practiceTopic">Lý thuyết</span>
+                </div>
+                <div class="practice-progress"><span id="practiceProgress"></span></div>
+                <h3 id="practiceQuestion">Câu hỏi sẽ hiện ở đây</h3>
+                <div class="practice-options" id="practiceOptions"></div>
+                <div class="ai-explain" id="aiExplain">
+                  <b>AI giải thích</b>
+                  <p>Chọn một đáp án để xem giải thích.</p>
+                </div>
+                <div class="room-actions">
+                  <button id="nextPractice" class="game-btn">Câu tiếp theo</button>
+                  <button id="restartPractice" class="game-btn alt">Ôn lại</button>
+                </div>
+              </div>
+              <div class="practice-side">
+                <div class="game-card">
+                  <h3>Kết quả</h3>
+                  <div class="score-big" id="practiceResult">0/0</div>
+                  <p class="game-note" id="practiceStatus">Đọc câu hỏi và chọn đáp án.</p>
+                </div>
+                <div class="game-card">
+                  <h3>Lịch sử trả lời</h3>
+                  <div class="feed" id="practiceFeed"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -604,6 +677,161 @@
       .replace(/Đ/g,'D')
       .replace(/[^A-Z0-9]/g,'');
 
+
+    const theoryQuestions = [
+      {topic:'Khái niệm', q:'Độc quyền trong kinh tế chính trị Mác - Lênin được hiểu chủ yếu là gì?', options:['Một doanh nghiệp nhỏ bán hàng tốt hơn đối thủ','Liên minh hoặc vị thế của các doanh nghiệp lớn nhằm kiểm soát sản xuất, tiêu thụ và giá cả','Việc Nhà nước cấm hoàn toàn cạnh tranh','Một hình thức quảng cáo sản phẩm'], correct:1, explain:'Độc quyền là sự liên minh hoặc vị thế của các doanh nghiệp lớn có khả năng chi phối thị trường, định giá và thu lợi nhuận độc quyền.'},
+      {topic:'Quá trình hình thành', q:'Vì sao cạnh tranh tự do có thể dẫn đến độc quyền?', options:['Vì doanh nghiệp tự nguyện ngừng sản xuất','Vì cạnh tranh làm tư bản tích tụ, tập trung vào tay các doanh nghiệp thắng thế','Vì người tiêu dùng không còn nhu cầu','Vì mọi doanh nghiệp đều có quy mô bằng nhau'], correct:1, explain:'Trong cạnh tranh, doanh nghiệp mạnh mở rộng quy mô, doanh nghiệp yếu bị phá sản hoặc bị thâu tóm. Quá trình đó làm tư bản tập trung và tạo điều kiện hình thành độc quyền.'},
+      {topic:'Tích tụ', q:'Tích tụ sản xuất là gì?', options:['Tăng quy mô sản xuất thông qua tư bản hóa giá trị thặng dư','Sáp nhập toàn bộ doanh nghiệp với Nhà nước','Giảm quy mô sản xuất để tránh rủi ro','Chỉ nhập hàng từ nước ngoài'], correct:0, explain:'Tích tụ sản xuất là quá trình tăng quy mô tư bản cá biệt bằng cách biến một phần giá trị thặng dư thành tư bản mới.'},
+      {topic:'Tập trung', q:'Tập trung sản xuất khác tích tụ ở điểm nào?', options:['Tập trung là kết hợp nhiều tư bản nhỏ thành tư bản lớn','Tập trung là giảm đầu tư vào máy móc','Tập trung chỉ diễn ra trong nông nghiệp','Tập trung không liên quan đến cạnh tranh'], correct:0, explain:'Tập trung sản xuất thường diễn ra qua sáp nhập, mua lại, thâu tóm, làm nhiều tư bản nhỏ kết hợp thành tư bản lớn.'},
+      {topic:'Giá cả độc quyền', q:'Giá cả độc quyền cao thường được áp dụng khi nào?', options:['Khi tổ chức độc quyền bán hàng hóa với giá cao hơn giá trị hoặc giá cả sản xuất','Khi doanh nghiệp bán dưới chi phí mãi mãi','Khi người lao động tự định giá sản phẩm','Khi không có thương hiệu nào trên thị trường'], correct:0, explain:'Tổ chức độc quyền có thể lợi dụng vị thế thị trường để bán sản phẩm với giá cao, qua đó chiếm đoạt một phần thu nhập của người tiêu dùng.'},
+      {topic:'Giá cả độc quyền', q:'Giá cả độc quyền thấp có thể hiểu là gì?', options:['Doanh nghiệp độc quyền mua đầu vào hoặc trả cho đối tác ở mức bất lợi cho bên cung cấp','Doanh nghiệp tự giảm toàn bộ lợi nhuận','Người tiêu dùng luôn mua được rẻ hơn','Nhà nước bắt mọi người bán cùng một giá'], correct:0, explain:'Ở chiều mua vào hoặc thanh toán cho đối tác, thế lực độc quyền có thể ép giá thấp để chuyển một phần giá trị về phía mình.'},
+      {topic:'Lợi nhuận', q:'Lợi nhuận độc quyền là gì?', options:['Lợi nhuận thấp hơn mức bình quân','Khoản lợi nhuận cao hơn bình quân nhờ vị thế độc quyền và áp đặt giá cả','Tiền lương của người lao động','Chi phí quảng cáo của doanh nghiệp'], correct:1, explain:'Lợi nhuận độc quyền là khoản lợi nhuận cao hơn lợi nhuận bình quân, có được nhờ kiểm soát thị trường, giá cả và điều kiện trao đổi.'},
+      {topic:'Apple', q:'Trong case Apple, hệ sinh thái iOS khép kín thể hiện điều gì?', options:['Apple không có khả năng kiểm soát thị trường','Apple tạo một không gian tiêu dùng và phân phối bị kiểm soát chặt bởi nền tảng','Apple hoàn toàn không liên quan đến App Store','Người dùng có thể tự do cài mọi cửa hàng ứng dụng như nhau'], correct:1, explain:'Hệ sinh thái khép kín giúp Apple kiểm soát thiết bị, hệ điều hành, cửa hàng ứng dụng, thanh toán và dịch vụ, từ đó tạo sức mạnh nền tảng.'},
+      {topic:'Apple', q:'Phí hoa hồng App Store 30% có thể được phân tích như thế nào theo lý thuyết độc quyền?', options:['Không liên quan đến quan hệ lợi ích','Có thể xem như cách Apple chiếm một phần giá trị do nhà phát triển tạo ra','Là tiền lương của công nhân Apple','Là biểu hiện của cạnh tranh hoàn hảo'], correct:1, explain:'Khi Apple kiểm soát cửa hàng ứng dụng chủ yếu trên iOS, việc thu hoa hồng cao có thể được phân tích như một hình thức chiếm đoạt một phần giá trị từ bên thứ ba.'},
+      {topic:'Apple', q:'Bán iPhone giá cao trong hệ sinh thái mạnh có thể liên hệ với khái niệm nào?', options:['Giá cả độc quyền cao','Xuất khẩu tư bản','Tư bản tài chính','Sở hữu nhà nước'], correct:0, explain:'Khi thương hiệu và hệ sinh thái làm người dùng khó rời bỏ, Apple có khả năng duy trì giá bán cao, gần với biểu hiện giá cả độc quyền cao.'},
+      {topic:'Lênin', q:'Theo V.I. Lênin, đặc điểm kinh tế đầu tiên của độc quyền là gì?', options:['Tích tụ và tập trung sản xuất tạo ra tổ chức độc quyền','Xóa bỏ hoàn toàn thị trường','Mọi doanh nghiệp đều nhỏ lại','Không còn ngân hàng'], correct:0, explain:'Lênin nhấn mạnh sự tập trung sản xuất và tư bản đạt đến trình độ cao sẽ làm xuất hiện các tổ chức độc quyền.'},
+      {topic:'Lênin', q:'Tư bản tài chính là sự kết hợp giữa những loại tư bản nào?', options:['Tư bản ngân hàng và tư bản công nghiệp','Tư bản thương nghiệp và đất đai duy nhất','Tư bản nhỏ và hộ gia đình','Tiền lương và thuế'], correct:0, explain:'Tư bản tài chính hình thành từ sự dung hợp giữa tư bản ngân hàng và tư bản công nghiệp, tạo nên quyền lực của tài phiệt.'},
+      {topic:'Lênin', q:'Xuất khẩu tư bản là gì?', options:['Đưa vốn ra nước ngoài để đầu tư và thu lợi nhuận','Chỉ bán hàng hóa qua biên giới','Cấm doanh nghiệp hoạt động ở nước ngoài','Nhập khẩu lao động'], correct:0, explain:'Xuất khẩu tư bản là việc đưa vốn ra nước ngoài dưới dạng đầu tư trực tiếp hoặc gián tiếp nhằm tìm kiếm lợi nhuận cao hơn.'},
+      {topic:'Thị trường thế giới', q:'Cạnh tranh phân chia thị trường thế giới nghĩa là gì?', options:['Các tập đoàn độc quyền mở rộng và tranh giành khu vực ảnh hưởng trên toàn cầu','Mọi quốc gia tự cô lập hoàn toàn','Người tiêu dùng chia nhau sản phẩm miễn phí','Không có cạnh tranh quốc tế'], correct:0, explain:'Các tập đoàn độc quyền không chỉ cạnh tranh trong nước mà còn mở rộng ra toàn cầu, giành thị trường, nguồn nguyên liệu và khu vực ảnh hưởng.'},
+      {topic:'Độc quyền nhà nước', q:'Độc quyền nhà nước trong chủ nghĩa tư bản là gì?', options:['Sự kết hợp sức mạnh của Nhà nước với các tổ chức độc quyền để điều tiết nền kinh tế','Nhà nước xóa bỏ mọi doanh nghiệp lớn','Người lao động sở hữu toàn bộ nền kinh tế','Doanh nghiệp nhỏ tự điều hành chính phủ'], correct:0, explain:'Độc quyền nhà nước là sự kết hợp giữa quyền lực nhà nước và tư bản độc quyền, nhằm duy trì và điều tiết nền kinh tế theo lợi ích của chủ nghĩa tư bản độc quyền.'},
+      {topic:'Tác động', q:'Tác động tích cực có thể có của độc quyền là gì?', options:['Tạo nguồn lực lớn cho nghiên cứu, đổi mới công nghệ và sản xuất quy mô lớn','Luôn làm giá giảm về 0','Xóa bỏ mọi bất bình đẳng','Không cần quản lý sản xuất'], correct:0, explain:'Độc quyền có thể huy động vốn lớn, tổ chức sản xuất hiện đại và đầu tư vào công nghệ, dù đồng thời vẫn có nhiều tác động tiêu cực.'},
+      {topic:'Tác động', q:'Tác động tiêu cực quan trọng của độc quyền là gì?', options:['Hạn chế cạnh tranh, gây thiệt hại cho người tiêu dùng và doanh nghiệp nhỏ','Làm mọi doanh nghiệp đều bình đẳng tuyệt đối','Làm người tiêu dùng luôn có nhiều lựa chọn hơn','Không ảnh hưởng đến phân hóa xã hội'], correct:0, explain:'Độc quyền thường làm cạnh tranh không hoàn hảo, khiến người tiêu dùng chịu giá cao, doanh nghiệp nhỏ bị chèn ép và lợi nhuận tập trung vào nhóm lớn.'},
+      {topic:'Quan hệ cạnh tranh', q:'Độc quyền có xóa bỏ cạnh tranh không?', options:['Không. Độc quyền không xóa bỏ cạnh tranh mà làm cạnh tranh gay gắt và đa dạng hơn','Có. Từ đó không còn bất kỳ cạnh tranh nào','Có. Vì mọi doanh nghiệp trở thành một doanh nghiệp duy nhất','Không liên quan đến cạnh tranh'], correct:0, explain:'Theo lý thuyết, độc quyền ra đời từ cạnh tranh nhưng không thủ tiêu cạnh tranh; cạnh tranh vẫn tồn tại giữa độc quyền với ngoài độc quyền, giữa các độc quyền và trong nội bộ độc quyền.'},
+      {topic:'Apple', q:'Spotify và Epic Games phản đối Apple chủ yếu vì điều gì?', options:['Cho rằng Apple dùng vị thế kiểm soát App Store để thu phí cao và gây bất lợi cho đối thủ','Vì Apple không sản xuất điện thoại','Vì Apple không có hệ điều hành','Vì họ muốn Apple ngừng bán iPhone'], correct:0, explain:'Các bên như Spotify, Epic Games từng phản đối việc Apple kiểm soát App Store và thu phí hoa hồng cao, coi đó là hành vi bất lợi cho cạnh tranh.'},
+      {topic:'Kết luận', q:'Khi phân tích Apple theo lý thuyết độc quyền, kết luận cân bằng nhất là gì?', options:['Apple vừa tạo trải nghiệm công nghệ tốt, vừa có dấu hiệu tận dụng vị thế nền tảng để thu lợi nhuận độc quyền','Apple chỉ có tác động tích cực, không có vấn đề gì','Apple không có hệ sinh thái riêng','Apple không liên quan đến người tiêu dùng và lập trình viên'], correct:0, explain:'Một kết luận hợp lý là Apple mang lại tiện ích, an toàn và trải nghiệm tốt; nhưng đồng thời hệ sinh thái khép kín cũng tạo quyền lực thị trường và khả năng thu lợi nhuận độc quyền.'}
+    ];
+
+    let practiceCount = 10;
+    let practiceSet = [];
+    let practiceIndex = 0;
+    let practiceScoreValue = 0;
+    let practiceAnswered = false;
+
+    function shuffleArray(arr){
+      const a = [...arr];
+      for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+      return a;
+    }
+    function switchGameMode(id){
+      document.querySelectorAll('.game-mode-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.gameMode === id));
+      document.querySelectorAll('.game-mode-panel').forEach(panel => panel.classList.toggle('show', panel.id === id));
+      if(id === 'practiceMode') clearInterval(timer);
+    }
+    function setPracticeCount(count){
+      practiceCount = count;
+      document.querySelectorAll('.count-btn').forEach(btn => btn.classList.toggle('active', Number(btn.dataset.count) === count));
+    }
+    async function startPractice(){
+      const status = $('practiceGenerateStatus');
+      const startBtn = $('startPractice');
+      if(status) status.textContent = `AI đang tạo ${practiceCount} câu hỏi...`;
+      if(startBtn) startBtn.disabled = true;
+
+      let generated = null;
+      try{
+        const res = await fetch('/api/generate-quiz', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({count: practiceCount})
+        });
+        const data = await res.json();
+        if(!res.ok) throw new Error(data.error || 'Không gọi được AI');
+        if(!Array.isArray(data.questions) || !data.questions.length) throw new Error('AI không trả về câu hỏi hợp lệ');
+        generated = data.questions.map((q, idx) => ({
+          topic: q.topic || 'AI Tutor',
+          q: q.q || q.question || `Câu hỏi ${idx+1}`,
+          options: q.options || [],
+          correct: Number.isInteger(q.correct) ? q.correct : Number(q.answerIndex || 0),
+          explain: q.explain || q.explanation || 'AI chưa tạo giải thích.'
+        })).filter(q => q.options.length === 4 && q.correct >= 0 && q.correct <= 3);
+      }catch(err){
+        console.warn('AI quiz fallback:', err);
+        generated = shuffleArray(theoryQuestions).slice(0, practiceCount);
+        if(status) status.textContent = 'Không gọi được AI, đang dùng bộ câu hỏi dự phòng.';
+      }
+
+      practiceSet = generated.slice(0, practiceCount);
+      practiceIndex = 0;
+      practiceScoreValue = 0;
+      practiceAnswered = false;
+      $('practiceSetup').style.display = 'none';
+      $('practiceQuiz').classList.add('show');
+      $('practiceFeed').innerHTML = '';
+      $('practiceScore').textContent = '0';
+      if(startBtn) startBtn.disabled = false;
+      renderPracticeQuestion();
+    }
+    function renderPracticeQuestion(){
+      const item = practiceSet[practiceIndex];
+      practiceAnswered = false;
+      $('practiceCounter').textContent = `Câu ${practiceIndex+1}/${practiceSet.length}`;
+      $('practiceTopic').textContent = item.topic;
+      $('practiceQuestion').textContent = item.q;
+      $('practiceResult').textContent = `${practiceScoreValue}/${practiceSet.length}`;
+      $('practiceStatus').textContent = 'Chọn đáp án để được chấm và giải thích.';
+      $('practiceProgress').style.width = `${Math.round((practiceIndex / practiceSet.length) * 100)}%`;
+      $('aiExplain').classList.remove('show');
+      $('aiExplain').innerHTML = '<b>AI giải thích</b><p>Chọn một đáp án để xem giải thích.</p>';
+      const box = $('practiceOptions');
+      box.innerHTML = '';
+      item.options.forEach((option, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.textContent = String.fromCharCode(65+i) + '. ' + option;
+        btn.addEventListener('click', () => answerPractice(i));
+        box.appendChild(btn);
+      });
+    }
+    function answerPractice(choice){
+      if(practiceAnswered) return;
+      practiceAnswered = true;
+      const item = practiceSet[practiceIndex];
+      const buttons = [...document.querySelectorAll('#practiceOptions .option-btn')];
+      buttons.forEach((btn,i)=>{
+        btn.disabled = true;
+        if(i === item.correct) btn.classList.add('correct');
+        if(i === choice && choice !== item.correct) btn.classList.add('wrong');
+      });
+      const ok = choice === item.correct;
+      if(ok){
+        practiceScoreValue++;
+        $('practiceScore').textContent = practiceScoreValue;
+        $('practiceStatus').textContent = 'Chính xác. Tiếp tục câu sau.';
+      } else {
+        $('practiceStatus').textContent = 'Chưa đúng. Đọc giải thích rồi sang câu tiếp theo.';
+      }
+      const correctText = item.options[item.correct];
+      $('aiExplain').innerHTML = `<b>${ok ? 'AI giải thích: Bạn chọn đúng' : 'AI giải thích: Vì sao sai?'}</b><p>${item.explain}</p><p><b>Đáp án đúng:</b> ${correctText}</p>`;
+      $('aiExplain').classList.add('show');
+      const feed = $('practiceFeed');
+      const line = document.createElement('div');
+      line.className = 'feed-item';
+      line.textContent = `${ok ? 'Đúng' : 'Sai'} câu ${practiceIndex+1}: ${item.topic}`;
+      feed.prepend(line);
+      $('practiceResult').textContent = `${practiceScoreValue}/${practiceSet.length}`;
+    }
+    function nextPractice(){
+      if(!practiceSet.length) return;
+      if(practiceIndex >= practiceSet.length - 1){
+        $('practiceProgress').style.width = '100%';
+        $('practiceQuestion').textContent = 'Hoàn thành bài ôn tập';
+        $('practiceOptions').innerHTML = '';
+        $('aiExplain').innerHTML = `<b>Kết quả cuối</b><p>Bạn đúng ${practiceScoreValue}/${practiceSet.length} câu. Hãy xem lại các câu sai trong lịch sử trả lời và ôn lại phần lý thuyết tương ứng.</p>`;
+        $('aiExplain').classList.add('show');
+        $('practiceStatus').textContent = 'Đã hoàn thành.';
+        return;
+      }
+      practiceIndex++;
+      renderPracticeQuestion();
+    }
+    function restartPractice(){
+      $('practiceSetup').style.display = 'grid';
+      $('practiceQuiz').classList.remove('show');
+      practiceSet = [];
+      practiceIndex = 0;
+      practiceScoreValue = 0;
+    }
+
     function addFeed(text){
       const feed = $('liveFeed');
       if(!feed) return;
@@ -644,7 +872,12 @@
       $('roleScreen').style.display = 'none';
       $('roomLobby')?.classList.add('show');
       $('gameStage')?.classList.remove('show');
+      currentRole = role;
       $('roleBadge').textContent = role === 'host' ? 'Quản trò' : 'Người chơi';
+      const startLobby = $('startGameLobby');
+      if(startLobby) startLobby.style.display = role === 'host' ? 'inline-flex' : 'none';
+      const addBotBtn = $('addBot');
+      if(addBotBtn) addBotBtn.style.display = role === 'host' ? 'inline-flex' : 'none';
     }
     function ensureRoom(){
       if(room) return true;
@@ -687,19 +920,6 @@
       const name = names[Math.floor(Math.random()*names.length)] + ' AI';
       players.push({name, score:Math.max(0, score - Math.floor(Math.random()*140)), me:false});
       addFeed(`${name} đã vào phòng.`);
-      renderPlayers();
-    }
-    function backRole(){
-      clearInterval(timer);
-      playing = false;
-      room = null;
-      players = [];
-      $('roomLobby')?.classList.remove('show');
-      $('gameStage')?.classList.remove('show');
-      $('roleScreen').style.display = 'grid';
-      $('roleScreen')?.classList.remove('hidden');
-      $('roomCode').textContent = '-----';
-      addFeed('Đã quay lại màn hình chọn vai.');
       renderPlayers();
     }
     function drawReveal(answer){
@@ -751,6 +971,7 @@
     }
     function startGame(){
       if(!ensureRoom()) return;
+      $('roomLobby')?.classList.remove('show');
       $('gameStage')?.classList.add('show');
       score = 0;
       round = 0;
@@ -823,6 +1044,12 @@
       addFeed('Đã reset game.');
     }
 
+    document.querySelectorAll('.game-mode-btn').forEach(btn => btn.addEventListener('click', () => switchGameMode(btn.dataset.gameMode)));
+    document.querySelectorAll('.count-btn').forEach(btn => btn.addEventListener('click', () => setPracticeCount(Number(btn.dataset.count))));
+    $('startPractice')?.addEventListener('click', startPractice);
+    $('nextPractice')?.addEventListener('click', nextPractice);
+    $('restartPractice')?.addEventListener('click', restartPractice);
+
     const createRoomBtn = $('createRoom');
     if(createRoomBtn){
       $('chooseHost').addEventListener('click', () => showRoleForm('host'));
@@ -830,14 +1057,14 @@
       createRoomBtn.addEventListener('click', createRoom);
       $('joinRoom').addEventListener('click', joinRoom);
       $('addBot').addEventListener('click', addBot);
-      $('backRole').addEventListener('click', backRole);
+      $('startGameLobby').addEventListener('click', startGame);
       $('startGame').addEventListener('click', startGame);
       $('resetGame').addEventListener('click', resetGame);
       $('submitAnswer').addEventListener('click', submitAnswer);
       $('passQuestion').addEventListener('click', () => { addFeed('Bạn đã qua câu.'); nextRound(); });
       $('answerInput').addEventListener('keydown', e => { if(e.key === 'Enter') submitAnswer(); });
-      $('hostName').value = 'Quản trò';
-      $('playerName').value = 'Người chơi';
+      $('hostName').value = '';
+      $('playerName').value = '';
       renderPlayers();
       loadRound();
     }
