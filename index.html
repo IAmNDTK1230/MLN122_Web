@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Đế chế Apple dưới góc nhìn kinh tế chính trị Mác - Lênin</title>
+  <title>MLN122 · Cạnh tranh và độc quyền</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
 
@@ -450,6 +450,37 @@
       letter-spacing:2px!important;
     }
 
+
+    /* --- Practice quiz full width fix --- */
+    .practice-quiz.show{
+      grid-template-columns:1fr!important;
+      max-width:1180px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .practice-quiz.show .practice-main{
+      width:100%!important;
+      max-width:none!important;
+    }
+    .practice-quiz.show .practice-side{
+      display:none!important;
+    }
+    .practice-quiz.show.finished{
+      grid-template-columns:1fr!important;
+    }
+    .practice-quiz.show.finished .practice-side{
+      display:block!important;
+    }
+    .practice-main .game-card{
+      width:100%;
+    }
+    #practiceOptions{
+      width:100%;
+    }
+    #practiceOptions .option-btn{
+      width:100%;
+    }
+
 </style>
 </head>
 <body>
@@ -461,7 +492,7 @@
         <div class="logo">ML</div>
         <div>
           <div class="brand-title">MLN122</div>
-          <div class="brand-sub">Góc nhìn kinh tế chính trị Mác - Lênin</div>
+          <div class="brand-sub">Kinh tế chính trị Mác - Lênin</div>
         </div>
       </div>
       <nav class="nav-tabs" aria-label="Điều hướng nội dung">
@@ -507,7 +538,7 @@
 
     <section id="case" class="tab-panel">
       <div class="section-head">
-        <div class="kicker">Case study Apple</div>
+        <div class="kicker">Case study</div>
         <h2>Giới thiệu tình huống nghiên cứu</h2>
       </div>
       <div class="surface">
@@ -554,11 +585,6 @@
           </div>
           <div class="inline-image" id="img10"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/Anh 10.png" alt="Ảnh giới thiệu cạnh tranh và độc quyền trong nền kinh tế thị trường" /></div>
 
-          <div class="card" style="margin-top:22px">
-            <h3>Xem <span class="highlight" data-img="img10b">sơ đồ</span> tóm tắt phần 1</h3>
-            <div class="inline-image" id="img10b"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/sơ đồ 1.png" alt="Sơ đồ tóm tắt phần 1 độc quyền" /></div>
-          </div>
-
           <div class="grid-2" style="margin-top:22px">
             <div class="card"><h3>Tác động tích cực</h3><ul><li>Thúc đẩy đổi mới công nghệ.</li><li>Nâng cao năng suất và phát triển sản xuất quy mô lớn.</li></ul></div>
             <div class="card"><h3>Tác động tiêu cực</h3><ul><li>Hạn chế cạnh tranh, ảnh hưởng người tiêu dùng.</li><li>Có thể kìm hãm phát triển kinh tế.</li><li>Gia tăng chênh lệch giàu nghèo.</li></ul></div>
@@ -566,6 +592,10 @@
           <div class="card" style="margin-top:22px">
             <h3>Quan hệ cạnh tranh trong điều kiện độc quyền</h3>
             <p>Độc quyền hình thành từ cạnh tranh tự do nhưng không xóa bỏ cạnh tranh. Trái lại, độc quyền làm cạnh tranh gay gắt hơn: cạnh tranh giữa doanh nghiệp độc quyền và ngoài độc quyền, cạnh tranh giữa các tổ chức độc quyền, và cạnh tranh trong nội bộ các tổ chức độc quyền.</p>
+          </div>
+          <div class="card" style="margin-top:22px">
+            <h3>Xem <span class="highlight" data-img="img10b">sơ đồ</span></h3>
+            <div class="inline-image" id="img10b"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/sơ đồ 1.png" alt="Sơ đồ tóm tắt phần 1 độc quyền" /></div>
           </div>
         </div>
 
