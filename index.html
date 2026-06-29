@@ -420,6 +420,36 @@
     .practice-quiz.show.finished .practice-side{display:block}
     .practice-quiz.show.finished .final-practice-card{display:block!important}
 
+
+    /* --- Room code alignment fix --- */
+    .room-code{
+      display:flex!important;
+      flex-direction:column!important;
+      align-items:center!important;
+      justify-content:center!important;
+      text-align:center!important;
+      min-width:260px;
+      padding:24px 34px!important;
+      box-sizing:border-box!important;
+    }
+    .room-code b,
+    #roomCode{
+      display:block!important;
+      width:100%!important;
+      text-align:center!important;
+      line-height:1!important;
+      letter-spacing:8px!important;
+      font-variant-numeric:tabular-nums!important;
+      white-space:nowrap!important;
+      margin:0 auto!important;
+    }
+    .room-code span{
+      display:block!important;
+      width:100%!important;
+      text-align:center!important;
+      letter-spacing:2px!important;
+    }
+
 </style>
 </head>
 <body>
@@ -470,7 +500,7 @@
         <div class="grid-3">
           <div class="card"><div class="num">01</div><h3>Nội dung chính</h3><p>Độc quyền, độc quyền nhà nước, tác động của độc quyền và quan hệ cạnh tranh trong trạng thái độc quyền.</p></div>
           <div class="card"><div class="num">02</div><h3>Cơ sở lý luận</h3><p>Lý luận của V.I. Lênin về tích tụ, tập trung tư bản, tư bản tài chính, xuất khẩu tư bản và phân chia thị trường thế giới.</p></div>
-          <div class="card"><div class="num">03</div><h3>Case study Apple</h3><p>Apple được dùng làm tình huống vận dụng để đặt câu hỏi về cạnh tranh, hệ sinh thái khép kín, App Store và giá cả độc quyền.</p></div>
+          <div class="card"><div class="num">03</div><h3>Case study</h3><p>Apple được dùng làm tình huống vận dụng để đặt câu hỏi về cạnh tranh, hệ sinh thái khép kín, App Store và giá cả độc quyền.</p></div>
         </div>
       </div>
     </section>
@@ -483,32 +513,20 @@
       <div class="surface">
         <div class="grid-2">
           <div class="card">
-            <h3>Bối cảnh thị trường smartphone</h3>
-            <p>Ban đầu, thị trường smartphone có nhiều hãng cùng tham gia như Nokia, BlackBerry, HTC, LG, Sony, Motorola, Apple và Samsung. Các doanh nghiệp cạnh tranh bằng công nghệ, thiết kế, hệ điều hành, giá bán, thương hiệu và trải nghiệm người dùng.</p>
-            <div class="quote">Hình ảnh <span class="highlight" data-img="img11">thị trường smartphone và sự chuyển dịch vị thế</span> dùng để mở đầu tình huống.</div>
-            <div class="inline-image" id="img11"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/Anh 11.png" alt="Apple và thị trường smartphone" /></div>
+            <h3>Bối cảnh</h3>
+            <p>Thị trường smartphone từng có nhiều hãng cạnh tranh như Nokia, BlackBerry, HTC, LG, Samsung và Apple. Sau quá trình cạnh tranh, Apple nổi bật nhờ iPhone, thương hiệu mạnh và hệ sinh thái khép kín gồm iOS, App Store, iCloud, Apple Music, Apple Pay.</p>
+            <p style="margin-top:12px">Hệ sinh thái này tạo trải nghiệm đồng bộ cho người dùng, nhưng cũng khiến người dùng và nhà phát triển phụ thuộc nhiều vào nền tảng của Apple.</p>
+            <div class="quote"><span class="highlight" data-img="img11">Xem ảnh minh họa case study Apple</span></div>
+            <div class="inline-image" id="img11"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/Anh 11.png" alt="Ảnh minh họa case study Apple" /></div>
           </div>
-          <div class="card">
-            <h3>Hệ sinh thái khép kín của Apple</h3>
-            <p>Apple xây dựng hệ sinh thái gồm iPhone, iOS, App Store, iCloud, Apple Music, Apple Pay và nhiều dịch vụ liên kết. Người dùng và nhà phát triển muốn tham gia sâu vào hệ sinh thái này thường phải tuân theo các quy tắc do Apple đặt ra.</p>
-            <div class="quote">Tranh luận quanh <span class="highlight" data-img="img12">App Store và phí hoa hồng</span> là chi tiết quan trọng của case study.</div>
-            <div class="inline-image" id="img12"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/Anh 12.png" alt="App Store và phí hoa hồng" /></div>
-          </div>
-        </div>
 
-        <div class="grid-2" style="margin-top:22px">
           <div class="card">
-            <h3>Các bên liên quan</h3>
+            <h3>Câu hỏi được đặt ra</h3>
+            <p>Case Apple được dùng để trả lời hai vấn đề chính.</p>
             <ul>
-              <li><b>Apple:</b> cho rằng hệ sinh thái khép kín giúp bảo vệ an toàn, chất lượng và trải nghiệm người dùng.</li>
-              <li><b>Người dùng:</b> hưởng lợi từ sự đồng bộ nhưng có thể bị phụ thuộc vào thiết bị và dịch vụ.</li>
-              <li><b>Nhà phát triển:</b> tiếp cận người dùng iOS nhưng phải chịu quy định và phí nền tảng.</li>
-              <li><b>Đối thủ:</b> cạnh tranh với Apple trong thị trường smartphone và dịch vụ số.</li>
+              <li>Cạnh tranh trong thị trường smartphone có dẫn tới tích tụ, tập trung sản xuất và hình thành vị thế độc quyền hay không?</li>
+              <li>Apple có đang sử dụng sức mạnh hệ sinh thái để áp đặt giá cả độc quyền cao với người dùng và giá cả độc quyền thấp với đối tác, từ đó thu lợi nhuận độc quyền hay không?</li>
             </ul>
-          </div>
-          <div class="card">
-            <h3>Câu hỏi định hướng</h3>
-            <p>Từ tình huống này, bài học đặt ra hai hướng phân tích chính: quá trình cạnh tranh có dẫn tới tích tụ, tập trung sản xuất và vị thế độc quyền hay không; đồng thời Apple có đang sử dụng sức mạnh hệ sinh thái để tạo ra giá cả và lợi nhuận độc quyền hay không.</p>
           </div>
         </div>
       </div>
@@ -528,20 +546,15 @@
 
         <div id="t1" class="sub-panel active">
           <div class="grid-3">
-            <div class="card"><div class="num">1</div><h3>Khái niệm độc quyền</h3><p>Độc quyền là liên minh các doanh nghiệp lớn nhằm kiểm soát sản xuất, tiêu thụ và định giá để thu lợi nhuận độc quyền.</p></div>
+            <div class="card"><div class="num">1</div><h3>Khái niệm <span class="highlight" data-img="img10">độc quyền</span></h3><p>Độc quyền là liên minh các doanh nghiệp lớn nhằm kiểm soát sản xuất, tiêu thụ và định giá để thu lợi nhuận độc quyền.</p></div>
             <div class="card"><div class="num">2</div><h3>Nguyên nhân hình thành</h3><p>Lực lượng sản xuất phát triển cần vốn lớn; cạnh tranh loại bỏ doanh nghiệp nhỏ; khủng hoảng kinh tế thúc đẩy tập trung tư bản; tín dụng hỗ trợ tích tụ và tập trung vốn.</p></div>
             <div class="card"><div class="num">3</div><h3>Biểu hiện</h3><p>Quy luật giá trị biểu hiện thành giá cả độc quyền; quy luật giá trị thặng dư biểu hiện thành lợi nhuận độc quyền.</p></div>
           </div>
-          <div class="card" style="margin-top:22px">
-            <h3>Ảnh giới thiệu phần 1 · Độc quyền</h3>
-            <p>Ảnh này dùng để mở đầu phần cạnh tranh và độc quyền trong nền kinh tế thị trường.</p>
-            <div class="inline-image show" id="img10"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/Anh 10.png" alt="Ảnh giới thiệu cạnh tranh và độc quyền trong nền kinh tế thị trường" /></div>
-          </div>
+          <div class="inline-image" id="img10"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/Anh 10.png" alt="Ảnh giới thiệu cạnh tranh và độc quyền trong nền kinh tế thị trường" /></div>
 
           <div class="card" style="margin-top:22px">
-            <h3>Sơ đồ tóm tắt phần 1</h3>
-            <p>Sơ đồ này hệ thống hóa mạch kiến thức của phần độc quyền: từ cạnh tranh tự do, tích tụ và tập trung sản xuất đến độc quyền, sau đó là khái niệm, nguyên nhân, biểu hiện, tác động và quan hệ cạnh tranh.</p>
-            <div class="inline-image show" id="img10b"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/sơ đồ 1.png" alt="Sơ đồ tóm tắt phần 1 độc quyền" /></div>
+            <h3>Xem <span class="highlight" data-img="img10b">sơ đồ</span> tóm tắt phần 1</h3>
+            <div class="inline-image" id="img10b"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/sơ đồ 1.png" alt="Sơ đồ tóm tắt phần 1 độc quyền" /></div>
           </div>
 
           <div class="grid-2" style="margin-top:22px">
@@ -596,13 +609,13 @@
 
         <div class="grid-2" style="margin-top:26px">
           <div class="card">
-            <h3>Từ case study đến luận điểm 1</h3>
+            <h3>Luận điểm 1</h3>
             <p>Quá trình thị trường smartphone thu hẹp từ nhiều hãng cạnh tranh xuống một số doanh nghiệp lớn cho thấy cạnh tranh không chỉ loại bỏ doanh nghiệp yếu hơn, mà còn thúc đẩy doanh nghiệp mạnh tích lũy vốn, mở rộng quy mô và kiểm soát hệ sinh thái.</p>
             <div class="quote"><span class="highlight" data-img="img11a">Hình ảnh quá trình chuyển biến của Apple</span> được dùng để minh họa cho hướng phân tích cạnh tranh → tích tụ, tập trung → độc quyền.</div>
             <div class="inline-image" id="img11a"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/Anh 11.png" alt="Quá trình chuyển biến của Apple" /></div>
           </div>
           <div class="card">
-            <h3>Từ case study đến luận điểm 2</h3>
+            <h3>Luận điểm 2</h3>
             <p>Việc Apple kiểm soát App Store và thu hoa hồng trong nhiều trường hợp là chi tiết để phân tích cơ chế giá cả độc quyền thấp với đối tác. Cùng lúc đó, giá bán cao của iPhone và thiết bị Apple được dùng để phân tích giá cả độc quyền cao với người tiêu dùng.</p>
             <div class="quote"><span class="highlight" data-img="img12a">Tranh luận App Store và phí hoa hồng</span> được đưa sang phần phân tích vì đây là bằng chứng cho cơ chế giá cả độc quyền.</div>
             <div class="inline-image" id="img12a"><div class="image-bar"><button class="close-img">Đóng ảnh</button></div><img src="Images/Anh 12.png" alt="App Store và phí hoa hồng" /></div>
